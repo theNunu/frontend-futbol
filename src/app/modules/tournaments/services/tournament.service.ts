@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { RequestDto } from '../interfaces/data';
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +20,14 @@ export class TournamentService {
     return this.http.get(`${this.apiUrl}/${tournamentId}`);
   }
 
-   postTournament(request: any) {
-    return this.http.post(
-      `${this.apiUrl}`, request );
-  }
+  //  postTournament(request: any) {
+  //   return this.http.post(
+  //     `${this.apiUrl}`, request );
+  // }
+
+  postTournament(request: RequestDto) {
+  return this.http.post<any>(`${this.apiUrl}`, request);
+}
 
   
 
