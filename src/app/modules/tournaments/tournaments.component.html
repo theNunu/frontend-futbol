@@ -1,0 +1,48 @@
+<p>tournaments works!</p>
+
+<button class="btn btn-success text-white">
+    crear torneo
+</button>
+
+<div class="d-flex justify-content-center w-100">
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">tournament_id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Season</th>
+                    <th scope="col">acciones</th>
+                    <!-- <th scope="col">Handle</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                @for (item of list; track $index) {
+                <tr>
+                    <th scope="row">{{ item.tournament_id }}</th>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.season }}</td>
+                    <td>
+                        <div class="d-flex flex gap-3">
+                            <button class="btn btn-warning text-white">
+                                actualizar torneo
+                            </button>
+                            <button class="btn btn-info text-white">
+                                ver mas
+                            </button>
+
+                            <button class="btn btn-danger text-white">
+                                inactivar torneo
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+
+</div>
+

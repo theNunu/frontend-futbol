@@ -6,7 +6,7 @@ import { TournamentsComponent } from './pages/tournaments/tournaments.component'
 const routes: Routes = [
   {
     path: 'tournaments',
-    component: TournamentsComponent
+    loadChildren: () => import('./modules/tournaments/tournaments.module').then(m => m.TournamentsModule)
   },
 
   // {
