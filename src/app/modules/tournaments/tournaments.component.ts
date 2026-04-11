@@ -19,4 +19,24 @@ export class TournamentsComponent {
       this.list = res
     })
   }
+
+  //para el modeal
+    // PARA EL MODAL
+  selectedProduct: any = null;
+  showModal = false;
+
+  openProduct(id: number) {
+
+    this.tournamentService.getTournamentById(id).subscribe((res: any) => {
+      // console.log('el id: ', id, res)
+
+      this.selectedProduct = res.data;
+      this.showModal = true;
+    });
+
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
 }

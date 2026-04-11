@@ -7,15 +7,17 @@ import { Observable } from 'rxjs';
 })
 export class TournamentService {
 
-
-  private apiUrl = 'http://127.0.0.1:8000/api';
+  private apiUrl = 'http://127.0.0.1:8000/api/tournaments';
 
   constructor(private http: HttpClient) { }
 
-
-
   getTournaments(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/tournaments`);
+    return this.http.get(`${this.apiUrl}`);
   }
+
+  getTournamentById(tournamentId: number) {
+    return this.http.get(`${this.apiUrl}/${tournamentId}`);
+  }
+
 
 }

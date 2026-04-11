@@ -20,9 +20,9 @@ export class TournamentsComponent implements OnInit {
     //   this.tournaments = data;
     // });
 
-    this.tournamentService.getTournaments().subscribe((data: any) => {
-      this.tournaments = data;
-    });
+    // this.tournamentService.getTournaments().subscribe((data: any) => {
+    //   this.tournaments = data;
+    // });
 
     // this.productService.getProducts().subscribe((data: any) => {
     //   this.products = data;
