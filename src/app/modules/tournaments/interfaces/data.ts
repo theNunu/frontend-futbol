@@ -3,3 +3,8 @@ export interface IData {
     name: string;
     season: string;
 }
+
+export interface RequestDto {
+    name: string
+    season: string
+}

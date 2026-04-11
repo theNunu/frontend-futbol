@@ -19,5 +19,12 @@ export class TournamentService {
     return this.http.get(`${this.apiUrl}/${tournamentId}`);
   }
 
+   postTournament(request: any) {
+    return this.http.post(
+      `${this.apiUrl}`, request );
+  }
+
+  
+
 
 }
