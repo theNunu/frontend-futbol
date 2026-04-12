@@ -57,7 +57,7 @@ export class TournamentsComponent {
     season: ['', [Validators.required]]
   });
 
-  onSubmit() {
+  saveTournament() {
     if (this.tournamentForm.invalid) return;
 
     this.loading = true;
@@ -65,6 +65,15 @@ export class TournamentsComponent {
 
     this.tournamentService.postTournament(request).subscribe({
       next: (res) => {
+
+        // 1. Limpias la lista actual (opcional, pero ayuda a evitar duplicados visuales)
+        this.list = [];
+
+        // 2. Llamas a tu función que trae todos los registros
+        this.tournamentService.getTournaments().subscribe(res => {
+          this.list = res
+        })
+
         console.log('Éxito:', res);
         this.tournamentForm.reset();
         this.loading = false;
@@ -80,7 +89,7 @@ export class TournamentsComponent {
   }
 
   closeModalCreate() {
-   this.showModalCreate = false;
+    this.showModalCreate = false;
   }
 
 }

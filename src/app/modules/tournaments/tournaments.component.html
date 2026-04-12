@@ -8,34 +8,30 @@
     crear torneo
 </button>
 <div class="container">
-    <h2>Crear Nuevo Torneo</h2>
+   
 
-    <div *ngIf="showModalCreate"
-        style="background-color: rgba(0,0,0,0.6);position: fixed;top:0;left:0;width:100%;height:100%;display:flex;justify-content:center;align-items:center;"
-        (click)="closeModalCreate()">
+    <div *ngIf="showModalCreate">
 
-        <div class="bg-white p-4 rounded text-center" style="width:500px">
-            <form [formGroup]="tournamentForm" (ngSubmit)="onSubmit()">
-                <div>
-                    <label for="name">Nombre del Torneo:</label>
-                    <input id="name" type="text" formControlName="name" placeholder="Torneo Iran en Medio Oriente">
-                </div>
+        <div style="background-color: rgba(0,0,0,0.6);position: fixed;top:0;left:0;width:100%;height:100%;display:flex;justify-content:center;align-items:center;"
+            (click)="closeModalCreate()">
+            <div class="bg-white p-4 rounded text-center" style="width:500px" (click)="$event.stopPropagation()">
+                <form [formGroup]="tournamentForm" (ngSubmit)="saveTournament()">
+                    <h2 >Crear Nuevo Torneo</h2>
+                    <div class="d-flex flex-column gap-3 p-3">
+                        <label for="name" class="me-auto">Nombre del Torneo:</label>
+                        <input id="name" type="text" formControlName="name" placeholder="Torneo Iran en Medio Oriente" class="form-control">
+                        <label for="season" class="me-auto">Temporada:</label>     <!-- Se alinean a la derecha -->
+                        <input id="season" type="text" formControlName="season" placeholder="Temporada 2026" class="form-control">
 
-                <div>
-                    <label for="season">Temporada (ej. 2024):</label>
-                    <input id="season" type="text" formControlName="season" placeholder="Temporada 2026">
+                    </div>
 
-                </div>
+                    <button class="btn btn-success mt-3 w-100"  (click)="closeModalCreate()">
+                        Guaradar Torneo
+                    </button>
 
-                <button type="submit" [disabled]="tournamentForm.invalid || loading">
-                    {{ loading ? 'Enviando...' : 'Guardar Torneo' }}
-                </button>
-            </form>
-
-
+                </form>
+            </div>
         </div>
-
-
 
     </div>
 
