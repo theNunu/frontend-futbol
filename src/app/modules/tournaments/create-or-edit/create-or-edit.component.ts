@@ -3,7 +3,8 @@ import { Component, inject } from '@angular/core';
 // import { IData, RequestDto } from './interfaces/data';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TournamentService } from '../services/tournament.service';
-import { RequestDto } from '../interfaces/data';
+import { IData, RequestDto } from '../interfaces/data';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-create-or-edit',
   standalone: false,
@@ -11,17 +12,29 @@ import { RequestDto } from '../interfaces/data';
   styleUrl: './create-or-edit.component.css'
 })
 export class CreateOrEditComponent {
-    private tournamentService = inject(TournamentService);
-    private fb = inject(FormBuilder);
+  private tournamentService = inject(TournamentService);
+  private fb = inject(FormBuilder);
+
+  //get de torneos
+  list: IData[] = []
+  // getAllTournaments() {
+  //   this.tournamentService.getTournaments().subscribe(res => {
+  //     this.list = res
+  //   })
+  // }
+
+    ngOnInit(): void {
+
+        
+    this.tournamentService.getTournaments().subscribe(res => {
+      this.list = res
+    })
+  
+
+  }
 
   //guardar un torneo
   loading = false;
-
-  // // Inicialización directa de la propiedad
-  // tournamentForm = this.fb.group({
-  //   name: ['', [Validators.required, Validators.minLength(3)]],
-  //   season: ['', [Validators.required]]
-  // });
 
   // Usa el FormBuilder con la opción nonNullable
   tournamentForm = this.fb.nonNullable.group({
@@ -39,18 +52,23 @@ export class CreateOrEditComponent {
       next: (res) => {
 
         // 1. Limpias la lista actual (opcional, pero ayuda a evitar duplicados visuales)
-        // this.list = [];
+        this.list = [];
 
-        // // 2. Llamas a tu función que trae todos los registros
-        // this.tournamentService.getTournaments().subscribe(res => {
-        //   this.list = res
-        // })
+        // 2. Llamas a tu función que trae todos los registros
+
+          this.tournamentService.getTournaments().subscribe(res => {
+      this.list = res
+    })
+
+        //  this.getAllTournaments()
 
         console.log('Éxito:', res);
+        Swal.fire('¡Éxito!', 'Post creado correctamente', 'success');
         this.tournamentForm.reset();
         this.loading = false;
       },
       error: () => (this.loading = false)
+
     });
   }
 
