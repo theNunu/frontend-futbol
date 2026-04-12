@@ -42,6 +42,7 @@ export class TournamentsComponent {
     this.showModal = false;
   }
 
+  //guardar un torneo
   loading = false;
 
   // // Inicialización directa de la propiedad
@@ -72,6 +73,14 @@ export class TournamentsComponent {
     });
   }
 
+  showModalCreate = false;
+  openModalCreate() {
+    this.showModalCreate = true;
 
+  }
+
+  closeModalCreate() {
+   this.showModalCreate = false;
+  }
 
 }
