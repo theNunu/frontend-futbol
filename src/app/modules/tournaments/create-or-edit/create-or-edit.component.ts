@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+// import { Component, inject } from '@angular/core';
+import { Component, inject, Output, EventEmitter } from '@angular/core';
 
 // import { IData, RequestDto } from './interfaces/data';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -15,26 +16,14 @@ export class CreateOrEditComponent {
   private tournamentService = inject(TournamentService);
   private fb = inject(FormBuilder);
 
-  //get de torneos
-  list: IData[] = []
-  // getAllTournaments() {
-  //   this.tournamentService.getTournaments().subscribe(res => {
-  //     this.list = res
-  //   })
-  // }
+  // Definimos el evento de salida
+  @Output() tournamentCreated = new EventEmitter<void>();
 
-    ngOnInit(): void {
-
-        
-    this.tournamentService.getTournaments().subscribe(res => {
-      this.list = res
-    })
-  
-
-  }
 
   //guardar un torneo
   loading = false;
+
+  
 
   // Usa el FormBuilder con la opción nonNullable
   tournamentForm = this.fb.nonNullable.group({
@@ -50,22 +39,15 @@ export class CreateOrEditComponent {
 
     this.tournamentService.postTournament(request).subscribe({
       next: (res) => {
-
-        // 1. Limpias la lista actual (opcional, pero ayuda a evitar duplicados visuales)
-        this.list = [];
-
-        // 2. Llamas a tu función que trae todos los registros
-
-          this.tournamentService.getTournaments().subscribe(res => {
-      this.list = res
-    })
-
         //  this.getAllTournaments()
 
         console.log('Éxito:', res);
         Swal.fire('¡Éxito!', 'Post creado correctamente', 'success');
         this.tournamentForm.reset();
         this.loading = false;
+
+        // ESTO ES LO NUEVO: Avisamos al padre
+        this.tournamentCreated.emit();
       },
       error: () => (this.loading = false)
 

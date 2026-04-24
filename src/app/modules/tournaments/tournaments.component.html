@@ -1,17 +1,6 @@
 <p>tournaments works!</p>
 
-<!-- <button class="btn btn-success text-white">
-    crear torneo
-</button> -->
-
-<!-- <button (click)="openModalCreate( )">
-    crear torneo
-</button> -->
-<app-create-or-edit/>
-<!-- <app-create-or-edit/> -->
-
-<!-- create-or -->
-<!-- <app-create-or-update/> -->
+<app-create-or-edit (tournamentCreated)="getAllTournaments()"></app-create-or-edit>
 
 <div class="d-flex justify-content-center w-100">
     <div>

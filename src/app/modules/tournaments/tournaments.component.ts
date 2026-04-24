@@ -13,12 +13,14 @@ export class TournamentsComponent {
   
   list: IData[] = []
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
 
+    this.getAllTournaments();
+  }
+
+  getAllTournaments() {
     this.tournamentService.getTournaments().subscribe(res => {
-      this.list = res
-    })
+      this.list = res; // Esto refresca la vista automáticamente
+    });
   }
 
   //para el modeal
