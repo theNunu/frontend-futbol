@@ -29,6 +29,11 @@ export class TournamentService {
   return this.http.post<any>(`${this.apiUrl}`, request);
 }
 
+// En tournament.service.ts
+deleteTournament(tournamentId: number) {
+  return this.http.delete(`${this.apiUrl}/${tournamentId}`);
+}
+
   
 
 

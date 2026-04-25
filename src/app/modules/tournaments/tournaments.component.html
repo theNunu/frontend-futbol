@@ -31,9 +31,13 @@
                                 Ver producto
                             </button>
 
-                            <button class="btn btn-danger text-white">
-                                inactivar torneo
+                            <button (click)="deleteTournament(item.tournament_id)" class="btn btn-danger text-white">
+                                Eliminar
                             </button>
+
+                            <!-- <button class="btn btn-danger text-white">
+                                inactivar torneo
+                            </button> -->
                         </div>
                     </td>
                 </tr>

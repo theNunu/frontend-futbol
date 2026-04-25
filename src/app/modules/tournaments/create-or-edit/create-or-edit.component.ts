@@ -43,7 +43,7 @@ export class CreateOrEditComponent {
 
         console.log('Éxito:', res);
         Swal.fire('¡Éxito!', 'Post creado correctamente', 'success');
-        this.tournamentForm.reset();
+        this.tournamentForm.reset();//limpiampos  el formulario con reset
         this.loading = false;
 
         // ESTO ES LO NUEVO: Avisamos al padre
