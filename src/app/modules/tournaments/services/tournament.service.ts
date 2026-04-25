@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { RequestDto } from '../interfaces/data';
+import { RequestDto, Tournament } from '../interfaces/data';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ export class TournamentService {
 
   constructor(private http: HttpClient) { }
 
-  getTournaments(): Observable<any> {
-    return this.http.get(`${this.apiUrl}`);
+  getTournaments(): Observable<Tournament[]> {
+    return this.http.get<Tournament[]>(`${this.apiUrl}`);
   }
 
   getTournamentById(tournamentId: number) {
