@@ -2,3 +2,5 @@ frontend-futbol  --> nombre del proyecto
 # Crear un component
 ng g c modules/seasons
 ng g c modules/seasons/create-or-edit
+ng g s modules/seasons/services/services
+ng g m modules/seasons --routing
