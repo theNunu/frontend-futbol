@@ -6,11 +6,15 @@ import { AppComponent } from './app.component';
 import { TournamentsComponent } from './pages/tournaments/tournaments.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TournamentsModule } from './modules/tournaments/tournaments.module';
+import { SeasonsComponent } from './seasons/seasons.component';
+import { CreateOrEditComponent } from './modules/seasons/create-or-edit/create-or-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TournamentsComponent,
+    SeasonsComponent,
+    CreateOrEditComponent,
   ],
   imports: [
     BrowserModule,

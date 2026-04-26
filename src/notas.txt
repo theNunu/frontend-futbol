@@ -1,1 +1,4 @@
-frontend-futbol
+frontend-futbol  --> nombre del proyecto 
+# Crear un component
+ng g c modules/seasons
+ng g c modules/seasons/create-or-edit
