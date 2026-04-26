@@ -24,18 +24,18 @@
                     <td>
                         <div class="d-flex flex gap-3">
 
-                            <button (click)="openProduct( item.tournament_id)">
+                            <button (click)="openProduct( item.tournament_id)" class="btn btn-info text-white">
                                 Ver producto
                             </button>
 
                             <button (click)="deleteTournament(item.tournament_id)" class="btn btn-danger text-white">
                                 Eliminar
                             </button>
-
+<!-- 
                             <button class="btn btn-warning text-white">
                                 actualizar torneo
-                            </button>
-                            <button (click)="formModal.openModalEdit(item)">Editar</button>
+                            </button> -->
+                            <button (click)="formModal.openModalEdit(item)" class="btn btn-warning  text-white">Editar torneo</button>
 
                         </div>
                     </td>
