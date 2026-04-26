@@ -1,10 +1,12 @@
-<p>tournaments works!</p>
 <!-- <button (click)="formModal.openModalCreate()">Nuevo Torneo</button> -->
 <app-create-or-edit #formModal (tournamentCreated)="getAllTournaments()"></app-create-or-edit>
-
-<button (click)="formModal.openModalCreate()" class="btn btn-success p-2">Nuevo Torneo</button>
-
-<div class="d-flex justify-content-center w-100">
+<i class="fa-solid fa-circle-plus" style="color: rgb(14, 154, 10);"></i>
+<button (click)="formModal.openModalCreate()" class="btn btn-success p-2 mt-5">Nuevo Torneo</button>
+<!-- <i class="fa-solid fa-house fa-4x"></i> 
+<i class="fa-solid fa-pen-to-square fa-2x" style="color: rgb(218, 231, 83);"></i>
+<i class="fa-solid fa-eye fa-2x" style="color: rgb(53, 116, 205);"></i>
+<i class="fa-solid fa-trash fa-2x" style="color: rgb(205, 53, 53);"></i> -->
+<div class="d-flex justify-content-center w-100 mt-4">
     <div>
         <table class="table table-striped">
             <thead>
@@ -12,7 +14,7 @@
                     <th scope="col">tournament_id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Season</th>
-                    <th scope="col">acciones</th>
+                    <th scope="col" class="text-center">acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,20 +25,14 @@
                     <td>{{ item.season }}</td>
                     <td>
                         <div class="d-flex flex gap-3">
+                            <i class="fa-solid fa-eye fa-1x" style="color: rgb(53, 116, 205);" title="Más información"
+                                (click)="openProduct( item.tournament_id)"></i>
 
-                            <button (click)="openProduct( item.tournament_id)" class="btn btn-info text-white">
-                                Ver producto
-                            </button>
+                            <i class="fa-solid fa-pen-to-square fa-1x" style="color: rgb(218, 231, 83);"
+                                title="EditarTorneo" (click)="formModal.openModalEdit(item)"></i>
 
-                            <button (click)="deleteTournament(item.tournament_id)" class="btn btn-danger text-white">
-                                Eliminar
-                            </button>
-<!-- 
-                            <button class="btn btn-warning text-white">
-                                actualizar torneo
-                            </button> -->
-                            <button (click)="formModal.openModalEdit(item)" class="btn btn-warning  text-white">Editar torneo</button>
-
+                            <i class="fa-solid fa-trash fa-1x" style="color: rgb(205, 53, 53);" title="Eliminar torneo"
+                                (click)="deleteTournament(item.tournament_id)"></i>
                         </div>
                     </td>
                 </tr>
