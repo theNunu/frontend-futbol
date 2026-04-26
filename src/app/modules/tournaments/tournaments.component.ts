@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { TournamentService } from './services/tournament.service';
-import { IData, RequestDto } from './interfaces/data';
+import { IData, RequestDto, Tournament } from './interfaces/data';
 import { FormBuilder, Validators } from '@angular/forms';
 // En tu index.component.ts
 import Swal from 'sweetalert2';
@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 export class TournamentsComponent {
   private tournamentService = inject(TournamentService);
   
-  list: IData[] = []
+  list: Tournament[] = []
   ngOnInit(): void {
 
     this.getAllTournaments();
@@ -27,7 +27,7 @@ export class TournamentsComponent {
 
   //para el modeal
   // PARA EL MODAL
-  selectedProduct: any = null;
+  selectedProduct: Tournament | null = null;
   showModal = false;
 
   openProduct(id: number) {

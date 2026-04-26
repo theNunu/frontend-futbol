@@ -1,6 +1,8 @@
 <p>tournaments works!</p>
+<!-- <button (click)="formModal.openModalCreate()">Nuevo Torneo</button> -->
+<app-create-or-edit #formModal (tournamentCreated)="getAllTournaments()"></app-create-or-edit>
 
-<app-create-or-edit (tournamentCreated)="getAllTournaments()"></app-create-or-edit>
+<button (click)="formModal.openModalCreate()" class="btn btn-success p-2">Nuevo Torneo</button>
 
 <div class="d-flex justify-content-center w-100">
     <div>
@@ -21,12 +23,7 @@
                     <td>{{ item.season }}</td>
                     <td>
                         <div class="d-flex flex gap-3">
-                            <button class="btn btn-warning text-white">
-                                actualizar torneo
-                            </button>
-                            <button class="btn btn-info text-white">
-                                ver mas
-                            </button>
+
                             <button (click)="openProduct( item.tournament_id)">
                                 Ver producto
                             </button>
@@ -35,9 +32,11 @@
                                 Eliminar
                             </button>
 
-                            <!-- <button class="btn btn-danger text-white">
-                                inactivar torneo
-                            </button> -->
+                            <button class="btn btn-warning text-white">
+                                actualizar torneo
+                            </button>
+                            <button (click)="formModal.openModalEdit(item)">Editar</button>
+
                         </div>
                     </td>
                 </tr>

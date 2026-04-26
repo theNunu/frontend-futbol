@@ -34,6 +34,11 @@ deleteTournament(tournamentId: number) {
   return this.http.delete(`${this.apiUrl}/${tournamentId}`);
 }
 
+// En tournament.service.ts
+updateTournament(tournamentId: number, request: RequestDto): Observable<any> {
+  return this.http.put(`${this.apiUrl}/${tournamentId}`, request);
+}
+
   
 
 
