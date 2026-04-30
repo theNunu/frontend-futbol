@@ -1,1 +1,29 @@
 <p>seasons works!</p>
+<h2>tilin</h2>
+
+<div class="d-flex justify-content-center mt-4">
+    
+        <table class="table table-striped w-75">
+            <thead>
+                <tr>
+                    <th scope="col">season_id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Active</th>
+                    <th scope="col" class="text-center">acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (item of list; track $index) {
+                <tr>
+                    <th scope="row">{{ item.season_id }}</th>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.active }}</td>
+                    <td>
+
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+</div>

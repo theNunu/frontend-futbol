@@ -3,6 +3,7 @@ import { TournamentService } from './services/tournament.service';
 import { IData, RequestDto, Tournament } from './interfaces/data';
 import { FormBuilder, Validators } from '@angular/forms';
 // En tu index.component.ts
+import { Router } from '@angular/router'; // 1. Importar Router
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-tournaments',
@@ -11,6 +12,9 @@ import Swal from 'sweetalert2';
   styleUrl: './tournaments.component.css'
 })
 export class TournamentsComponent {
+
+  constructor(private router: Router) {} // 2. Inyectar Router
+
   private tournamentService = inject(TournamentService);
   
   list: Tournament[] = []
@@ -80,5 +84,8 @@ export class TournamentsComponent {
     });
   }
 
+    irADestino() {
+    this.router.navigate(['seasons']); // 3. Navegar
+  }
 
 }
