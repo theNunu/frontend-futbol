@@ -27,7 +27,6 @@ export class SeasonsComponent {
   getAllSeasons() {
     this.seasonService.getSeasons().subscribe(res => {
       this.list = res; // Esto refresca la vista automáticamente
-      console.log('listado de temporadas: ', this.list)
     });
   }
 
@@ -39,7 +38,7 @@ export class SeasonsComponent {
   openProduct(id: number) {
 
     this.seasonService.getSeasonById(id).subscribe((res: any) => {
-      // console.log('el id: ', id, res)
+       console.log('el id: ', id, res)
 
       this.selectedProduct = res.data;
       this.showModal = true;
