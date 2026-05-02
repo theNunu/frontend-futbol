@@ -2,7 +2,7 @@
 
 import { Component, inject } from '@angular/core';
 import { SeasonService } from './services/season.service';
-import { Season } from './interfaces/data';
+import { mySeason, Season, Seasons } from './interfaces/data';
 
 @Component({
   selector: 'app-seasons',
@@ -15,7 +15,7 @@ export class SeasonsComponent {
 
   private seasonService = inject(SeasonService);
   
-  list: Season[] = []
+  list: mySeason[] = []
   ngOnInit(): void {
 
     this.getAllSeasons();
@@ -29,19 +29,35 @@ export class SeasonsComponent {
 
   //para el modeal
   // PARA EL MODAL
-  public selectedSeason: Season | null = null;
+  public selectedSeason: Seasons | null = null;
   showModal = false;
 
   openProduct(id: number){
 
-    this.seasonService.getSeasonById(id).subscribe ({
-      next: (data: Season) =>{
-        console.log('el id:', data, 'el nombre',data.name)
+    // this.seasonService.getSeasonById(id).subscribe ({
+    //   next: (data: Season) =>{
+    //     console.log('el id:', data, 'el nombre',data.name)
 
-        this.selectedSeason = data;
-      },
+    //     this.selectedSeason = data;
+    //   },
 
-    })
+    // })
+    this.seasonService.getSeasonById(id).subscribe({
+  next: (response) => {
+    // 1. Accedemos a response.data para obtener el objeto de la temporada
+    const seasons = response.data;
+
+    // 2. Imprimimos solo el nombre
+    console.log('El nombre de la temporada es:', seasons.name);
+
+    // 3. Asignamos a nuestra variable global para el HTML
+    this.selectedSeason = seasons;
+
+    // ¡ESTA ES LA LÍNEA QUE FALTA!
+      this.showModal = true;
+  },
+  error: (err) => console.error(err)
+});
 
   }
 
