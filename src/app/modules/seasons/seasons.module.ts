@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 import { SeasonsRoutingModule } from './seasons-routing.module';
 import { SeasonsComponent } from './seasons.component';
-import { CreateOrEditComponent } from './create-or-edit/create-or-edit.component';
+// import { CreateOrEditComponent } from './create-or-edit/create-or-edit.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
   declarations: [
     SeasonsComponent,
-    CreateOrEditComponent
+    // CreateOrEditComponent
   ],
   imports: [
-    CommonModule,
+    CommonModule,   
     SeasonsRoutingModule
   ]
 })

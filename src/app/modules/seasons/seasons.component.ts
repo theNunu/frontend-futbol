@@ -1,9 +1,6 @@
 // import { Component } from '@angular/core';
 
 import { Component, inject } from '@angular/core';
-// import { TournamentService } from './services/tournament.service';
-// import { IData, RequestDto, Tournament } from './interfaces/data';
-import { FormBuilder, Validators } from '@angular/forms';
 import { SeasonService } from './services/season.service';
 import { Season } from './interfaces/data';
 
@@ -32,23 +29,37 @@ export class SeasonsComponent {
 
   //para el modeal
   // PARA EL MODAL
-  selectedProduct: Season | null = null;
+  public selectedSeason: Season | null = null;
   showModal = false;
 
-  openProduct(id: number) {
+  openProduct(id: number){
 
-    this.seasonService.getSeasonById(id).subscribe((res: any) => {
-       console.log('el id: ', id, res)
+    this.seasonService.getSeasonById(id).subscribe ({
+      next: (data: Season) =>{
+        console.log('el id:', data, 'el nombre',data.name)
 
-      this.selectedProduct = res.data;
-      this.showModal = true;
-    });
+        this.selectedSeason = data;
+      },
+
+    })
 
   }
 
   closeModal() {
     this.showModal = false;
   }
+
+  /*
+  fetchUser(id: number): void {
+    this.userService.getUserById(id).subscribe({
+      next: (data: User) => {
+        this.user = data; // 'data' ya es de tipo User, no hay any involucrado
+      },
+      error: (err) => console.error('Error al obtener usuario', err)
+    });
+  }
+  
+  */
 
 
 }

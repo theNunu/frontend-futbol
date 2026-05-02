@@ -17,8 +17,8 @@ export class SeasonService {
     return this.http.get<Season[]>(`${this.apiUrl}`);
   }
 
-  getSeasonById(seasonId: number) {
-    return this.http.get(`${this.apiUrl}/${seasonId}`);
+  getSeasonById(seasonId: number):Observable<Season> {
+    return this.http.get<Season>(`${this.apiUrl}/${seasonId}`);
   }
 
   postSeason(request: RequestDto) {

@@ -7,6 +7,7 @@ import { TournamentsComponent } from './pages/tournaments/tournaments.component'
 import { HttpClientModule } from '@angular/common/http';
 import { TournamentsModule } from './modules/tournaments/tournaments.module';
 import { CreateOrEditComponent } from './modules/seasons/create-or-edit/create-or-edit.component';
+import { SeasonsModule } from './modules/seasons/seasons.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CreateOrEditComponent } from './modules/seasons/create-or-edit/create-o
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    TournamentsModule
+    TournamentsModule,
+    SeasonsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
