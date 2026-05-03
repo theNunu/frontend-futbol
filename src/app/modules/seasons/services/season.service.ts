@@ -17,7 +17,7 @@ export class SeasonService {
     return this.http.get<mySeason[]>(`${this.apiUrl}`);
   }
 
-  getSeasonById(seasonId: number):Observable<Season> {
+  getSeasonById(seasonId: number): Observable<Season> {
     return this.http.get<Season>(`${this.apiUrl}/${seasonId}`);
   }
 
@@ -33,6 +33,11 @@ export class SeasonService {
   // En tournament.service.ts
   updateTournament(seasonId: number, request: RequestDto): Observable<any> {
     return this.http.put(`${this.apiUrl}/${seasonId}`, request);
+  }
+
+  changeStatus(id: number, status: boolean): Observable<any> {
+    // Ajusta la URL según tu backend, ej: /seasons/1/status
+    return this.http.patch(`${this.apiUrl}/${id}/`, { active: status });
   }
 
 

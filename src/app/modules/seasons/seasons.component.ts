@@ -77,5 +77,23 @@ export class SeasonsComponent {
   
   */
 
+  handleStatusChange(event: {id: number, status: boolean}) {
+  // 1. Llamamos al endpoint a través del servicio
+  this.seasonService.changeStatus(event.id, event.status).subscribe({
+    next: (res) => {
+      // 2. Si el backend confirma, actualizamos la UI localmente
+      const item = this.list.find(s => s.season_id === event.id);
+      if (item) {
+        item.active = event.status;
+      }
+      console.log(`Temporada ${event.id} actualizada a: ${event.status}`);
+    },
+    error: (err) => {
+      console.error('Error al contactar al backend', err);
+      // Opcional: Podrías revertir el switch si falló el servidor
+    }
+  });
+}
+
 
 }

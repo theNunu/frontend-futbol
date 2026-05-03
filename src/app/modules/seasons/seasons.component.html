@@ -2,32 +2,35 @@
 <h2>tilin</h2>
 
 <div class="d-flex justify-content-center mt-4">
-    
-        <table class="table table-striped w-75">
-            <thead>
-                <tr>
-                    <th scope="col">season_id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Active</th>
-                    <th scope="col" class="text-center">acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (item of list; track $index) {
-                <tr>
-                    <th scope="row">{{ item.season_id }}</th>
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.active }}</td>
-                    <td>
 
-                            <i class="fa-solid fa-eye fa-1x" style="color: rgb(53, 116, 205);" title="Más información"
-                                (click)="openProduct( item.season_id)"></i>
+    <table class="table table-striped w-75">
+        <thead>
+            <tr>
+                <th scope="col">season_id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Active</th>
+                <th scope="col" class="text-center">acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of list; track $index) {
+            <tr>
+                <th scope="row">{{ item.season_id }}</th>
+                <td>{{ item.name }}</td>
+                <td>{{ item.active }}</td>
+                <td>
 
-                    </td>
-                </tr>
-                }
-            </tbody>
-        </table>
+                    <i class="fa-solid fa-eye fa-1x" style="color: rgb(53, 116, 205);" title="Más información"
+                        (click)="openProduct( item.season_id)"></i>
+
+                </td>
+                <app-toggle-state [active]="item.active" [idId]="item.season_id"
+                    (onToggle)="handleStatusChange($event)">
+                </app-toggle-state>
+            </tr>
+            }
+        </tbody>
+    </table>
 
 </div>
 

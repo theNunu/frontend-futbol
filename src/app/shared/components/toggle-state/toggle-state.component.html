@@ -1,1 +1,6 @@
-<p>toggle-state works!</p>
+<!-- <p>toggle-state works!</p> -->
+<div (click)="toggle()" class="toggle-container">
+    <i class="fa-solid fa-2x" [class.fa-toggle-on]="active" [class.fa-toggle-off]="!active"
+        [style.color]="active ? '#0e9a0a' : '#dc3545'">
+    </i>
+</div>
