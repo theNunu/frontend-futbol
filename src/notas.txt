@@ -4,3 +4,9 @@ ng g m modules/seasons --routing
 ng g c modules/seasons
 ng g c modules/seasons/create-or-edit
 ng g s modules/seasons/services/services
+
+
+# creando un componente generico
+
+ng g m shared
+ng g c shared/components/toggle-state
