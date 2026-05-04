@@ -17,16 +17,17 @@
             <tr>
                 <th scope="row">{{ item.season_id }}</th>
                 <td>{{ item.name }}</td>
-                <td>{{ item.active }}</td>
+                <td>
+                    <app-toggle-state [active]="item.active" [idId]="item.season_id"
+                        (onToggle)="handleStatusChange($event)">
+                    </app-toggle-state>
+                </td>
                 <td>
 
                     <i class="fa-solid fa-eye fa-1x" style="color: rgb(53, 116, 205);" title="Más información"
                         (click)="openProduct( item.season_id)"></i>
-
                 </td>
-                <app-toggle-state [active]="item.active" [idId]="item.season_id"
-                    (onToggle)="handleStatusChange($event)">
-                </app-toggle-state>
+
             </tr>
             }
         </tbody>
