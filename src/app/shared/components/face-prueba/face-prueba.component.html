@@ -1,0 +1,22 @@
+<i class="fa-regular fa-face-grin-squint fa-6x" style="color: rgb(208, 211, 112);"></i>
+<i class="fa-regular fa-face-frown fa-6x" style="color: rgb(73, 77, 254);"></i>
+<hr>
+<!-- app.component.html -->
+<button class="btn-base" [ngClass]="{'activo': isActivo, 'inactivo': !isActivo}" (click)="toggleBoton()">
+
+    <!-- Cambiar Icono dinámicamente -->
+    <span class="material-icons">
+        {{ isActivo ? 'check_circle' : 'cancel' }}
+    </span>
+
+    <!-- Cambiar texto opcionalmente -->
+    {{ isActivo ? 'Activo' : 'Inactivo' }}
+</button>
+<hr>
+<button [ngClass]="{'fa-regular fa-face-grin-squint': isActive, 'fa-regular fa-face-frown': !isActive}" (click)="changeIcon()">
+        <!-- <span class="material-icons fa-6x">
+        {{ isActivo ? 'check_circle ' : 'cancel' }}
+    </span> -->
+
+
+</button>

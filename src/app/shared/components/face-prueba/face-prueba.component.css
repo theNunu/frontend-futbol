@@ -1,0 +1,22 @@
+/* app.component.css */
+.btn-base {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Estado Inicial */
+.activo {
+  background-color: #4CAF50; /* Verde */
+  color: white;
+}
+
+/* Estado al hacer clic */
+.inactivo {
+  background-color: #f44336; /* Rojo */
+  color: white;
+}
