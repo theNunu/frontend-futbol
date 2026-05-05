@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { mySeason, RequestDto, Season } from '../interfaces/data';
+import { ApiResponse, RequestDto, Season } from '../interfaces/data';
 // import { RequestDto, Tournament } from '../interfaces/data';
 
 @Injectable({
@@ -13,12 +13,12 @@ export class SeasonService {
 
   constructor(private http: HttpClient) { }
 
-  getSeasons(): Observable<mySeason[]> {
-    return this.http.get<mySeason[]>(`${this.apiUrl}`);
+  getSeasons(): Observable<Season[]> {
+    return this.http.get<Season[]>(`${this.apiUrl}`);
   }
 
-  getSeasonById(seasonId: number): Observable<Season> {
-    return this.http.get<Season>(`${this.apiUrl}/${seasonId}`);
+  getSeasonById(seasonId: number): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(`${this.apiUrl}/${seasonId}`);
   }
 
   postSeason(request: RequestDto) {
