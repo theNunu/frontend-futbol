@@ -8,44 +8,44 @@
 <i class="fa-solid fa-pen-to-square fa-2x" style="color: rgb(218, 231, 83);"></i>
 <i class="fa-solid fa-eye fa-2x" style="color: rgb(53, 116, 205);"></i>
 <i class="fa-solid fa-trash fa-2x" style="color: rgb(205, 53, 53);"></i> -->
-<div class="d-flex justify-content-center w-100 mt-4">
-    <div>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">tournament_id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Season</th>
-                    <th scope="col" class="text-center">acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (item of list; track $index) {
-                <tr>
-                    <th scope="row">{{ item.tournament_id }}</th>
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.season }}</td>
-                    <td>
-                        <div class="d-flex flex gap-3">
-                            <i class="fa-solid fa-eye fa-1x" style="color: rgb(53, 116, 205);" title="Más información"
-                                (click)="openProduct( item.tournament_id)"></i>
+<div class="d-flex justify-content-center mt-4">
 
-                            <i class="fa-solid fa-pen-to-square fa-1x" style="color: rgb(218, 231, 83);"
-                                title="EditarTorneo" (click)="formModal.openModalEdit(item)"></i>
+    <table class="table table-striped w-75">
+        <thead>
+            <tr>
+                <th scope="col">tournament_id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Season</th>
+                <th scope="col" class="text-center">acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of list; track $index) {
+            <tr>
+                <th scope="row">{{ item.tournament_id }}</th>
+                <td>{{ item.name }}</td>
+                <td>{{ item.season }}</td>
+                <td>
+                    <div class="d-flex flex gap-3">
+                        <i class="fa-solid fa-eye fa-1x" style="color: rgb(53, 116, 205);" title="Más información"
+                            (click)="openProduct( item.tournament_id)"></i>
 
-                            <i class="fa-solid fa-trash fa-1x" style="color: rgb(205, 53, 53);" title="Eliminar torneo"
-                                (click)="deleteTournament(item.tournament_id)"></i>
-                        </div>
-                    </td>
-                </tr>
-                }
-            </tbody>
-        </table>
+                        <i class="fa-solid fa-pen-to-square fa-1x" style="color: rgb(218, 231, 83);"
+                            title="EditarTorneo" (click)="formModal.openModalEdit(item)"></i>
 
-    </div>
-
+                        <i class="fa-solid fa-trash fa-1x" style="color: rgb(205, 53, 53);" title="Eliminar torneo"
+                            (click)="deleteTournament(item.tournament_id)"></i>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
 
 </div>
+
+
+
 
 <!--modal show por id-->
 

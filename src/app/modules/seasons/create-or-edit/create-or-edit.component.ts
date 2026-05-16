@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 // import { IData, RequestDto, Tournament } from '../interfaces/data';
 import Swal from 'sweetalert2';
 import { SeasonService } from '../services/season.service';
-import { RequestDto} from '../interfaces/data';
+import { RequestDto, Season} from '../interfaces/data';
 
 @Component({
   selector: 'app-create-or-edit',
@@ -70,16 +70,16 @@ export class CreateOrEditComponent {
   }
 
   // Esta función la llamarás desde el Index cuando el usuario pulse "Editar"
-  // openModalEdit(season: Season) {
-  //   this.selectedTournamentId = season.season_id;
-  //   this.showModalCreate = true;
+  openModalEdit(season: Season) {
+    this.selectedSeasonId = season.season_id;
+    this.showModalCreate = true;
 
-  //   // Rellenamos el formulario con los datos existentes
-  //   this.tournamentForm.patchValue({
-  //     name: season.name,
-  //     active: season.active
-  //   });
-  // }
+    // Rellenamos el formulario con los datos existentes
+    this.seasonForm.patchValue({
+      name: season.name,
+      active: season.active
+    });
+  }
 
   closeModalCreate() {
     this.showModalCreate = false;
