@@ -5,14 +5,21 @@
         <div class="bg-white p-4 rounded text-center" style="width:500px" (click)="$event.stopPropagation()">
             <form [formGroup]="seasonForm" (ngSubmit)="saveSeason()">
                 <!-- <h2 >Crear Nuevo Torneo</h2> -->
-                <h2>{{ selectedSeasonId ? 'Editar Torneo' : 'Crear Nuevo Torneo' }}</h2>
+                <h2>{{ selectedSeasonId ? 'Editar Temporada' : 'Crear Nueva Temporada' }}</h2>
                 <div class="d-flex flex-column gap-3 p-3">
-                    <label for="name" class="me-auto">Nombre del Torneo:</label>
-                    <input id="name" type="text" formControlName="name" placeholder="Torneo Iran en Medio Oriente"
+                    <label for="name" class="me-auto">Nombre de la  Temporada:</label>
+                    <input id="name" type="text" formControlName="name" placeholder="Temporada tilin"
                         class="form-control">
-                    <label for="season" class="me-auto">Temporada:</label> <!-- Se alinean a la derecha -->
-                    <input id="season" type="text" formControlName="season" placeholder="Temporada 2026"
-                        class="form-control">
+              
+                    <!-- <input id="season" type="text" formControlName="season" placeholder="Temporada 2026"
+                        class="form-control"> -->
+
+                    <div>
+                        <label>
+                            <input type="checkbox" formControlName="active" />
+                            ¿Temporada Activa?
+                        </label>
+                    </div>
 
                 </div>
 

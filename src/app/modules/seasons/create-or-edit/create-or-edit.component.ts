@@ -28,11 +28,14 @@ export class CreateOrEditComponent {
   // Usa el FormBuilder con la opción nonNullable
   seasonForm = this.fb.nonNullable.group({
     name: ['', [Validators.required]],
+    active: [true]
     // active: ['', [Validators.required]]
   });
 
   saveSeason() {
+    
     if (this.seasonForm.invalid) return;
+    console.log("temporada: ", this.seasonForm);
 
     this.loading = true; //Evitar el "Double Click":
     const request: RequestDto = this.seasonForm.getRawValue();
