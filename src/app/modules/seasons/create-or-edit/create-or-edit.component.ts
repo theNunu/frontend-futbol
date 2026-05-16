@@ -34,7 +34,7 @@ export class CreateOrEditComponent {
   saveSeason() {
     if (this.seasonForm.invalid) return;
 
-    this.loading = true;
+    this.loading = true; //Evitar el "Double Click":
     const request: RequestDto = this.seasonForm.getRawValue();
 
     const operation = this.seasonService.postSeason(request);
