@@ -13,7 +13,7 @@ import { SeasonsModule } from './modules/seasons/seasons.module';
   declarations: [
     AppComponent,
     TournamentsComponent,
-    CreateOrEditComponent,
+    // CreateOrEditComponent,
   ],
   imports: [
     BrowserModule,

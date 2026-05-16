@@ -22,18 +22,19 @@ export class SeasonService {
   }
 
   postSeason(request: RequestDto) {
-    return this.http.post<any>(`${this.apiUrl}`, request);
+    console.log("request del servidor: ", request)
+    return this.http.post<RequestDto>(`${this.apiUrl}`, request);
   }
 
-  // En tournament.service.ts
-  deleteSeason(seasonId: number) {
-    return this.http.delete(`${this.apiUrl}/${seasonId}`);
-  }
+  // // En tournament.service.ts
+  // deleteSeason(seasonId: number) {
+  //   return this.http.delete(`${this.apiUrl}/${seasonId}`);
+  // }
 
-  // En tournament.service.ts
-  updateTournament(seasonId: number, request: RequestDto): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${seasonId}`, request);
-  }
+  // // En tournament.service.ts
+  // updateTournament(seasonId: number, request: RequestDto): Observable<any> {
+  //   return this.http.put(`${this.apiUrl}/${seasonId}`, request);
+  // }
 
   changeStatus(id: number, status: boolean): Observable<any> {
     // Ajusta la URL según tu backend, ej: /seasons/1/status

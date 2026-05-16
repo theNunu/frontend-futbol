@@ -1,6 +1,6 @@
 export interface RequestDto {
     name: string;
-    active: boolean
+    active?: boolean
 }
 
 export interface Season {
