@@ -13,10 +13,10 @@ import Swal from 'sweetalert2';
 })
 export class TournamentsComponent {
 
-  constructor(private router: Router) {} // 2. Inyectar Router
+  constructor(private router: Router) { } // 2. Inyectar Router
 
   private tournamentService = inject(TournamentService);
-  
+
   list: Tournament[] = []
   ngOnInit(): void {
 
@@ -64,16 +64,16 @@ export class TournamentsComponent {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        
+
         // Llamamos al servicio
         this.tournamentService.deleteTournament(id).subscribe({
           next: () => {
             console.log("ide de torneo", id);
             Swal.fire('¡Eliminado!', 'El torneo ha sido borrado.', 'success');
-            
+
             // ACTUALIZACIÓN MINÚSCULA:
             // Volvemos a pedir la lista para que el que borramos ya no aparezca
-            this.getAllTournaments(); 
+            this.getAllTournaments();
           },
           error: () => {
             Swal.fire('Error', 'No se pudo eliminar el torneo', 'error');
@@ -84,8 +84,12 @@ export class TournamentsComponent {
     });
   }
 
-    irADestino() {
+  irADestino() {
     this.router.navigate(['seasons']); // 3. Navegar
+  }
+
+  irADestinoNews() {
+    this.router.navigate(['news']); // 3. Navegar
   }
 
 }
