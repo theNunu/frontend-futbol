@@ -1,0 +1,51 @@
+.sidebar {
+  width: 260px;
+  background-color: #0d1b2a; /* Azul oscuro estilo FEF */
+  color: white;
+  height: 100vh;
+}
+
+.parent-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.parent-button:hover, .active-parent {
+  background-color: #1b263b; /* Efecto hover al pasar el mouse */
+}
+
+/* Ocultar submenú por defecto */
+.submenu {
+  list-style: none;
+  padding-left: 20px;
+  background-color: #14213d;
+  display: none; 
+}
+
+/* Mostrar submenú cuando el padre está abierto */
+.submenu.show {
+  display: block;
+}
+
+.submenu-item a {
+  display: block;
+  padding: 10px 15px;
+  color: #e5e5e5;
+  text-decoration: none;
+}
+
+.submenu-item a:hover {
+  color: #fca311; /* Color amarillo/dorado al pasar por el hijo */
+}
+
+/* Estilo para el hijo de la página en la que te encuentras actualmente */
+.active-child {
+  color: #fca311 !important;
+  font-weight: bold;
+  border-left: 3px solid #fca311;
+  padding-left: 12px !important;
+}
