@@ -16,5 +16,5 @@ export interface ApiResponse {
     status_code: number;
     success: boolean;
     message: string;
-    data: News; // Aquí vive el objeto real
+    data: News[]; // Aquí vive el objeto real
 }

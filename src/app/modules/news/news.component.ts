@@ -31,30 +31,19 @@ export class NewsComponent implements OnInit {
   }
 
   // 2. CORREGIDO: Eliminamos la línea conflictiva de adentro
-cargarNoticias(): void {
-    this.newsService.getNews().subscribe({
-      next: (datos: any) => { // Puedes usar 'any' o tipar la respuesta de tu backend
-        
-        // CAMBIO AQUÍ: Asigna 'datos.data' en lugar de 'datos'
-        this.dataSource.data = datos.data; 
-        
-        console.log("noticias traidas: ", datos.data); // Ahora verás el array de 6 elementos directamente
-      },
-      error: (error) => {
-        console.error('Error al consumir la API:', error);
-      }
+  cargarNoticias(): void {
+    this.newsService.getNews().subscribe(datos => {
+      // next: (datos: any) => { // Puedes usar 'any' o tipar la respuesta de tu backend
+
+      // CAMBIO AQUÍ: Asigna 'datos.data' en lugar de 'datos'
+      this.dataSource.data = datos;
+      console.log("Lista limpia en el componente: ", datos);
+    console.log("ng on init: ", datos);
+
+      // console.log("noticias traidas: ", datos.data); // Ahora verás el array de 6 elementos directamente
     });
+    // error: (error) => {
+    //   console.error('Error al consumir la API:', error);
+    // }
   }
-  // cargarNoticias(): void {
-  //   this.newsService.getNews().subscribe({
-  //     next: (datos) => {
-  //       this.dataSource.data = datos; // Asigna los datos a la tabla
-  //       console.log("noticias traidas: ", datos)
-  //       this.dataSource.paginator = this.paginator; // Enlaza el paginador si lo usas
-  //     },
-  //     error: (error) => {
-  //       console.error('Error al consumir la API:', error);
-  //     }
-  //   });
-  // }
 }
