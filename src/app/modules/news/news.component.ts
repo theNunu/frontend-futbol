@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { News } from '../interfaces/data';
 import { NewsService } from './services/news.service';
-
+import {MatIconModule} from '@angular/material/icon';
 @Component({
   selector: 'app-news',
   standalone: false,
@@ -12,7 +12,7 @@ import { NewsService } from './services/news.service';
 })
 export class NewsComponent implements OnInit {
   // Columnas que se mostrarán en el HTML
-  columnasMostradas: string[] = ['id', 'title', 'summary'];
+  columnasMostradas: string[] = ['id', 'title', 'summary', 'description'];
   dataSource = new MatTableDataSource<News>();
 
   // @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -38,7 +38,7 @@ export class NewsComponent implements OnInit {
       // CAMBIO AQUÍ: Asigna 'datos.data' en lugar de 'datos'
       this.dataSource.data = datos;
       console.log("Lista limpia en el componente: ", datos);
-    console.log("ng on init: ", datos);
+      console.log("ng on init: ", datos);
 
       // console.log("noticias traidas: ", datos.data); // Ahora verás el array de 6 elementos directamente
     });

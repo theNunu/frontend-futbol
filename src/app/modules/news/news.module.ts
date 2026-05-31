@@ -6,8 +6,9 @@ import { NewsComponent } from './news.component';
 import { MatTableModule } from '@angular/material/table';
 
 import { MatPaginatorModule } from '@angular/material/paginator'; // 1. Importa el módulo
-
-
+import { MatIcon, MatIconModule } from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,10 @@ import { MatPaginatorModule } from '@angular/material/paginator'; // 1. Importa 
     // BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
+    MatIconModule,
+    MatButtonModule,
+    MatDividerModule
+    
     
   ],
   // exports:[NewsComponent]
