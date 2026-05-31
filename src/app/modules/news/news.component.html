@@ -7,6 +7,9 @@
 <div class="container">
 
     <button mat-raised-button style="color: rgb(4, 200, 50);">crear noticia</button>
+    <button mat-raised-button color="primary" (click)="abrirModalCrear()">
+        Agregar Noticia
+    </button>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mt-3">
 
         <!-- Columna ID -->

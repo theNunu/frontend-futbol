@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ApiResponse, News } from '../../interfaces/data';
+import { ApiResponse, dtoNews, News } from '../../interfaces/data';
 import { map } from 'rxjs/operators'; // <-- Importa el operador map
 @Injectable({
   providedIn: 'root'
@@ -23,4 +23,16 @@ export class NewsService {
       map(response => response.data)
     );
   }
+
+  // Método profesional para crear una noticia
+  // createNews(newsData: Partial<News>): Observable<News> {
+  //   return this.http.post<ApiResponse>(this.apiUrl, newsData).pipe(
+  //     map(response => response.data) // Asumiendo que retorna la noticia creada en .data
+  //   );
+  // }
+
+   createNews(request: dtoNews) {
+      console.log("request del servidor: ", request)
+      return this.http.post<dtoNews>(`${this.apiUrl}`, request);
+    }
 }

@@ -18,3 +18,12 @@ export interface ApiResponse {
     message: string;
     data: News[]; // Aquí vive el objeto real
 }
+
+export interface dtoNews {
+    news_id: number;
+    title: string;
+    description: string;
+    summary: string;
+    begin_date: string;
+    end_date: string;
+}
