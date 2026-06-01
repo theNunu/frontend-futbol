@@ -27,13 +27,13 @@ export class FormNewsComponent implements OnInit {
 
   initForm(): void {
     this.formNews = this.fb.group({
-      title: [this.dataNews?.title || '', [Validators.required], Validators.maxLength(30)],
+      title: [this.dataNews?.title || null, [Validators.required], Validators.maxLength(30)],
       // Summary es opcional, así que no lleva Validators.required
-      summary: [this.dataNews?.summary || ''],
-      description: [this.dataNews?.description || '', [Validators.required]],
+      summary: [this.dataNews?.summary || null],
+      description: [this.dataNews?.description || null, [Validators.required]],
       // Los datepickers de Material manejan objetos Date nativos internamente
-      begin_date: [this.dataNews?.begin_date ? new Date(this.dataNews.begin_date) : '', [Validators.required]],
-      end_date: [this.dataNews?.end_date ? new Date(this.dataNews.end_date) : '', [Validators.required]]
+      begin_date: [this.dataNews?.begin_date ? new Date(this.dataNews.begin_date) : null, [Validators.required]],
+      end_date: [this.dataNews?.end_date ? new Date(this.dataNews.end_date) : null, [Validators.required]]
     });
   }
 

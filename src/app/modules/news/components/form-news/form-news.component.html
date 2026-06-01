@@ -26,14 +26,14 @@
     <div class="d-flex gap-4">
         <mat-form-field appearance="outline" class="w-1/2">
             <mat-label>Fecha de Inicio</mat-label>
-            <input matInput [matDatepicker]="pickerBegin" formControlName="begin_date">
+            <input matInput [matDatepicker]="pickerBegin" formControlName="begin_date" readonly>
             <mat-datepicker-toggle matSuffix [for]="pickerBegin"></mat-datepicker-toggle>
             <mat-datepicker #pickerBegin></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="w-1/2">
             <mat-label>Fecha de Fin</mat-label>
-            <input matInput [matDatepicker]="pickerEnd" formControlName="end_date">
+            <input matInput [matDatepicker]="pickerEnd" formControlName="end_date" readonly>
             <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
             <mat-datepicker #pickerEnd></mat-datepicker>
         </mat-form-field>
@@ -43,7 +43,11 @@
 
 <mat-dialog-actions align="end">
     <button mat-button (click)="cancelar()">Cancelar</button>
-    <button mat-raised-button color="primary" [disabled]="formNews.invalid" (click)="guardar()">
-        {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+    
+    <button mat-raised-button 
+            color="primary" 
+            [disabled]="formNews.invalid" 
+            (click)="guardar()">
+            {{ isEditMode ? 'Actualizar' : 'Guardar' }}
     </button>
 </mat-dialog-actions>
