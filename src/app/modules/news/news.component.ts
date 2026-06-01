@@ -6,6 +6,8 @@ import { News } from '../interfaces/data';
 import { NewsService } from './services/news.service';
 import { FormNewsComponent } from './components/form-news/form-news.component'; // Tu formulario
 
+// 1. IMPORTA SWEETALERT2
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-news',
   standalone: false,
@@ -13,7 +15,7 @@ import { FormNewsComponent } from './components/form-news/form-news.component'; 
   styleUrl: './news.component.css'
 })
 export class NewsComponent implements OnInit {
-  columnasMostradas: string[] = ['id', 'title', 'summary'];
+  columnasMostradas: string[] = ['id', 'title', 'summary', 'description', 'actions'];
   dataSource = new MatTableDataSource<News>();
 
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
@@ -46,18 +48,53 @@ export class NewsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(resultadoPayload => {
-      // Si el usuario guardó, el payload vendrá con los datos listos
       if (resultadoPayload) {
         this.newsService.createNews(resultadoPayload).subscribe({
           next: (noticiaCreada) => {
-            console.log('Creado con éxito:', noticiaCreada);
-            this.cargarNoticias(); // <-- MAGIA: Actualiza la tabla automáticamente
+
+            // 2. SWEETALERT DE ÉXITO (Tipo Toast, arriba a la derecha)
+            Swal.fire({
+              icon: 'success',
+              title: '¡Creado!',
+              text: 'La noticia se ha guardado correctamente.',
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true
+            });
+
+            this.cargarNoticias(); // Refresca la tabla automáticamente
           },
-          error: (err) => console.error('Error al crear:', err)
+          error: (err) => {
+            console.error('Error capturado completo:', err);
+
+            // Extraemos el mensaje que mandó Laravel
+            const mensajeError = err.error?.message || 'Ocurrió un error inesperado';
+
+            // 3. SWEETALERT DE ERROR (Tipo Toast, arriba a la derecha)
+            Swal.fire({
+              icon: 'error',
+              title: 'Error de validación',
+              text: mensajeError, // Aquí se pinta: "La fecha de fin debe ser mayor a la fecha de inicio."
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 5000,
+              timerProgressBar: true,
+              // Esto hace que si el usuario pasa el mouse por encima, el tiempo se pause para que alcance a leer bien
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer);
+                toast.addEventListener('mouseleave', Swal.resumeTimer);
+              }
+            });
+          }
         });
       }
     });
   }
+
+
 
   // Extra profesional: Así reutilizas el mismo modal para EDITAR
   abrirModalEditar(noticia: News): void {

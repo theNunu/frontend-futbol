@@ -1,44 +1,49 @@
-<p>form-news works!</p>
+<!-- <p>form-news works!</p> -->
 <h2 mat-dialog-title>{{ isEditMode ? 'Editar Noticia' : 'Crear Nueva Noticia' }}</h2>
 
-<mat-dialog-content [formGroup]="formNews">
-  
-  <mat-form-field appearance="outline" class="w-full">
-    <mat-label>Título</mat-label>
-    <input matInput formControlName="title">
-  </mat-form-field>
+<mat-dialog-content [formGroup]="formNews" class="mt-2">
 
-  <mat-form-field appearance="outline" class="w-full">
-    <mat-label>Resumen (Opcional)</mat-label>
-    <input matInput formControlName="summary">
-  </mat-form-field>
+    <div class="d-flex flex-column gap-3">
+        <!-- <div>Elemento hijo 1</div> -->
+        <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Título</mat-label>
+            <input matInput formControlName="title">
+        </mat-form-field>
 
-  <mat-form-field appearance="outline" class="w-full">
-    <mat-label>Descripción</mat-label>
-    <textarea matInput formControlName="description" rows="3"></textarea>
-  </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Resumen (Opcional)</mat-label>
+            <input matInput formControlName="summary">
+        </mat-form-field>
 
-  <div class="flex gap-4">
-    <mat-form-field appearance="outline" class="w-1/2">
-      <mat-label>Fecha de Inicio</mat-label>
-      <input matInput [matDatepicker]="pickerBegin" formControlName="begin_date">
-      <mat-datepicker-toggle matSuffix [for]="pickerBegin"></mat-datepicker-toggle>
-      <mat-datepicker #pickerBegin></mat-datepicker>
-    </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Descripción</mat-label>
+            <textarea matInput formControlName="description" rows="3"></textarea>
+        </mat-form-field>
+        <!-- <div>Elemento hijo 2</div>
+        <div>Elemento hijo 3</div> -->
+    </div>
 
-    <mat-form-field appearance="outline" class="w-1/2">
-      <mat-label>Fecha de Fin</mat-label>
-      <input matInput [matDatepicker]="pickerEnd" formControlName="end_date">
-      <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
-      <mat-datepicker #pickerEnd></mat-datepicker>
-    </mat-form-field>
-  </div>
+    <div class="d-flex gap-4">
+        <mat-form-field appearance="outline" class="w-1/2">
+            <mat-label>Fecha de Inicio</mat-label>
+            <input matInput [matDatepicker]="pickerBegin" formControlName="begin_date">
+            <mat-datepicker-toggle matSuffix [for]="pickerBegin"></mat-datepicker-toggle>
+            <mat-datepicker #pickerBegin></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-1/2">
+            <mat-label>Fecha de Fin</mat-label>
+            <input matInput [matDatepicker]="pickerEnd" formControlName="end_date">
+            <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+            <mat-datepicker #pickerEnd></mat-datepicker>
+        </mat-form-field>
+    </div>
 
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button (click)="cancelar()">Cancelar</button>
-  <button mat-raised-button color="primary" [disabled]="formNews.invalid" (click)="guardar()">
-    {{ isEditMode ? 'Actualizar' : 'Guardar' }}
-  </button>
+    <button mat-button (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="primary" [disabled]="formNews.invalid" (click)="guardar()">
+        {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+    </button>
 </mat-dialog-actions>
