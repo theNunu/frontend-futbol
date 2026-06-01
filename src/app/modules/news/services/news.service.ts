@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ApiResponse, dtoNews, News } from '../../interfaces/data';
+// import { ApiResponse, dtoNews, News } from '../../interfaces/data';
 import { map } from 'rxjs/operators'; // <-- Importa el operador map
+import { ApiResponse, dtoNews, News } from '../interfaces/data';
 @Injectable({
   providedIn: 'root'
 })

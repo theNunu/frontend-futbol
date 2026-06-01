@@ -2,12 +2,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog'; // 1. Importa MatDialog
-import { News } from '../interfaces/data';
+// import { News } from '../interfaces/data';
 import { NewsService } from './services/news.service';
 import { FormNewsComponent } from './components/form-news/form-news.component'; // Tu formulario
 
 // 1. IMPORTA SWEETALERT2
 import Swal from 'sweetalert2';
+import { News } from './interfaces/data';
 @Component({
   selector: 'app-news',
   standalone: false,

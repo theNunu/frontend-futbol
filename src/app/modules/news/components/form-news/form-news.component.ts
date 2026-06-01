@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { News } from '../../../interfaces/data';
+// import { News } from '../../../interfaces/data';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { News } from '../../interfaces/data';
 @Component({
   selector: 'app-form-news',
   standalone: false,
@@ -26,7 +27,7 @@ export class FormNewsComponent implements OnInit {
 
   initForm(): void {
     this.formNews = this.fb.group({
-      title: [this.dataNews?.title || '', [Validators.required]],
+      title: [this.dataNews?.title || '', [Validators.required], Validators.maxLength(30)],
       // Summary es opcional, así que no lleva Validators.required
       summary: [this.dataNews?.summary || ''],
       description: [this.dataNews?.description || '', [Validators.required]],
