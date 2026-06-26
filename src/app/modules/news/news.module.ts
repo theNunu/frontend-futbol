@@ -19,6 +19,10 @@ import { MatInputModule } from '@angular/material/input';         // <-- Para el
 import { MatDatepickerModule } from '@angular/material/datepicker'; // <-- Para el calendario
 import { MatNativeDateModule } from '@angular/material/core';     // <-- Para que el calendario entienda fechas nativas
 import { FormsModule } from '@angular/forms'; // 1. Importa el módulo
+
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+import { InputTextModule } from 'primeng/inputtext';
 @NgModule({
   declarations: [
     NewsComponent,
@@ -45,7 +49,12 @@ import { FormsModule } from '@angular/forms'; // 1. Importa el módulo
     MatButtonModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+
+    //para uso de primeng (buscador de noticia)
+    IconFieldModule,
+    InputIconModule,
+    InputTextModule
     
     
   ],

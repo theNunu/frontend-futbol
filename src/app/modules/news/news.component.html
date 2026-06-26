@@ -1,25 +1,22 @@
 <p>news works!</p>
 
-<!-- <button mat-raised-button color="secondary">crear noticia</button> -->
-<!-- Sección de Filtros (Buscador y Estado) -->
 <div class="filtros-container mb-4">
-  <input 
-    type="text" 
-    [(ngModel)]="filtros.title" 
-    placeholder="Buscar noticia por título..." 
-    (input)="cargarNoticias()"
-    class="form-control mb-2">
+    <!-- <input pInputText type="text" [(ngModel)]="filtros.title" placeholder="Buscar noticia por título..."
+        (input)="cargarNoticias() " class="w-full md:w-20rem"> -->
 
-  <select [(ngModel)]="filtros.is_active" (change)="cargarNoticias()" class="form-select">
-    <option value="">Todas las noticias</option>
-    <option value="true">Publicadas (Activas)</option>
-    <option value="false">Borradores (Inactivas)</option>
-  </select>
+    <select [(ngModel)]="filtros.is_active" (change)="cargarNoticias()" class="form-select">
+        <option value="">Todas las noticias</option>
+        <option value="true">Publicadas (Activas)</option>
+        <option value="false">Borradores (Inactivas)</option>
+    </select>
 </div>
 
 <div class="container">
+    <input pInputText type="text" [(ngModel)]="filtros.title" placeholder="Buscar noticia por título..."
+        (input)="cargarNoticias() " class="w-full md:w-20rem">
 
-    <button mat-raised-button style="color: rgb(4, 200, 50);">crear noticia</button>
+
+    <!-- <button mat-raised-button style="color: rgb(4, 200, 50);">crear noticia</button> -->
     <button mat-raised-button color="primary" (click)="abrirModalCrear()">
         Agregar Noticia
     </button>
