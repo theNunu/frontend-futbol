@@ -15,6 +15,7 @@ export class ModuleAdminService {
   constructor(private http: HttpClient) { }
 
   getSidebarMenu(): Observable<ModuleItem[]> {
+    console.log("wazaaaa");
     return this.http.get<ModuleItem[]>(`${this.apiUrl}`);
   }
 

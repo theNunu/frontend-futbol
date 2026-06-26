@@ -10,27 +10,9 @@ import { ModuleAdminService } from './services/module-admin.service';
 })
 export class ModuleAdminComponent {
   // En tu componente:
-  menuItems: ModuleItem[] = [];
+ constructor() { }
 
-  private menuService = inject(ModuleAdminService);
-
-  ngOnInit() {
-    this.menuService.getSidebarMenu().subscribe(data => {
-      this.menuItems = data;
-    });
+  ngOnInit(): void {
+    // Aquí no necesitas meter lógica pesada, su función es puramente estructural
   }
-
-  // toggleMenu(item: ModuleItem) {
-  //   if (item.children && item.children.length > 0) {
-  //     item.isOpen = !item.isOpen; // Abre o cierra el submenú
-  //   }
-  // }
-
-  // Esta función controla el acordeón de manera independiente
-  toggleParent(parent: ModuleItem): void {
-    if (parent.children && parent.children.length > 0) {
-      parent.isOpen = !parent.isOpen;
-    }
-  }
-
 }

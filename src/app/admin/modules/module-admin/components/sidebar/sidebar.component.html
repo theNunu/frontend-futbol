@@ -1,0 +1,31 @@
+<div class="sidebar-container">
+    <div class="sidebar-logo">
+        <h3>PANEL DE CONTROL</h3>
+    </div>
+
+    <ul class="menu-list">
+        <li *ngFor="let parent of menuItems" class="menu-item">
+
+            <div class="parent-header" (click)="toggleParent(parent)" [class.opened]="parent.isOpen">
+                <div class="parent-info">
+                    <span class="icon">{{ parent.icon }}</span>
+                    <span class="name">{{ parent.name }}</span>
+                </div>
+                <span class="arrow" *ngIf="parent.children && parent.children.length > 0">
+                    {{ parent.isOpen ? '▲' : '▼' }}
+                </span>
+            </div>
+
+            <ul class="submenu-list" *ngIf="parent.children && parent.children.length > 0 && parent.isOpen">
+                <li *ngFor="let child of parent.children" class="submenu-item">
+
+                    <a [routerLink]="child.route" routerLinkActive="active-child">
+                        {{ child.name }}
+                    </a>
+
+                </li>
+            </ul>
+
+        </li>
+    </ul>
+</div>

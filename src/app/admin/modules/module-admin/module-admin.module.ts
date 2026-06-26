@@ -4,15 +4,17 @@ import { CommonModule } from '@angular/common';
 import { ModuleAdminRoutingModule } from './module-admin-routing.module';
 import { ModuleAdminComponent } from './module-admin.component';
 import { RouterModule } from '@angular/router';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 
 @NgModule({
   declarations: [
-    ModuleAdminComponent
+    ModuleAdminComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,
-    // ModuleAdminRoutingModule,
+    ModuleAdminRoutingModule,
     RouterModule
   ]
 })

@@ -1,51 +1,13 @@
-.sidebar {
-  width: 260px;
-  background-color: #0d1b2a; /* Azul oscuro estilo FEF */
-  color: white;
-  height: 100vh;
-}
-
-.parent-button {
+.admin-layout-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  cursor: pointer;
-  transition: background 0.3s;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* Evita que toda la página web tenga un scroll feo */
 }
 
-.parent-button:hover, .active-parent {
-  background-color: #1b263b; /* Efecto hover al pasar el mouse */
-}
-
-/* Ocultar submenú por defecto */
-.submenu {
-  list-style: none;
-  padding-left: 20px;
-  background-color: #14213d;
-  display: none; 
-}
-
-/* Mostrar submenú cuando el padre está abierto */
-.submenu.show {
-  display: block;
-}
-
-.submenu-item a {
-  display: block;
-  padding: 10px 15px;
-  color: #e5e5e5;
-  text-decoration: none;
-}
-
-.submenu-item a:hover {
-  color: #fca311; /* Color amarillo/dorado al pasar por el hijo */
-}
-
-/* Estilo para el hijo de la página en la que te encuentras actualmente */
-.active-child {
-  color: #fca311 !important;
-  font-weight: bold;
-  border-left: 3px solid #fca311;
-  padding-left: 12px !important;
+.admin-main-content {
+  flex: 1; /* Ocupa todo el espacio restante a la derecha del sidebar */
+  padding: 25px;
+  background-color: #f4f6f9; /* Un fondo gris claro muy elegante para los formularios/tablas */
+  overflow-y: auto; /* Si el listado de noticias es largo, solo esta parte tendrá scroll */
 }

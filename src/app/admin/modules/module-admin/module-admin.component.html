@@ -1,31 +1,9 @@
-<!-- <div class="sidebar">
-  <div class="brand">
-    <h3>Torneos Ecuador</h3>
-  </div>
+<div class="admin-layout-container">
+  
+  <app-sidebar></app-sidebar>
 
-  <ul class="menu-list">
-    <li *ngFor="let parent of menuItems" class="menu-item">
-      
-      <div class="parent-button" (click)="toggleParent(parent)" [class.active-parent]="parent.isOpen">
-        <div class="parent-info">
-          <i class="icon" *ngIf="parent.icon">{{ parent.icon }}</i>
-          <span>{{ parent.name }}</span>
-        </div>
-        <span class="arrow" *ngIf="parent.children && parent.children.length > 0">
-          {{ parent.isOpen ? '▲' : '▼' }}
-        </span>
-      </div>
+  <main class="admin-main-content">
+    <router-outlet></router-outlet>
+  </main>
 
-      <ul class="submenu" *ngIf="parent.children && parent.children.length > 0" [class.show]="parent.isOpen">
-        
-        <li *ngFor="let child of parent.children" class="submenu-item">
-          <a [routerLink]="child.route" routerLinkActive="active-child">
-            {{ child.name }}
-          </a>
-        </li>
-
-      </ul>
-
-    </li>
-  </ul>
-</div> -->
+</div>
