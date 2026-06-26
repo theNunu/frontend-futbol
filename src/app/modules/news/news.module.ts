@@ -18,7 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field'; // <-- Para <
 import { MatInputModule } from '@angular/material/input';         // <-- Para el input con matInput
 import { MatDatepickerModule } from '@angular/material/datepicker'; // <-- Para el calendario
 import { MatNativeDateModule } from '@angular/material/core';     // <-- Para que el calendario entienda fechas nativas
-
+import { FormsModule } from '@angular/forms'; // 1. Importa el módulo
 @NgModule({
   declarations: [
     NewsComponent,
@@ -27,6 +27,7 @@ import { MatNativeDateModule } from '@angular/material/core';     // <-- Para qu
   imports: [
     CommonModule,
     NewsRoutingModule,
+    FormsModule,
     // BrowserModule,
     // BrowserAnimationsModule,
     MatTableModule,

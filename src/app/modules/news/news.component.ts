@@ -8,7 +8,7 @@ import { FormNewsComponent } from './components/form-news/form-news.component'; 
 
 // 1. IMPORTA SWEETALERT2
 import Swal from 'sweetalert2';
-import { News } from './interfaces/data';
+import { FiltrosNews, News } from './interfaces/data';
 @Component({
   selector: 'app-news',
   standalone: false,
@@ -18,6 +18,12 @@ import { News } from './interfaces/data';
 export class NewsComponent implements OnInit {
   columnasMostradas: string[] = ['id', 'title', 'summary', 'description', 'actions'];
   dataSource = new MatTableDataSource<News>();
+
+   // 1. Objeto de filtros vinculado al HTML mediante [(ngModel)]
+  public filtros: FiltrosNews = {
+    title: '',
+    is_active: ''
+  };
 
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
     if (mp) {
@@ -36,7 +42,7 @@ export class NewsComponent implements OnInit {
   }
 
   cargarNoticias(): void {
-    this.newsService.getNews().subscribe(datos => {
+    this.newsService.getNews(this.filtros).subscribe(datos => {
       this.dataSource.data = datos;
     });
   }

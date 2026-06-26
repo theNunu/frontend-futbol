@@ -1,6 +1,21 @@
 <p>news works!</p>
 
 <!-- <button mat-raised-button color="secondary">crear noticia</button> -->
+<!-- Sección de Filtros (Buscador y Estado) -->
+<div class="filtros-container mb-4">
+  <input 
+    type="text" 
+    [(ngModel)]="filtros.title" 
+    placeholder="Buscar noticia por título..." 
+    (input)="cargarNoticias()"
+    class="form-control mb-2">
+
+  <select [(ngModel)]="filtros.is_active" (change)="cargarNoticias()" class="form-select">
+    <option value="">Todas las noticias</option>
+    <option value="true">Publicadas (Activas)</option>
+    <option value="false">Borradores (Inactivas)</option>
+  </select>
+</div>
 
 <div class="container">
 

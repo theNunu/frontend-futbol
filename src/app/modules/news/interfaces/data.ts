@@ -2,6 +2,11 @@
 //     name: string;
 //     active?: boolean
 // }
+// 1. Interfaz para estructurar los Query Params de búsqueda
+export interface FiltrosNews {
+    title?: string;
+    is_active?: string | boolean; // Acepta string por los selects HTML y boolean por lógica
+}
 
 export interface News {
     news_id: number;
