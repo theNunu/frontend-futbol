@@ -1,20 +1,13 @@
-<p>news works!</p>
-
-<div class="filtros-container mb-4">
-    <!-- <input pInputText type="text" [(ngModel)]="filtros.title" placeholder="Buscar noticia por título..."
-        (input)="cargarNoticias() " class="w-full md:w-20rem"> -->
-
-    <select [(ngModel)]="filtros.is_active" (change)="cargarNoticias()" class="form-select">
-        <option value="">Todas las noticias</option>
-        <option value="true">Publicadas (Activas)</option>
-        <option value="false">Borradores (Inactivas)</option>
-    </select>
-</div>
-
-<div class="container">
+<div class="container mt-5">
     <input pInputText type="text" [(ngModel)]="filtros.title" placeholder="Buscar noticia por título..."
         (input)="cargarNoticias() " class="w-full md:w-20rem">
 
+    
+        <span class="block text-900 font-medium mb-2">Estado</span>
+        <p-select [(ngModel)]="filtros.is_active" [options]="opcionesEstado" optionLabel="label" optionValue="value"
+            placeholder="Selecciona estado" (onChange)="cargarNoticias()" class="w-full md:w-15rem custom-select-lg">
+        </p-select>
+    
 
     <!-- <button mat-raised-button style="color: rgb(4, 200, 50);">crear noticia</button> -->
     <button mat-raised-button color="primary" (click)="abrirModalCrear()">

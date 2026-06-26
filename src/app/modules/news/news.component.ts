@@ -25,6 +25,14 @@ export class NewsComponent implements OnInit {
     is_active: ''
   };
 
+   // Listado de opciones estilizadas para el p-select
+  public opcionesEstado = [
+    { label: '📰 Todos', value: '' },
+    { label: '✅ Activos', value: 'true' },
+    { label: '❌ Inactivos', value: 'false' }
+  ];
+
+
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
     if (mp) {
       this.dataSource.paginator = mp;
