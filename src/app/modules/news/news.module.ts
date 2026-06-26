@@ -23,12 +23,16 @@ import { FormsModule } from '@angular/forms'; // 1. Importa el módulo
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
-import { SelectModule } from 'primeng/select'; // En PrimeNG v19 se llama SelectModule
+import { SelectModule } from 'primeng/select';
+import { ListNewsComponent } from './pages/list-news/list-news.component';
+import { CreateNewsComponent } from './pages/create-news/create-news.component'; // En PrimeNG v19 se llama SelectModule
 
 @NgModule({
   declarations: [
     NewsComponent,
-    FormNewsComponent
+    FormNewsComponent,
+    ListNewsComponent,
+    CreateNewsComponent
   ],
   imports: [
     CommonModule,
