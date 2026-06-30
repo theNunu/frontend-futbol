@@ -13,8 +13,8 @@ export interface News {
     title: string;
     description: string;
     summary: string;
-    begin_date: string;
-    end_date: string;
+    begin_date: string | null;
+    end_date: string | null;
 }
 
 export interface ApiResponse {
@@ -29,6 +29,6 @@ export interface dtoNews {
     title: string;
     description: string;
     summary: string;
-    begin_date: string;
-    end_date: string;
+    begin_date: string | null;
+    end_date: string | null;
 }

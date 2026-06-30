@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 import { NewsService } from '../../services/news.service';
 import { FormNewsComponent } from '../../components/form-news/form-news.component';
 import { FiltrosNews, News } from '../../interfaces/data';
+import { CreateNewsComponent } from '../create-news/create-news.component';
 
 @Component({
   selector: 'app-list-news',
@@ -130,4 +131,18 @@ export class ListNewsComponent implements OnInit {
     });
   }
 
+  abrirCrear(): void {
+    const dialogRef = this.dialog.open(CreateNewsComponent, {
+      width: '550px',
+      disableClose: true // Evita que se cierre al hacer clic afuera
+    });
+
+    // Tipamos estrictamente el resultado esperado del modal (un boolean)
+    dialogRef.afterClosed().subscribe((subido: boolean | undefined) => {
+      if (subido) {
+        this.cargarNoticias(); // Si se creó con éxito, refrescamos la tabla
+      }
+    });
+  }
+  
 }

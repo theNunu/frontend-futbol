@@ -1,8 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { News } from '../../../interfaces/data';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { News } from '../../interfaces/data';
+import { dtoNews, News } from '../../interfaces/data';
+import { Component, EventEmitter, Output, Inject, OnInit } from '@angular/core';
 @Component({
   selector: 'app-form-news',
   standalone: false,
@@ -12,6 +11,7 @@ import { News } from '../../interfaces/data';
 export class FormNewsComponent implements OnInit {
   formNews!: FormGroup;
   isEditMode: boolean = false;
+  @Output() saved = new EventEmitter<dtoNews>();
 
   constructor(
     private fb: FormBuilder,
@@ -21,25 +21,28 @@ export class FormNewsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.isEditMode = !!this.dataNews; // Si hay data, es modo edición
     this.initForm();
   }
 
   initForm(): void {
+
     this.formNews = this.fb.group({
-      title: [this.dataNews?.title || null, [Validators.required], Validators.maxLength(30)],
-      // Summary es opcional, así que no lleva Validators.required
-      summary: [this.dataNews?.summary || null],
-      description: [this.dataNews?.description || null, [Validators.required]],
-      // Los datepickers de Material manejan objetos Date nativos internamente
+      title: ['', [Validators.required, Validators.maxLength(30)]],
+      summary: ['', [Validators.minLength(10)]],
+      description: ['', [Validators.required, Validators.minLength(10)]],
       begin_date: [this.dataNews?.begin_date ? new Date(this.dataNews.begin_date) : null, [Validators.required]],
-      end_date: [this.dataNews?.end_date ? new Date(this.dataNews.end_date) : null, [Validators.required]]
+      end_date: [this.dataNews?.end_date ? new Date(this.dataNews.end_date) : null, [Validators.required]],
+
+
     });
   }
 
-  private formatDate(date: any): string {
+  private formatDate(date: unknown): string {
+
     if (!date) return '';
-    const d = new Date(date);
+    const d = new Date(date as string | number | Date);
+    if (isNaN(d.getTime())) return ''; // Control extra por si la fecha es inválida
+
     const month = '' + (d.getMonth() + 1);
     const day = '' + d.getDate();
     const year = d.getFullYear();
@@ -47,11 +50,17 @@ export class FormNewsComponent implements OnInit {
   }
 
   guardar(): void {
-    console.log(" eso tilin");
-    console.log("rl formu: ", this.formNews.invalid);
-    if (this.formNews.invalid) return;
+    // console.log(" eso tilin");
+    // console.log("rl formu: ", this.formNews.invalid);
+    // if (this.formNews.invalid) return;
 
+     console.log("mi noticia", this.formNews);
+    if (this.formNews.invalid) {
+      this.formNews.markAllAsTouched();
+      return; // ❌ Si se ejecuta este return, el evento 'saved' nunca se emite
+    }
 
+   
 
     // Extraemos los valores del formulario
     const formValues = this.formNews.value;
@@ -64,7 +73,11 @@ export class FormNewsComponent implements OnInit {
     };
 
     // Cerramos el modal devolviendo el payload listo para la API
-    this.dialogRef.close(payload);
+    // this.dialogRef.close(payload);
+    //  this.saved.emit(this.formNews.value);
+    
+    // Emitimos el objeto COMPLETAMENTE formateado listo para ir a tu servicio HTTP
+    this.saved.emit(payload);
   }
 
   cancelar(): void {
