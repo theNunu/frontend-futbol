@@ -26,6 +26,7 @@ export class CreateNewsComponent implements OnInit {
   registrarNoticia(request: dtoNews): void {
     this.btnGuardarEnabled = false;
     this._serviceNews.createNews(request).subscribe({
+      // this.cargarNoticias();
       next: (noticiaCreada) => {
 
         // 2. SWEETALERT DE ÉXITO (Tipo Toast, arriba a la derecha)
@@ -39,7 +40,7 @@ export class CreateNewsComponent implements OnInit {
           timer: 3000,
           timerProgressBar: true
         });
-        this.dialogRef.close();
+        this.dialogRef.close(true);
         // this.cargarNoticias(); // Refresca la tabla automáticamente
       },
 
