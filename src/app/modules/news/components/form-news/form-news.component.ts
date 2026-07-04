@@ -1,7 +1,7 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { dtoNews, News } from '../../interfaces/data';
-import { Component, EventEmitter, Output, Inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit , Input} from '@angular/core';
 @Component({
   selector: 'app-form-news',
   standalone: false,
@@ -12,12 +12,19 @@ export class FormNewsComponent implements OnInit {
   formNews!: FormGroup;
   isEditMode: boolean = false;
   @Output() saved = new EventEmitter<dtoNews>();
+  @Input() btnGuardarEnabled: boolean = true;
+  // Reemplazamos el constructor problemático por un Input limpio
+  @Input() dataNews: News | null = null;
+  //  @Output() saved: EventEmitter<VehiculoInsertI> = new EventEmitter();
+
 
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<FormNewsComponent>,
+
     // Recibimos los datos del componente padre (si se va a editar)
-    @Inject(MAT_DIALOG_DATA) public dataNews: News | null
+    // @Inject(MAT_DIALOG_DATA) public dataNews: News | null
+    // private dataNews: News | null,
   ) { }
 
   ngOnInit(): void {
