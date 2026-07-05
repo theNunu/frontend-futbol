@@ -16,7 +16,14 @@ export interface News {
     begin_date: string | null;
     end_date: string | null;
 }
-
+export interface NewsI {
+    news_id: number;
+    title: string;
+    description: string;
+    summary: string;
+    begin_date: string | null;
+    end_date: string | null;
+}
 export interface ApiResponse {
     status_code: number;
     success: boolean;
@@ -25,6 +32,15 @@ export interface ApiResponse {
 }
 
 export interface dtoNews {
+    news_id: number;
+    title: string;
+    description: string;
+    summary: string;
+    begin_date: string | null;
+    end_date: string | null;
+}
+
+export interface updateNews {
     news_id: number;
     title: string;
     description: string;

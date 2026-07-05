@@ -14,9 +14,9 @@ export class FormNewsComponent implements OnInit {
   @Output() saved = new EventEmitter<dtoNews>();
   @Input() btnGuardarEnabled: boolean = true;
   // Reemplazamos el constructor problemático por un Input limpio
-  @Input() dataNews: News | null = null;
+  // @Input() dataNews: News | null = null; 
+    @Input() dataNews!: News;
   //  @Output() saved: EventEmitter<VehiculoInsertI> = new EventEmitter();
-
 
   constructor(
     private fb: FormBuilder,

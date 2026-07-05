@@ -1,0 +1,11 @@
+<p>update-news works!</p>
+<div class="w-full flex flex-col gap-y-2">
+@if (dataNews) {
+    <app-form-news
+    [dataNews]="dataNews"
+    (saved)="updateNoticia($event)"
+
+    ></app-form-news>
+}
+</div>
+

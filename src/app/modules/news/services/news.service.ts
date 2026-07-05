@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 // import { ApiResponse, dtoNews, News } from '../../interfaces/data';
 import { map } from 'rxjs/operators'; // <-- Importa el operador map
-import { ApiResponse, dtoNews, FiltrosNews, News } from '../interfaces/data';
+import { ApiResponse, dtoNews, FiltrosNews, News, updateNews, NewsI } from '../interfaces/data';
 @Injectable({
   providedIn: 'root'
 })
@@ -44,25 +44,34 @@ export class NewsService {
     );
   }
 
-  //   cargarUsuarios(): void {
-  //   // Pasamos el objeto directamente ya que cumple con la interfaz exigida
-  //   this.usuarioService.obtenerUsuarios(this.filtros).subscribe({
-  //     next: (response: ApiResponse) => {
-  //       this.usuarios = response.data;
-  //     },
-  //     error: (err) => console.error(err)
-  //   });
-  // }
+  getNewsById(newsId: number): Observable<{ data: NewsI }>{
+    return this.http.get<{ data: NewsI }>(`${this.apiUrl}/${newsId}`);
+  }
 
-  // Método profesional para crear una noticia
-  // createNews(newsData: Partial<News>): Observable<News> {
-  //   return this.http.post<ApiResponse>(this.apiUrl, newsData).pipe(
-  //     map(response => response.data) // Asumiendo que retorna la noticia creada en .data
-  //   );
-  // }
 
   createNews(request: dtoNews) {
     console.log("request del servidor: ", request)
     return this.http.post<dtoNews>(`${this.apiUrl}`, request);
   }
+
+  updateNews(newsId: number, request: updateNews): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${newsId}`, request);
+  }
+
+  // updateTournament(tournamentId: number, request:  number): Observable<any> {
+  //   return this.http.put(`${this.apiUrl}/${tournamentId}`, request);
+  // }
+
+
+  //  actualizarVehiculo(
+  //     vehiculo: VehiculoInsertI,
+  //     codTransporte: number
+  // ): Observable<ApiResponseI<VehiculosI>> {
+  //     return this._http.put<ApiResponseI<VehiculosI>>(
+  //         `${
+  //             environment.api.baseUrl
+  //         }/inventario/vehiculo/${this._sharedService.getCodEmpresaSeleccionada()}/${codTransporte}`,
+  //         vehiculo
+  //     );
+  // }
 }

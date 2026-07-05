@@ -25,14 +25,16 @@ import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { ListNewsComponent } from './pages/list-news/list-news.component';
-import { CreateNewsComponent } from './pages/create-news/create-news.component'; // En PrimeNG v19 se llama SelectModule
+import { CreateNewsComponent } from './pages/create-news/create-news.component';
+import { UpdateNewsComponent } from './pages/update-news/update-news.component'; // En PrimeNG v19 se llama SelectModule
 
 @NgModule({
   declarations: [
     NewsComponent,
     FormNewsComponent,
     ListNewsComponent,
-    CreateNewsComponent
+    CreateNewsComponent,
+    UpdateNewsComponent
   ],
   imports: [
     CommonModule,
