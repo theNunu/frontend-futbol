@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog'; // 1. Importa MatDialog
@@ -13,7 +13,12 @@ import { NewsService } from '../../services/news.service';
 import { FormNewsComponent } from '../../components/form-news/form-news.component';
 import { FiltrosNews, News } from '../../interfaces/data';
 import { CreateNewsComponent } from '../create-news/create-news.component';
+import { UpdateNewsComponent } from '../update-news/update-news.component';
 
+import {
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 @Component({
   selector: 'app-list-news',
   standalone: false,
@@ -21,8 +26,21 @@ import { CreateNewsComponent } from '../create-news/create-news.component';
   styleUrl: './list-news.component.css'
 })
 export class ListNewsComponent implements OnInit {
+
+  // idNews: number;
+
+    // 2. Inyectamos MatDialog en el constructor
+  constructor(
+    private newsService: NewsService,
+    private dialog: MatDialog,
+    // @Inject(MAT_DIALOG_DATA) public data: number
+    
+  ) { 
+    // this.idNews = data;
+  }
   columnasMostradas: string[] = ['id', 'title', 'summary', 'description', 'actions'];
   dataSource = new MatTableDataSource<News>();
+  
 
   // 1. Objeto de filtros vinculado al HTML mediante [(ngModel)]
   public filtros: FiltrosNews = {
@@ -44,13 +62,8 @@ export class ListNewsComponent implements OnInit {
     }
   }
 
-  // 2. Inyectamos MatDialog en el constructor
-  constructor(
-    private newsService: NewsService,
-    private dialog: MatDialog
-  ) { }
-
   ngOnInit(): void {
+    console.log('El componente ListNews se ha inicializado'); // Prueba 1
     this.cargarNoticias();
   }
 
@@ -144,5 +157,21 @@ export class ListNewsComponent implements OnInit {
       }
     });
   }
-  
+
+  // 3. Tu función para abrir el editar de forma nativa
+  editarNoticia(idNews: number): void {
+    const dialogRef = this.dialog.open(UpdateNewsComponent, {
+      width: '30vw',
+      height: '90vh',
+      disableClose: true, // Esto evita que se cierre al hacer clic afuera (equivale al 'true' de tu shared)
+      data: idNews        // <-- Así es como pasas el ID nativamente a MAT_DIALOG_DATA
+    });
+
+    // 4. Escuchamos el cierre para refrescar la lista
+    dialogRef.afterClosed().subscribe(() => {
+      // Cuando en el update hagas: this.dialogRef.close(), entrará aquí
+      this.cargarNoticias();
+    });
+  }
+
 }
