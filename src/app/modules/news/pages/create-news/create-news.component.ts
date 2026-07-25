@@ -6,6 +6,7 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
+import { FileService } from '../../../../shared/services/file.service';
 @Component({
   selector: 'app-create-news',
   standalone: false,
@@ -13,18 +14,52 @@ import Swal from 'sweetalert2';
   styleUrl: './create-news.component.css'
 })
 export class CreateNewsComponent implements OnInit {
-  
+
 
   btnGuardarEnabled: boolean = true;
+
+  isUploading: boolean = false; //
+  selectedFile: File | null = null;
+  imagePreview: string | null = null;
   constructor(
     private _serviceNews: NewsService,
+    private _serviceFile: FileService,
     public dialogRef: MatDialogRef<CreateNewsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
-  ngOnInit(): void {}
+
+  // 1. Detecta cuando el usuario selecciona una imagen en el <input type="file">
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+
+      // Vista previa de la imagen local en el formulario
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+  ngOnInit(): void { }
   registrarNoticia(request: dtoNews): void {
     this.btnGuardarEnabled = false;
+
+
+    if (this.selectedFile) {
+      const fileId =  this._serviceFile.subirArchivo(this.selectedFile);
+      this.data.patchValue({ file_id: fileId });
+    }
+
+
+
+    // SI EL USUARIO SELECCIONÓ UN ARCHIVO: Lo subimos primero a /api/files
+    // if (this.selectedFile) {
+    //   const fileId = await this.subirArchivo(this.selectedFile);
+    //   this.dtoNews.patchValue({ file_id: fileId });
+    // }
     this._serviceNews.createNews(request).subscribe({
       // this.cargarNoticias();
       next: (noticiaCreada) => {
