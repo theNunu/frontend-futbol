@@ -33,6 +33,26 @@
             <td mat-cell *matCellDef="let usuario"> {{usuario.title}} </td>
         </ng-container>
 
+        <!-- <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef> Imagen </th>
+            <td mat-cell *matCellDef="let usuario"> {{usuario.image}} </td>
+        </ng-container> -->
+        <!-- Columna Imagen -->
+        <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef> Imagen </th>
+            <td mat-cell *matCellDef="let noticia">
+
+                <!-- Si tiene file_id o relación de archivo -->
+                @if (noticia.file_id || noticia.files) {
+                <img [src]="getImagenUrl(noticia)" [alt]="noticia.title"
+                    class="rounded shadow-sm my-1 border border-gray-200"  style="width: 300px; height: 200px;" />
+                } @else {
+                <span class="text-xs text-gray-400 italic">Sin imagen</span>
+                }
+
+            </td>
+        </ng-container>
+
         <ng-container matColumnDef="summary">
             <th mat-header-cell *matHeaderCellDef> Resumen </th>
             <td mat-cell *matCellDef="let usuario"> {{usuario.summary}} </td>

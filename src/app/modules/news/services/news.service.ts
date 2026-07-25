@@ -11,6 +11,9 @@ export class NewsService {
 
   private apiUrl = 'http://127.0.0.1:8000/api/news';
 
+  // URL base para acceder a la carpeta pública del storage de Laravel
+  public storageUrl = 'http://127.0.0.1:8000/storage/';
+
   constructor(private http: HttpClient) { }
 
   // Agrupamos los filtros en un solo objeto tipado
@@ -44,7 +47,7 @@ export class NewsService {
     );
   }
 
-  getNewsById(newsId: number): Observable<{ data: NewsI }>{
+  getNewsById(newsId: number): Observable<{ data: NewsI }> {
     return this.http.get<{ data: NewsI }>(`${this.apiUrl}/${newsId}`);
   }
 
@@ -57,6 +60,8 @@ export class NewsService {
   updateNews(newsId: number, request: updateNews): Observable<any> {
     return this.http.put(`${this.apiUrl}/${newsId}`, request);
   }
+
+
 
   // updateTournament(tournamentId: number, request:  number): Observable<any> {
   //   return this.http.put(`${this.apiUrl}/${tournamentId}`, request);

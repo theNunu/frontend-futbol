@@ -15,6 +15,14 @@ export interface News {
     summary: string;
     begin_date: string | null;
     end_date: string | null;
+    // file_id: number;
+    // image?: File; // Relación polimórfica que devuelve Laravel
+    // file_id: number | null;
+    // // Opcional por si en el futuro decides cargar el objeto del archivo
+    // file?: File;
+    file_id: number | null;
+    files: File | null; //
+
 }
 export interface NewsI {
     news_id: number;
@@ -23,6 +31,13 @@ export interface NewsI {
     summary: string;
     begin_date: string | null;
     end_date: string | null;
+
+    // file_id: number;
+    // image?: File; // Rell;
+    // // Opcional por si en el futuro decides cargar el objeto del archivo
+    // file?: File;
+    file_id: number | null;
+    files: File | null; //
 }
 export interface ApiResponse {
     status_code: number;
@@ -38,6 +53,10 @@ export interface dtoNews {
     summary: string;
     begin_date: string | null;
     end_date: string | null;
+    file_id: number | null;
+    files: File | null; //
+    // file_id: number;
+    // image?: File; // Relación polimórfica que devuelve Laravel
 }
 
 export interface updateNews {
@@ -47,4 +66,16 @@ export interface updateNews {
     summary: string;
     begin_date: string | null;
     end_date: string | null;
+    file_id: number | null;
+    files: File | null; //
+    // file_id: number;
+    // image?: File; // Relación polimórfica que devuelve Laravel
+}
+
+export interface File {
+    file_id: number;
+    name: string;
+    path: string;
+    mime_type: string;
+    size: number;
 }
