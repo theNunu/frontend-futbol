@@ -128,6 +128,12 @@ export class FormNewsComponent implements OnInit {
       end_date: this.formatDate(formValues.end_date)
     };
 
+    // ✅ Emitimos un objeto que contiene los datos de la noticia Y el archivo seleccionado
+    // this.saved.emit({
+    //   data: payload,
+    //   file: this.selectedFile
+    // });
+
     // Cerramos el modal devolviendo el payload listo para la API
     // this.dialogRef.close(payload);
     //  this.saved.emit(this.formNews.value);

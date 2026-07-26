@@ -45,11 +45,12 @@ export class CreateNewsComponent implements OnInit {
   }
   ngOnInit(): void { }
   registrarNoticia(request: dtoNews): void {
+    console.log('Recibiendo noticia en CreateNewsComponent:', request);
     this.btnGuardarEnabled = false;
 
 
     if (this.selectedFile) {
-      const fileId =  this._serviceFile.subirArchivo(this.selectedFile);
+      const fileId = this._serviceFile.subirArchivo(this.selectedFile);
       this.data.patchValue({ file_id: fileId });
     }
 
@@ -62,8 +63,9 @@ export class CreateNewsComponent implements OnInit {
     // }
     this._serviceNews.createNews(request).subscribe({
       // this.cargarNoticias();
-      next: (noticiaCreada) => {
 
+      next: (noticiaCreada) => {
+        console.log('Noticia guardada con éxito:', noticiaCreada);
         // 2. SWEETALERT DE ÉXITO (Tipo Toast, arriba a la derecha)
         Swal.fire({
           icon: 'success',
