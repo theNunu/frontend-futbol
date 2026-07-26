@@ -1,0 +1,44 @@
+<p>list-season works!</p>
+
+
+<p>LISATDAO DE NOTICIAS COMPONENT</p>
+<!-- <button (click)="abrirCrear()"
+    class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow-sm transition-colors">
+    Registrar Noticia
+</button> -->
+<i class="pi pi-check"></i>
+<i class="pi pi-times"></i>
+<span class="pi pi-search"></span>
+<span class="pi pi-user"></span>
+<div class="container mt-5">
+
+
+    <div>
+        @for (item of seasons; track item.season_id) {
+        <li>{{ item.name }}</li>
+        } @empty {
+        <li>No hay elementos.</li>
+        }
+
+
+
+    </div>
+<!-- 
+    <p-table [value]="seasons" [style]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Quantity</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{ product.season_id }}</td>
+                <td>{{ product.name }}</td>
+            </tr>
+        </ng-template>
+    </p-table> -->
+
+</div>
