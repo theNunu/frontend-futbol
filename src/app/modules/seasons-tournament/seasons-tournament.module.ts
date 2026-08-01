@@ -8,7 +8,7 @@ import { UpdateSeasonComponent } from './pages/update-season/update-season.compo
 import { FormSeasonsComponent } from './components/form-seasons/form-seasons.component';
 
 // import { TableModule } from 'primeng/table'; // 👈 1. Importación obligatoria
-import { TableModule } from 'primeng/table';
+import { TableModule, Table } from 'primeng/table';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field'; // <-- Para <mat-form-field>
@@ -37,6 +37,7 @@ import { SelectModule } from 'primeng/select';
     SeasonsTournamentRoutingModule,
     FormsModule,
     TableModule,
+    Table
     // Table
     // MatTableModule,
     // //     // Módulos de Angular Material

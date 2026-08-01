@@ -18,7 +18,7 @@ export class ListSeasonComponent implements OnInit {
   // 2. Inyectamos MatDialog en el constructor
   constructor(
     private seasonService: SeasonService,
-    private dialog: MatDialog,
+    // private dialog: MatDialog,
     // @Inject(MAT_DIALOG_DATA) public data: number
 
   ) {
