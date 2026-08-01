@@ -1,8 +1,13 @@
 <p>LISATDAO DE NOTICIAS COMPONENT</p>
-<button (click)="abrirCrear()"
+<!-- <button (click)="abrirCrear()"
     class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow-sm transition-colors">
     Registrar Noticia
-</button>
+</button> -->
+
+<button mat-raised-button color="primary" (click)="abrirCrear()">
+        Agregar Noticia
+    </button>
+
 <div class="container mt-5">
     <input pInputText type="text" [(ngModel)]="filtros.title" placeholder="Buscar noticia por título..."
         (input)="cargarNoticias() " class="w-full md:w-20rem">
@@ -13,11 +18,6 @@
         placeholder="Selecciona estado" (onChange)="cargarNoticias()" class="w-full md:w-15rem custom-select-lg">
     </p-select>
 
-
-    <!-- <button mat-raised-button style="color: rgb(4, 200, 50);">crear noticia</button> -->
-    <button mat-raised-button color="primary" (click)="abrirModalCrear()">
-        Agregar Noticia
-    </button>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mt-3">
 
 
