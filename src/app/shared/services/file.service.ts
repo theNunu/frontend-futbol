@@ -1,29 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-// import { ApiResponse, dtoNews, News } from '../../interfaces/data';
-import { map } from 'rxjs/operators'; // <-- Importa el operador map
+import { map } from 'rxjs/operators';
+
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class FileService {
 
-    constructor(private http: HttpClient) { }
+  private apiUrl = 'http://127.0.0.1:8000/api/files';
 
-    private apiUrl = 'http://127.0.0.1:8000/api/files';
+  constructor(private http: HttpClient) { }
 
-    public subirArchivo(file: File): Promise<number> {
-        const formData = new FormData();
-        formData.append('file', file); // 'file' coincide con $request->file('file') en Laravel
+  // Retorna un Observable<number> con el file_id
+  public subirArchivo(file: File): Observable<number> {
+    const formData = new FormData();
+    formData.append('file', file);
 
-        return new Promise((resolve, reject) => {
-            console.log('mi archivo', formData)
-            this.http.post<any>(`${this.apiUrl}`, formData).subscribe({
-
-                next: (res) => resolve(res.file_id), // Retornamos el ID devuelto por FileController
-                error: (err) => reject(err)
-            });
-        })
-
-    }
+    return this.http.post<any>(this.apiUrl, formData).pipe(
+      map(res => res.file_id ?? res.id)
+    );
+  }
 }

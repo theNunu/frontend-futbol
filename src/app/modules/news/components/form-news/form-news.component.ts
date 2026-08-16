@@ -14,7 +14,9 @@ export class FormNewsComponent implements OnInit {
   // formNews: FormGroup = this.initForm();
   isEditMode: boolean = false;
 
-  @Output() saved = new EventEmitter<dtoNews>();
+
+  // 1. Cambia la firma del Output para permitir enviar el archivo adjunto
+  @Output() saved = new EventEmitter<{ data: dtoNews, file: File | null }>();
   @Input() btnGuardarEnabled: boolean = true;
   // Reemplazamos el constructor problemático por un Input limpio
   // @Input() dataNews: News | null = null; 
@@ -23,7 +25,7 @@ export class FormNewsComponent implements OnInit {
   //  @Output() saved: EventEmitter<VehiculoInsertI> = new EventEmitter();
 
   isUploading: boolean = false; //
-  
+
   imagePreview: string | null = null;
 
   constructor(
@@ -93,15 +95,15 @@ export class FormNewsComponent implements OnInit {
   selectedFile: File | null = null;
 
   onFileSelected(event: Event): void {
-  const input = event.target as HTMLInputElement;
-  
-  if (input.files && input.files.length > 0) {
-    this.selectedFile = input.files[0]; // 👈 AQUÍ SE GUARDA EL ARCHIVO REAL
-    console.log('Imagen capturada correctamente:', this.selectedFile);
-  } else {
-    this.selectedFile = null;
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0]; // 👈 AQUÍ SE GUARDA EL ARCHIVO REAL
+      console.log('Imagen capturada correctamente:', this.selectedFile);
+    } else {
+      this.selectedFile = null;
+    }
   }
-}
   // 1. Detecta cuando el usuario selecciona una imagen en el <input type="file">
   // onFileSelected(event: any): void {
   //   const file: File = event.target.files[0];
@@ -122,8 +124,8 @@ export class FormNewsComponent implements OnInit {
     // console.log(" eso tilin");
     // console.log("rl formu: ", this.formNews.invalid);
     // if (this.formNews.invalid) return;
-      console.log('1. Archivo que se va a emitir desde FormNews:', this.selectedFile);
-    console.log("mi noticia", this.formNews);
+    // console.log('1. Archivo que se va a emitir desde FormNews:', this.selectedFile);
+    // console.log("mi noticia", this.formNews);
     if (this.formNews.invalid) {
       this.formNews.markAllAsTouched();
       return; // ❌ Si se ejecuta este return, el evento 'saved' nunca se emite
@@ -134,7 +136,7 @@ export class FormNewsComponent implements OnInit {
     const formValues = this.formNews.value;
 
     // Formateamos las fechas al formato estricto de tu backend: "YYYY-MM-DD"
-    const payload = {
+    const payload: dtoNews = {
       ...formValues,
       begin_date: this.formatDate(formValues.begin_date),
       end_date: this.formatDate(formValues.end_date)
@@ -151,7 +153,12 @@ export class FormNewsComponent implements OnInit {
     //  this.saved.emit(this.formNews.value);
 
     // Emitimos el objeto COMPLETAMENTE formateado listo para ir a tu servicio HTTP
-    this.saved.emit(payload);
+    // this.saved.emit(payload);
+    // 2. Emitimos DATA y FILE juntos
+    this.saved.emit({
+      data: payload,
+      file: this.selectedFile
+    });
   }
 
   cancelar(): void {

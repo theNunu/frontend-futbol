@@ -45,24 +45,6 @@
         <!-- En form-news.component.html -->
         <input type="file" accept="image/*" (change)="onFileSelected($event)" />
 
-        <!-- Preview de la foto si seleccionó alguna -->
-        <!-- @if (imagePreview) {
-        <div class="mb-3 flex justify-center">
-            <img [src]="imagePreview" class="h-32 object-cover rounded shadow" />
-        </div>
-        } -->
-
-        <!-- Input File Oculto o Estilizado -->
-        <!-- <input type="file" #fileInput accept="image/*,video/*" (change)="onFileSelected($event)" class="hidden" />
-
-        <button type="button" mat-stroked-button color="primary" (click)="fileInput.click()">
-            <mat-icon>cloud_upload</mat-icon>
-            {{ selectedFile ? 'Cambiar Imagen' : 'Seleccionar Imagen' }}
-        </button>
-
-        @if (selectedFile) {
-        <p class="text-xs text-gray-500 mt-1">{{ selectedFile.name }}</p>
-        } -->
     </div>
 
 </mat-dialog-content>

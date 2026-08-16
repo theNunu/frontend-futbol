@@ -46,70 +46,60 @@ export class CreateNewsComponent implements OnInit {
   }
   ngOnInit(): void { }
 
-  registrarNoticia(request: dtoNews): void {
-    console.log('Recibiendo noticia en CreateNewsComponent:', request);
-    this.btnGuardarEnabled = false;
+registrarNoticia(event: { data: dtoNews, file: File | null } | any): void {
+  this.btnGuardarEnabled = false;
 
-         console.log('mi archivoiddd: ', this.selectedFile)
+  // Extraemos la información del evento emitido
+  const requestData: dtoNews = event.data ? event.data : event;
+  const fileToUpload: File | null = event.file ? event.file : null;
 
-    if (this.selectedFile) {
-      // console.log('ver data: ', data, this.selectedFile)
-      const fileId = this._serviceFile.subirArchivo(this.selectedFile);
-      //  console.log('mi archivoiddd: ', fileId)
-      this.data.patchValue({ file_id: fileId });
-    }
+  console.log('Objeto data recibido:', requestData);
+  console.log('Archivo recibido:', fileToUpload);
 
-    // SI EL USUARIO SELECCIONÓ UN ARCHIVO: Lo subimos primero a /api/files
-    // if (this.selectedFile) {
-    //   const fileId = await this.subirArchivo(this.selectedFile);
-    //   this.dtoNews.patchValue({ file_id: fileId });
-    // }
-    this._serviceNews.createNews(request).subscribe({
-      // this.cargarNoticias();
-
-      next: (noticiaCreada) => {
-        console.log('Noticia guardada con éxito:', noticiaCreada);
-        // 2. SWEETALERT DE ÉXITO (Tipo Toast, arriba a la derecha)
-        Swal.fire({
-          icon: 'success',
-          title: '¡Creado!',
-          text: 'La noticia se ha guardado correctamente.',
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true
-        });   
-        this.dialogRef.close(true);
-        // this.cargarNoticias(); // Refresca la tabla automáticamente
+  // Si hay imagen, la subimos primero a /api/files
+  if (fileToUpload) {
+    this._serviceFile.subirArchivo(fileToUpload).subscribe({
+      next: (fileId: number) => {
+        console.log('Imagen subida con éxito. file_id generado:', fileId);
+        
+        // Asignamos el ID retornado a la noticia
+        requestData.file_id = fileId;
+        
+        // Guardamos la noticia en la base de datos
+        this.guardarNoticiaHttp(requestData);
       },
-
       error: (err) => {
         this.btnGuardarEnabled = true;
-        console.error('Error capturado completo:', err);
-
-        // Extraemos el mensaje que mandó Laravel
-        const mensajeError = err.error?.message || 'Ocurrió un error inesperado';
-
-        // 3. SWEETALERT DE ERROR (Tipo Toast, arriba a la derecha)
-        Swal.fire({
-          icon: 'error',
-          title: 'Error de validación',
-          text: mensajeError, // Aquí se pinta: "La fecha de fin debe ser mayor a la fecha de inicio."
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 5000,
-          timerProgressBar: true,
-          // Esto hace que si el usuario pasa el mouse por encima, el tiempo se pause para que alcance a leer bien
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer);
-            toast.addEventListener('mouseleave', Swal.resumeTimer);
-          }
-        });
+        console.error('Error al subir la imagen:', err);
+        Swal.fire('Error', 'No se pudo subir la imagen', 'error');
       }
     });
-
+  } else {
+    // Si no seleccionó imagen, guardamos directo
+    this.guardarNoticiaHttp(requestData);
   }
+}
+
+private guardarNoticiaHttp(request: dtoNews): void {
+  this._serviceNews.createNews(request).subscribe({
+    next: (noticiaCreada) => {
+      Swal.fire({
+        icon: 'success',
+        title: '¡Creado!',
+        text: 'La noticia se ha guardado correctamente.',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      });
+      this.dialogRef.close(true);
+    },
+    error: (err) => {
+      this.btnGuardarEnabled = true;
+      const mensajeError = err.error?.message || 'Ocurrió un error inesperado';
+      Swal.fire('Error', mensajeError, 'error');
+    }
+  });
+}
 
 }
