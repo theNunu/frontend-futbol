@@ -32,6 +32,7 @@ export class CreateNewsComponent implements OnInit {
   // 1. Detecta cuando el usuario selecciona una imagen en el <input type="file">
   onFileSelected(event: any): void {
     const file: File = event.target.files[0];
+    console.log('IMAGEN SELECCIONADA: ',file)
     if (file) {
       this.selectedFile = file;
 
@@ -44,17 +45,19 @@ export class CreateNewsComponent implements OnInit {
     }
   }
   ngOnInit(): void { }
+
   registrarNoticia(request: dtoNews): void {
     console.log('Recibiendo noticia en CreateNewsComponent:', request);
     this.btnGuardarEnabled = false;
 
+         console.log('mi archivoiddd: ', this.selectedFile)
 
     if (this.selectedFile) {
+      // console.log('ver data: ', data, this.selectedFile)
       const fileId = this._serviceFile.subirArchivo(this.selectedFile);
+      //  console.log('mi archivoiddd: ', fileId)
       this.data.patchValue({ file_id: fileId });
     }
-
-
 
     // SI EL USUARIO SELECCIONÓ UN ARCHIVO: Lo subimos primero a /api/files
     // if (this.selectedFile) {
@@ -76,7 +79,7 @@ export class CreateNewsComponent implements OnInit {
           showConfirmButton: false,
           timer: 3000,
           timerProgressBar: true
-        });
+        });   
         this.dialogRef.close(true);
         // this.cargarNoticias(); // Refresca la tabla automáticamente
       },

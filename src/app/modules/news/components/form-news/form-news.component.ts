@@ -23,7 +23,7 @@ export class FormNewsComponent implements OnInit {
   //  @Output() saved: EventEmitter<VehiculoInsertI> = new EventEmitter();
 
   isUploading: boolean = false; //
-  selectedFile: File | null = null;
+  
   imagePreview: string | null = null;
 
   constructor(
@@ -90,27 +90,39 @@ export class FormNewsComponent implements OnInit {
     return [year, month.padStart(2, '0'), day.padStart(2, '0')].join('-');
   }
 
-  // 1. Detecta cuando el usuario selecciona una imagen en el <input type="file">
-  onFileSelected(event: any): void {
-    const file: File = event.target.files[0];
-    if (file) {
-      this.selectedFile = file;
+  selectedFile: File | null = null;
 
-      // Vista previa de la imagen local en el formulario
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.imagePreview = reader.result as string;
-      };
-      reader.readAsDataURL(file);
-    }
+  onFileSelected(event: Event): void {
+  const input = event.target as HTMLInputElement;
+  
+  if (input.files && input.files.length > 0) {
+    this.selectedFile = input.files[0]; // 👈 AQUÍ SE GUARDA EL ARCHIVO REAL
+    console.log('Imagen capturada correctamente:', this.selectedFile);
+  } else {
+    this.selectedFile = null;
   }
+}
+  // 1. Detecta cuando el usuario selecciona una imagen en el <input type="file">
+  // onFileSelected(event: any): void {
+  //   const file: File = event.target.files[0];
+  //   if (file) {
+  //     this.selectedFile = file;
+
+  //     // Vista previa de la imagen local en el formulario
+  //     const reader = new FileReader();
+  //     reader.onload = () => {
+  //       this.imagePreview = reader.result as string;
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // }
 
 
   guardar(): void {
     // console.log(" eso tilin");
     // console.log("rl formu: ", this.formNews.invalid);
     // if (this.formNews.invalid) return;
-
+      console.log('1. Archivo que se va a emitir desde FormNews:', this.selectedFile);
     console.log("mi noticia", this.formNews);
     if (this.formNews.invalid) {
       this.formNews.markAllAsTouched();
