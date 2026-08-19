@@ -5,6 +5,7 @@ import { ModuleAdminComponent } from './module-admin.component';
 import { NewsComponent } from '../../../modules/news/news.component';
 import { ListNewsComponent } from '../../../modules/news/pages/list-news/list-news.component';
 import { ListSeasonComponent } from '../../../modules/seasons-tournament/pages/list-season/list-season.component';
+import { ListBannersComponent } from '../../../modules/banners/pages/list-banners/list-banners.component';
 
 const routes: Routes = [
 
@@ -15,6 +16,7 @@ const routes: Routes = [
       // OJO: Como el padre en el app-routing principal ya es 'admin', aquí solo pones el resto de la URL
       { path: 'news/list', component: ListNewsComponent },
       { path: 'seasons/list', component: ListSeasonComponent },
+      { path: 'banners/list', component: ListBannersComponent },
 //       {
 //   path: 'seasons',
 //   loadChildren: () => import('./modules/seasons-tournament/seasons-tournament.module').then(m => m.SeasonTournament)

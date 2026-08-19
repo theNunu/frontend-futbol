@@ -21,3 +21,15 @@ https://gemini.google.com/app/f4443948f01b139d?is_sa=1&is_sa=1&android-min-versi
 
 Hacer un componente en un modulo existente: 
  ng g c modules/news/pages/list-news
+ **********
+
+ng g m modules/banners --routing
+ ng g c modules/banners/pages/list-banners
+ ng g c modules/banners/components/form-banners
+  ng g s modules/banners/services/banners
+
+
+
+
+
+
