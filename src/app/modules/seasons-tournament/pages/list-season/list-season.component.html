@@ -2,6 +2,16 @@
 
 sexo tilin
 <p>LISATDAO DE NOTICIAS COMPONENT</p>
+<div class="card p-4">
+  <div class="flex justify-between align-items-center mb-4">
+    <h2>Gestión de Noticias</h2>
+    <p-button 
+      label="Nueva Noticia" 
+      icon="pi pi-plus" 
+      severity="success" 
+      (onClick)="openCreate()">
+    </p-button>
+  </div>
 <div class="container mt-5">
     <!-- <div>
         @for (item of seasons; track item.season_id) {

@@ -22,6 +22,7 @@ import { TextareaModule } from 'primeng/textarea';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { MessageService, ConfirmationService } from 'primeng/api'; // 1. Importar desde primeng/api
 @NgModule({
   declarations: [
     ListSeasonComponent,
@@ -45,6 +46,10 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     DialogModule,
     ToastModule,
     ConfirmDialogModule
+  ],
+  providers: [
+    MessageService,      // 2. Registrar aquí el servicio
+    ConfirmationService  // (Aprovecha de registrar también este si usas ConfirmDialog)
   ]
 })
 export class SeasonsTournamentModule { }
