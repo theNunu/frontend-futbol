@@ -6,13 +6,22 @@ import { ListSeasonComponent } from './pages/list-season/list-season.component';
 import { CreateSeasonComponent } from './pages/create-season/create-season.component';
 import { UpdateSeasonComponent } from './pages/update-season/update-season.component';
 import { FormSeasonsComponent } from './components/form-seasons/form-seasons.component';
+import { ReactiveFormsModule } from '@angular/forms';
+// import { TableModule } from 'primeng/table';
 
+// import { FormsModule } from '@angular/forms'; // 1. Importa el módulo
+// // 1. Importa el módulo de PrimeNG aquí arriba
+// import { ButtonModule } from 'primeng/button';
+
+
+// PrimeNG Modules
 import { TableModule } from 'primeng/table';
-
-import { FormsModule } from '@angular/forms'; // 1. Importa el módulo
-// 1. Importa el módulo de PrimeNG aquí arriba
 import { ButtonModule } from 'primeng/button';
-
+import { InputTextModule } from 'primeng/inputtext';
+import { TextareaModule } from 'primeng/textarea';
+import { DialogModule } from 'primeng/dialog';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 @NgModule({
   declarations: [
     ListSeasonComponent,
@@ -23,9 +32,19 @@ import { ButtonModule } from 'primeng/button';
   imports: [
     CommonModule,
     SeasonsTournamentRoutingModule,
-    FormsModule,
+    ReactiveFormsModule,
+    // FormsModule,
+    // TableModule,
+    // ButtonModule, // 2. Agrégalo aquí para que ListSeasonComponent pueda usarlo
+
+    // PrimeNG
     TableModule,
-    ButtonModule // 2. Agrégalo aquí para que ListSeasonComponent pueda usarlo
+    ButtonModule,// 2. Agrégalo aquí para que ListSeasonComponent pueda usarlo
+    InputTextModule,
+    TextareaModule,
+    DialogModule,
+    ToastModule,
+    ConfirmDialogModule
   ]
 })
 export class SeasonsTournamentModule { }

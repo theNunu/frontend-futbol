@@ -8,7 +8,7 @@ import { ApiResponse, SeasonDto, SeasonI } from '../interfaces/data';
 @Injectable({
     providedIn: 'root'
 })
-export class SeasonService {
+export class SeasonService { //. Módulo Dominio / Módulo Funcional
 
     private apiUrl = 'http://127.0.0.1:8000/api/seasons';
 

@@ -1,1 +1,39 @@
 <p>form-seasons works!</p>
+
+<form [formGroup]="seasonForm" (ngSubmit)="submitForm()" class="p-fluid flex flex-col gap-4">
+
+    <!-- Campo Título -->
+    <div class="field">
+        <label for="name" class="font-bold block mb-1">Nombre</label>
+        <input id="name" type="text" pInputText formControlName="name"
+            placeholder="Ingrese el nombre de la temporada" />
+        <small *ngIf="seasonForm.get('name')?.invalid && seasonForm.get('name')?.touched" class="p-error block mt-1">
+            El título es requerido (mínimo 5 caracteres).
+        </small>
+
+    </div>
+
+    <!-- Campo Resumen -->
+    <div class="field">
+        <label for="summary" class="font-bold block mb-1">Resumen</label>
+        <input id="summary" type="text" pInputText formControlName="summary"
+            placeholder="Resumen corto para el listado" />
+        <small *ngIf="seasonForm.get('summary')?.invalid && seasonForm.get('summary')?.touched"
+            class="p-error block mt-1">
+            El resumen es requerido (máximo 150 caracteres).
+        </small>
+    </div>
+
+    <!-- Botones de Acción -->
+    <div class="flex justify-end gap-2 mt-4">
+        <p-button label="Cancelar" icon="pi pi-times" severity="secondary" [outlined]="true" (onClick)="cancel()"
+            type="button">
+        </p-button>
+
+        <!-- El botón se deshabilita si el formulario es inválido o se está enviando -->
+        <p-button [label]="dataSeason ? 'Actualizar' : 'Guardar'" icon="pi pi-check" [loading]="isSubmitting"
+            [disabled]="seasonForm.invalid || isSubmitting" type="submit">
+        </p-button>
+    </div>
+
+</form>
