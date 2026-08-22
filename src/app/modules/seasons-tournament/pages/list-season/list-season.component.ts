@@ -37,28 +37,28 @@ export class ListSeasonComponent implements OnInit {
     console.log('season cargadas');
   }
 
-   cargarNoticias(): void {
-    this.seasonService.getSeasons().subscribe(datos => {
-      this.seasons = datos;
-    });
-  }
-
-  // cargarNoticias(): void {
-  //   // this.seasonService.getSeasons().subscribe(datos => {
-  //   //   this.seasons = datos;
-  //   // });
-  //   this.isLoading = true;
-  //   this.seasonService.getSeasons().subscribe({
-  //     next: (data) => {
-  //       this.seasons = data;
-  //       this.isLoading = false;
-  //     },
-  //     error: () => {
-  //       this.isLoading = false;
-  //       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al cargar noticias' });
-  //     }
+  //  cargarNoticias(): void {
+  //   this.seasonService.getSeasons().subscribe(datos => {
+  //     this.seasons = datos;
   //   });
   // }
+
+  cargarNoticias(): void {
+    // this.seasonService.getSeasons().subscribe(datos => {
+    //   this.seasons = datos;
+    // });
+    this.isLoading = true;
+    this.seasonService.getSeasons().subscribe({
+      next: (data) => {
+        this.seasons = data;
+        this.isLoading = false;
+      },
+      error: () => {
+        this.isLoading = false;
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al cargar noticias' });
+      }
+    });
+  }
 
   openCreate(): void {
     this.showCreateModal = true;

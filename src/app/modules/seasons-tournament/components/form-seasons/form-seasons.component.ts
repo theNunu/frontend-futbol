@@ -1,5 +1,5 @@
 // import { Component } from '@angular/core';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output , SimpleChanges, OnChanges} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SeasonDto } from '../../interfaces/data';
 
@@ -9,7 +9,7 @@ import { SeasonDto } from '../../interfaces/data';
   templateUrl: './form-seasons.component.html',
   styleUrl: './form-seasons.component.css'
 })
-export class FormSeasonsComponent implements OnInit {
+export class FormSeasonsComponent implements OnInit , OnChanges {
 
   @Input() dataSeason: SeasonDto | null = null;
   @Input() isSubmitting: boolean = false;
@@ -25,6 +25,17 @@ export class FormSeasonsComponent implements OnInit {
     this.initForm();
     if (this.dataSeason) {
       this.seasonForm.patchValue(this.dataSeason);
+    }
+  }
+
+  // Escucha si el @Input() dataNoticia cambia en tiempo de ejecución
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['dataNoticia'] && !changes['dataNoticia'].isFirstChange()) {
+      if (this.dataSeason) {
+        this.seasonForm?.patchValue(this.dataSeason);
+      } else {
+        this.seasonForm?.reset(); // Si se vuelve null, reseteamos a vacío (modo crear)
+      }
     }
   }
 

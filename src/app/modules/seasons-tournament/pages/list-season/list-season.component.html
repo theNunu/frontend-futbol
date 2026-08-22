@@ -43,3 +43,9 @@ sexo tilin
 
 
 </div>
+
+<!-- COMPONENTES DE PÁGINAS ACCIONABLES COMO MODALES -->
+<app-create-season
+  [(display)]="showCreateModal" 
+  (onCreated)="cargarNoticias()">
+</app-create-season>
