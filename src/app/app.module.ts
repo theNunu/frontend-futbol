@@ -15,6 +15,7 @@ import Aura from '@primeng/themes/aura'; // Tema visual moderno de PrimeNG v19
 // Importa el módulo específico del componente que deseas usar
 import { ButtonModule } from 'primeng/button';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { BannersModule } from './modules/banners/banners.module';
 
 @NgModule({
   declarations: [
@@ -26,8 +27,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     AppRoutingModule,
     HttpClientModule,
     TournamentsModule,
+     //PONER TODO MODULE QUE CREE
     NewsModule,
     SeasonsTournamentModule,
+    BannersModule,
     ButtonModule // Cargas el módulo del componente aquí para que esté disponible
   ],
   providers: [

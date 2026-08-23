@@ -1,24 +1,34 @@
 <p>list-banners works!</p>
 <h2>Mis Banners</h2>
 
-<div class="banners-list">
-    <!-- Reemplaza 'id', 'titulo' y 'descripcion' por las propiedades reales de tu objeto Banners -->
-    @for (banner of data; track banner.banner_id) {
-    <div class="banner-card">
-        <!-- <h3>{{ banner.banner_id }}</h3>
-        <p>{{ banner.file_id }}</p> -->
+<div class="container mt-5">
+    <p-table [value]="data" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Banner ID</th>
+                <th>Imagen</th>
+            </tr>
+        </ng-template>
 
-        <!-- Si tiene file_id o relación de archivo -->
-        @if (banner.file_id || banner.files) {
-            <h3>{{ banner.banner_id }}</h3>
-        <img [src]="getImagenUrl(banner)" [alt]="banner.banner_id" class="rounded shadow-sm my-1 border border-gray-200"
-            style="width: 500px; height: 200px;" />
-        } @else {
-        <span class="text-xs text-gray-400 italic">Sin imagen</span>
-        }
+        <ng-template pTemplate="body" let-item>
+            <tr>
+                <td>{{ item.banner_id }}</td>
+                <td>
+                    @if (item.file_id || item.files) {
+                    <img [src]="getImagenUrl(item)" [alt]="item.banner_id"
+                        class="rounded shadow-sm my-1 border border-gray-200"
+                        style="width: 300px; height: 100px; object-fit: cover;" />
+                    } @else {
+                    <span class="text-xs text-gray-400 italic">Sin imagen</span>
+                    }
+                </td>
+            </tr>
+        </ng-template>
 
-    </div>
-    } @empty {
-    <p>No hay banners para mostrar.</p>
-    }
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="2" class="text-center p-4">No hay banners para mostrar.</td>
+            </tr>
+        </ng-template>
+    </p-table>
 </div>

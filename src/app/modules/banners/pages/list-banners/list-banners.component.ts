@@ -1,23 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BannersService } from '../../services/banners.service';
 import { MatDialog } from '@angular/material/dialog';
-import { Banners } from '../../interfaces/data';
+import { BannerI, Banners } from '../../interfaces/data';
 @Component({
   selector: 'app-list-banners',
   standalone: false,
   templateUrl: './list-banners.component.html',
   styleUrl: './list-banners.component.css'
 })
-export class ListBannersComponent {
+export class ListBannersComponent implements OnInit{
 
   constructor(
     private bannersService: BannersService,
-    private dialog: MatDialog,
+    // private dialog: MatDialog,
     // @Inject(MAT_DIALOG_DATA) public data: number
 
   ) { }
 
   data: Banners[] = [];
+    banner: BannerI[] = [];
   //
 
   ngOnInit(): void {
@@ -30,6 +31,25 @@ export class ListBannersComponent {
       this.data = datos;
     });
   }
+
+  
+  cargarNoticias(): void {
+    // this.seasonService.getSeasons().subscribe(datos => {
+    //   this.seasons = datos;
+    // });
+    // this.isLoading = true;
+    this.bannersService.getBanners().subscribe({
+      next: (data) => {
+        this.banner = data;
+        // this.isLoading = false;
+      },
+      error: () => {
+        // this.isLoading = false;
+        // this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al cargar noticias' });
+      }
+    });
+  }
+
 
   getImagenUrl(banner: Banners): string {
     // Caso 1: Si el backend devuelve la relación cargada (objeto 'file')

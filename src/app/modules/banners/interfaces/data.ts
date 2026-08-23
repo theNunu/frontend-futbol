@@ -14,6 +14,13 @@ export interface Banners {
 
 }
 
+export interface BannerI {
+    banner_id: number;
+    file_id: number | null;
+    files: File | null; 
+
+}
+
 export interface File {
     file_id: number;
     name: string;
