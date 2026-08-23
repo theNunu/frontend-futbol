@@ -17,20 +17,20 @@ export class ListBannersComponent implements OnInit{
 
   ) { }
 
-  data: Banners[] = [];
+  // data: Banners[] = [];
     banner: BannerI[] = [];
   //
 
   ngOnInit(): void {
     console.log('El componente ListNews se ha inicializado'); // Prueba 1
-    this.getBanners();
+    this.cargarNoticias();
   }
 
-  getBanners(): void {
-    this.bannersService.getBanners().subscribe(datos => {
-      this.data = datos;
-    });
-  }
+  // getBanners(): void {
+  //   this.bannersService.getBanners().subscribe(datos => {
+  //     this.data = datos;
+  //   });
+  // }
 
   
   cargarNoticias(): void {
