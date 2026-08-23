@@ -23,6 +23,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MessageService, ConfirmationService } from 'primeng/api'; // 1. Importar desde primeng/api
+import { InputSwitchModule } from 'primeng/inputswitch'; // Importar módulo
 @NgModule({
   declarations: [
     ListSeasonComponent,
@@ -45,7 +46,9 @@ import { MessageService, ConfirmationService } from 'primeng/api'; // 1. Importa
     TextareaModule,
     DialogModule,
     ToastModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    InputSwitchModule // <-- Registrar aquí
+    
   ],
   providers: [
     MessageService,      // 2. Registrar aquí el servicio

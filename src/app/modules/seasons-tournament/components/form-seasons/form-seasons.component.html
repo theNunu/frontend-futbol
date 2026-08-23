@@ -14,15 +14,25 @@
     </div>
 
     <!-- Campo Resumen -->
-    <div class="field">
-        <label for="summary" class="font-bold block mb-1">Resumen</label>
-        <input id="summary" type="text" pInputText formControlName="summary"
+    <!-- Campo Activo / Inactivo -->
+    <div class="field-checkbox flex align-items-center gap-3 my-3">
+        <p-inputSwitch inputId="active" formControlName="active">
+        </p-inputSwitch>
+
+        <label for="active" class="font-bold cursor-pointer">
+            Temporada {{ seasonForm.get('active')?.value ? 'Activa' : 'Inactiva' }}
+        </label>
+    </div>
+    <!-- <div class="field">
+        <label for="active" class="font-bold block mb-1">es activo?</label>
+        <input id="active" type="checkbox" pInputText formControlName="active"
             placeholder="Resumen corto para el listado" />
-        <small *ngIf="seasonForm.get('summary')?.invalid && seasonForm.get('summary')?.touched"
+        <small *ngIf="seasonForm.get('active')?.invalid && seasonForm.get('active')?.touched"
             class="p-error block mt-1">
             El resumen es requerido (máximo 150 caracteres).
         </small>
-    </div>
+    </div> -->
+
 
     <!-- Botones de Acción -->
     <div class="flex justify-end gap-2 mt-4">

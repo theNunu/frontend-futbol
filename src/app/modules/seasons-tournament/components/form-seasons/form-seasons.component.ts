@@ -43,7 +43,10 @@ export class FormSeasonsComponent implements OnInit , OnChanges {
     this.seasonForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(5)]],
       // summary: ['', [Validators.required, Validators.maxLength(150)]],
-      active: ['', [Validators.required]]
+      // active: ['', [Validators.required]]
+      // active: ['', [Validators.maxLength(30)]],
+      //  active: [false] // <-- Sin Validators.maxLength
+      active: [true, [Validators.required]] // Valor por defecto 'true'
     });
   }
 
