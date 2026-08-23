@@ -1,17 +1,14 @@
-<p>list-season works!</p>
+<!-- <p>list-season works!</p>
 
 sexo tilin
-<p>LISATDAO DE NOTICIAS COMPONENT</p>
-<div class="card p-4">
-  <div class="flex justify-between align-items-center mb-4">
-    <h2>Gestión de Noticias</h2>
-    <p-button 
-      label="Nueva Noticia" 
-      icon="pi pi-plus" 
-      severity="success" 
-      (onClick)="openCreate()">
+<p>LISATDAO DE NOTICIAS COMPONENT</p> -->
+
+<div class="flex justify-between align-items-center mb-4">
+    <h2>Gestión de Temporadas</h2>
+    <p-button label="Nueva Temporada" icon="pi pi-plus" severity="success" (onClick)="openCreate()">
     </p-button>
-  </div>
+</div>
+
 <div class="container mt-5">
     <!-- <div>
         @for (item of seasons; track item.season_id) {
@@ -31,12 +28,19 @@ sexo tilin
                 <!-- <th>Quantity</th> -->
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-product>
+        <ng-template pTemplate="body" let-season>
             <tr>
-                <td>{{ product.season_id }}</td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.active }}</td>
-                <!-- <td>{{ product.quantity }}</td> -->
+                <td>{{ season.season_id }}</td>
+                <td>{{ season.name }}</td>
+                <td>{{ season.active }}</td>
+
+                <div class="flex gap-2">
+                    <!-- <p-button icon="pi pi-pencil" severity="warning" [rounded]="true" [text]="true"
+                        (onClick)="openUpdate(product)">
+                    </p-button> -->
+                    <p-button icon="pi pi-pencil" severity="warn" [rounded]="true" [text]="true" (onClick)="openUpdate(season)"></p-button>
+                </div>
+                    <!-- <td>{{ product.quantity }}</td> -->
             </tr>
         </ng-template>
     </p-table>
@@ -45,7 +49,8 @@ sexo tilin
 </div>
 
 <!-- COMPONENTES DE PÁGINAS ACCIONABLES COMO MODALES -->
-<app-create-season
-  [(display)]="showCreateModal" 
-  (onCreated)="cargarNoticias()">
+<app-create-season [(display)]="showCreateModal" (onCreated)="cargarNoticias()">
 </app-create-season>
+
+<app-update-season [(display)]="showUpdateModal" [season]="selectedSeason" (onUpdated)="cargarNoticias()">
+</app-update-season>

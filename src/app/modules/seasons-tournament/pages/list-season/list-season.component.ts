@@ -16,7 +16,7 @@ export class ListSeasonComponent implements OnInit {
 
   // idNews: number;
   seasons: SeasonI[] = [];
-  selectedNoticia: SeasonI | null = null;
+  selectedSeason: SeasonI | null = null;
 
   // seasonDto: SeasonDto | null = null;
   showCreateModal: boolean = false;
@@ -65,7 +65,7 @@ export class ListSeasonComponent implements OnInit {
   }
 
   openUpdate(noticia: SeasonI): void {
-    this.selectedNoticia = { ...noticia };
+    this.selectedSeason = { ...noticia };
     this.showUpdateModal = true;
   }
 

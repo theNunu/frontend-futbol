@@ -27,9 +27,19 @@ export class SeasonService { //. Módulo Dominio / Módulo Funcional
         return this.http.post<SeasonDto>(`${this.apiUrl}`, request);
     }
 
+    updateSeason(seasonId: number, request: SeasonDto): Observable<any> {
+        // console.log("request del servidor: ", request)
+        // return this.http.post<SeasonDto>(`${this.apiUrl}`, request);
+        return this.http.put(`${this.apiUrl}/${seasonId}`, request);
+    }
+
     changeStatus(id: number, status: boolean): Observable<any> {
         // Ajusta la URL según tu backend, ej: /seasons/1/status
         return this.http.patch(`${this.apiUrl}/${id}/`, { active: status });
     }
+
+    // updateTournament(tournamentId: number, request: RequestDto): Observable<any> {
+    //   return this.http.put(`${this.apiUrl}/${tournamentId}`, request);
+    // }
 
 }

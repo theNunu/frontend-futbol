@@ -4,6 +4,7 @@ export interface SeasonDto {
 }
 
 export interface UpdateSeason {
+  // season_id: number;
     name: string;
     active?: boolean
 }
