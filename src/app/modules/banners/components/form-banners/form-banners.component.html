@@ -1,1 +1,48 @@
 <p>form-banners works!</p>
+
+<form [formGroup]="bannerForm" (ngSubmit)="submitForm()" class="p-fluid flex flex-col gap-4">
+
+    <!-- SECCIÓN DE LA IMAGEN/ARCHIVO -->
+    <div class="border-2 border-dashed border-gray-300 p-4 rounded-lg text-center">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Imagen de la Noticia</label>
+        <!-- En form-news.component.html -->
+        <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+
+    </div>
+
+    <!-- Campo Título -->
+    <!-- <div class="field">
+        <label for="name" class="font-bold block mb-1">Nombre</label>
+        <input id="name" type="text" pInputText formControlName="name"
+            placeholder="Ingrese el nombre de la temporada" />
+        <small *ngIf="bannerForm.get('name')?.invalid && bannerForm.get('name')?.touched" class="p-error block mt-1">
+            El título es requerido (mínimo 5 caracteres).
+        </small>
+
+    </div> -->
+
+    <!-- Campo Resumen -->
+    <!-- Campo Activo / Inactivo -->
+    <!-- <div class="field-checkbox flex align-items-center gap-3 my-3">
+        <p-inputSwitch inputId="active" formControlName="active">
+        </p-inputSwitch>
+
+        <label for="active" class="font-bold cursor-pointer">
+            Temporada {{ bannerForm.get('active')?.value ? 'Activa' : 'Inactiva' }}
+        </label>
+    </div> -->
+
+
+    <!-- Botones de Acción -->
+    <div class="flex justify-end gap-2 mt-4">
+        <p-button label="Cancelar" icon="pi pi-times" severity="secondary" [outlined]="true" (onClick)="cancel()"
+            type="button">
+        </p-button>
+
+        <!-- El botón se deshabilita si el formulario es inválido o se está enviando -->
+        <p-button [label]="dataBanner ? 'Actualizar' : 'Guardar'" icon="pi pi-check" [loading]="isSubmitting"
+            [disabled]="bannerForm.invalid || isSubmitting" type="submit">
+        </p-button>
+    </div>
+
+</form>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ApiResponse, Banners } from '../interfaces/data';
+import { ApiResponse, BannerDto, Banners } from '../interfaces/data';
 import { map } from 'rxjs/operators'; // <-- Importa el operador map
 @Injectable({
   providedIn: 'root'
@@ -23,5 +23,10 @@ export class BannersService {
       // 2. Aquí pelamos el objeto y retornamos solo la propiedad 'data'
       map(response => response.data)
     );
+  }
+
+  createBanner(request: BannerDto) {
+    console.log("request del servidor: ", request)
+    return this.http.post<BannerDto>(`${this.apiUrl}`, request);
   }
 }

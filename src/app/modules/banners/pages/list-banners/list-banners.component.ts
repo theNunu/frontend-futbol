@@ -10,6 +10,8 @@ import { BannerI, Banners } from '../../interfaces/data';
 })
 export class ListBannersComponent implements OnInit{
 
+    showCreateModal: boolean = false;
+
   constructor(
     private bannersService: BannersService,
     // private dialog: MatDialog,
@@ -70,6 +72,10 @@ export class ListBannersComponent implements OnInit{
 
     // Caso 3: Placeholder por defecto si file_id es null o no hay imagen
     return 'assets/no-image.jpg'; // O una URL remota de placeholder
+  }
+
+    openCreate(): void {
+    this.showCreateModal = true;
   }
 
 }
