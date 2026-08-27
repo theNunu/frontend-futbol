@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output , SimpleChanges, OnChanges} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { BannerDto } from '../../interfaces/data';
@@ -9,17 +9,18 @@ import { BannerDto } from '../../interfaces/data';
   templateUrl: './form-banners.component.html',
   styleUrl: './form-banners.component.css'
 })
-export class FormBannersComponent  implements OnInit , OnChanges{
+export class FormBannersComponent implements OnInit, OnChanges {
 
-  
   @Input() dataBanner: BannerDto | null = null;
   @Input() isSubmitting: boolean = false;
 
-  @Output() onSave = new EventEmitter<BannerDto>();
+  // Emite un objeto con los datos y el archivo seleccionado
+  @Output() onSave = new EventEmitter<{ data: BannerDto, file: File | null }>();
   @Output() onCancel = new EventEmitter<void>();
 
+  selectedFile: File | null = null;
+
   bannerForm!: FormGroup; //llamarse en el renderizao (html)
-   
 
   constructor(private fb: FormBuilder) { }
 
@@ -30,9 +31,9 @@ export class FormBannersComponent  implements OnInit , OnChanges{
     }
   }
 
-  // Escucha si el @Input() dataNoticia cambia en tiempo de ejecución
+  // Escucha si el @Input() dataBanner cambia en tiempo de ejecución
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dataNoticia'] && !changes['dataNoticia'].isFirstChange()) {
+    if (changes['dataBanner'] && !changes['dataBanner'].isFirstChange()) {
       if (this.dataBanner) {
         this.bannerForm?.patchValue(this.dataBanner);
       } else {
@@ -41,14 +42,12 @@ export class FormBannersComponent  implements OnInit , OnChanges{
     }
   }
 
-   selectedFile: File | null = null;
-   
-    onFileSelected(event: Event): void {
+
+  onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
 
     if (input.files && input.files.length > 0) {
-      this.selectedFile = input.files[0]; // 👈 AQUÍ SE GUARDA EL ARCHIVO REAL
-      console.log('Imagen capturada correctamente:', this.selectedFile);
+      this.selectedFile = input.files[0];
     } else {
       this.selectedFile = null;
     }
@@ -63,7 +62,11 @@ export class FormBannersComponent  implements OnInit , OnChanges{
 
   submitForm(): void {
     if (this.bannerForm.invalid) return;
-    this.onSave.emit(this.bannerForm.value);
+    // Emitimos el objeto completo con la imagen adjunta
+    this.onSave.emit({
+      data: this.bannerForm.value,
+      file: this.selectedFile
+    });
   }
 
   cancel(): void {
