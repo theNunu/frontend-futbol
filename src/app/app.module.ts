@@ -27,10 +27,11 @@ import { BannersModule } from './modules/banners/banners.module';
     AppRoutingModule,
     HttpClientModule,
     TournamentsModule,
-     //PONER TODO MODULE QUE CREE
+     //PONER TODO MODULE QUE CREE ******
     NewsModule,
     SeasonsTournamentModule,
     BannersModule,
+    TournamentsModule,
     ButtonModule // Cargas el módulo del componente aquí para que esté disponible
   ],
   providers: [
