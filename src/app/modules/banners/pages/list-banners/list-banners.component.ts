@@ -8,9 +8,9 @@ import { BannerI, Banners } from '../../interfaces/data';
   templateUrl: './list-banners.component.html',
   styleUrl: './list-banners.component.css'
 })
-export class ListBannersComponent implements OnInit{
+export class ListBannersComponent implements OnInit {
 
-    showCreateModal: boolean = false;
+  showCreateModal: boolean = false;
 
   constructor(
     private bannersService: BannersService,
@@ -20,7 +20,7 @@ export class ListBannersComponent implements OnInit{
   ) { }
 
   // data: Banners[] = [];
-    banner: BannerI[] = [];
+  banner: BannerI[] = [];
   //
 
   ngOnInit(): void {
@@ -34,7 +34,7 @@ export class ListBannersComponent implements OnInit{
   //   });
   // }
 
-  
+
   cargarNoticias(): void {
     // this.seasonService.getSeasons().subscribe(datos => {
     //   this.seasons = datos;
@@ -74,7 +74,7 @@ export class ListBannersComponent implements OnInit{
     return 'assets/no-image.jpg'; // O una URL remota de placeholder
   }
 
-    openCreate(): void {
+  openCreate(): void {
     this.showCreateModal = true;
   }
 

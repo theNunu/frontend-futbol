@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { TournamentService } from './services/tournament.service';
-import { IData, RequestDto, Tournament } from './interfaces/data';
+// import { IData, RequestDto, Tournament } from './interfaces/data';
 import { FormBuilder, Validators } from '@angular/forms';
 // En tu index.component.ts
 import { Router } from '@angular/router'; // 1. Importar Router
@@ -13,83 +13,83 @@ import Swal from 'sweetalert2';
 })
 export class TournamentsComponent {
 
-  constructor(private router: Router) { } // 2. Inyectar Router
+  // constructor(private router: Router) { } // 2. Inyectar Router
 
-  private tournamentService = inject(TournamentService);
+  // private tournamentService = inject(TournamentService);
 
-  list: Tournament[] = []
-  ngOnInit(): void {
+  // list: Tournament[] = []
+  // ngOnInit(): void {
 
-    this.getAllTournaments();
-  }
+  //   this.getAllTournaments();
+  // }
 
-  getAllTournaments() {
-    this.tournamentService.getTournaments().subscribe(res => {
-      this.list = res; // Esto refresca la vista automáticamente
-    });
-  }
+  // getAllTournaments() {
+  //   this.tournamentService.getTournaments().subscribe(res => {
+  //     this.list = res; // Esto refresca la vista automáticamente
+  //   });
+  // }
 
-  //para el modeal
-  // PARA EL MODAL
-  selectedProduct: Tournament | null = null;
-  showModal = false;
+  // //para el modeal
+  // // PARA EL MODAL
+  // selectedProduct: Tournament | null = null;
+  // showModal = false;
 
-  openProduct(id: number) {
+  // openProduct(id: number) {
 
-    this.tournamentService.getTournamentById(id).subscribe((res: any) => {
-      // console.log('el id: ', id, res)
+  //   this.tournamentService.getTournamentById(id).subscribe((res: any) => {
+  //     // console.log('el id: ', id, res)
 
-      this.selectedProduct = res.data;
-      this.showModal = true;
-    });
+  //     this.selectedProduct = res.data;
+  //     this.showModal = true;
+  //   });
 
-  }
+  // }
 
-  closeModal() {
-    this.showModal = false;
-  }
+  // closeModal() {
+  //   this.showModal = false;
+  // }
 
-  //borrar torneo
+  // //borrar torneo
 
-  // Función para eliminar
-  deleteTournament(id: number) {
-    Swal.fire({
-      title: '¿Estás seguro?',
-      text: "¡No podrás revertir esto!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Sí, eliminar',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
+  // // Función para eliminar
+  // deleteTournament(id: number) {
+  //   Swal.fire({
+  //     title: '¿Estás seguro?',
+  //     text: "¡No podrás revertir esto!",
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#3085d6',
+  //     cancelButtonColor: '#d33',
+  //     confirmButtonText: 'Sí, eliminar',
+  //     cancelButtonText: 'Cancelar'
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
 
-        // Llamamos al servicio
-        this.tournamentService.deleteTournament(id).subscribe({
-          next: () => {
-            console.log("ide de torneo", id);
-            Swal.fire('¡Eliminado!', 'El torneo ha sido borrado.', 'success');
+  //       // Llamamos al servicio
+  //       this.tournamentService.deleteTournament(id).subscribe({
+  //         next: () => {
+  //           console.log("ide de torneo", id);
+  //           Swal.fire('¡Eliminado!', 'El torneo ha sido borrado.', 'success');
 
-            // ACTUALIZACIÓN MINÚSCULA:
-            // Volvemos a pedir la lista para que el que borramos ya no aparezca
-            this.getAllTournaments();
-          },
-          error: () => {
-            Swal.fire('Error', 'No se pudo eliminar el torneo', 'error');
-          }
-        });
+  //           // ACTUALIZACIÓN MINÚSCULA:
+  //           // Volvemos a pedir la lista para que el que borramos ya no aparezca
+  //           this.getAllTournaments();
+  //         },
+  //         error: () => {
+  //           Swal.fire('Error', 'No se pudo eliminar el torneo', 'error');
+  //         }
+  //       });
 
-      }
-    });
-  }
+  //     }
+  //   });
+  // }
 
-  irADestino() {
-    this.router.navigate(['seasons']); // 3. Navegar
-  }
+  // irADestino() {
+  //   this.router.navigate(['seasons']); // 3. Navegar
+  // }
 
-  irADestinoNews() {
-    this.router.navigate(['news']); // 3. Navegar
-  }
+  // irADestinoNews() {
+  //   this.router.navigate(['news']); // 3. Navegar
+  // }
 
 }

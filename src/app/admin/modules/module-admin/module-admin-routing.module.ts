@@ -6,6 +6,7 @@ import { NewsComponent } from '../../../modules/news/news.component';
 import { ListNewsComponent } from '../../../modules/news/pages/list-news/list-news.component';
 import { ListSeasonComponent } from '../../../modules/seasons-tournament/pages/list-season/list-season.component';
 import { ListBannersComponent } from '../../../modules/banners/pages/list-banners/list-banners.component';
+import { ListTournametsComponent } from '../../../modules/tournament/pages/list-tournamets/list-tournamets.component';
 
 const routes: Routes = [
 
@@ -17,14 +18,7 @@ const routes: Routes = [
       { path: 'news/list', component: ListNewsComponent },
       { path: 'seasons/list', component: ListSeasonComponent },
       { path: 'banners/list', component: ListBannersComponent },
-//       {
-//   path: 'seasons',
-//   loadChildren: () => import('./modules/seasons-tournament/seasons-tournament.module').then(m => m.SeasonTournament)
-// }
-      // {
-      //   path: 'seasons',
-      //   loadChildren: () => import('.').then(m => m.SeasonT)
-      // }
+      { path: 'tournaments/list', component: ListTournametsComponent },
 
       // Ruta por defecto por si entran solo a /admin
       { path: '', redirectTo: 'news', pathMatch: 'full' }
