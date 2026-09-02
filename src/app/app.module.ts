@@ -16,6 +16,7 @@ import Aura from '@primeng/themes/aura'; // Tema visual moderno de PrimeNG v19
 import { ButtonModule } from 'primeng/button';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BannersModule } from './modules/banners/banners.module';
+import { TournamentModule } from './modules/tournament/tournament.module';
 
 @NgModule({
   declarations: [
@@ -26,12 +27,12 @@ import { BannersModule } from './modules/banners/banners.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    TournamentsModule,
      //PONER TODO MODULE QUE CREE ******
     NewsModule,
     SeasonsTournamentModule,
     BannersModule,
-    TournamentsModule,
+    // TournamentsModule,
+    TournamentModule,
     ButtonModule // Cargas el módulo del componente aquí para que esté disponible
   ],
   providers: [

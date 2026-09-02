@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TournamentsService } from '../../services/tournaments.service';
-import { Tournaments } from '../../interfaces/data';
+import { TournamentI, Tournaments } from '../../interfaces/data';
 
 @Component({
   selector: 'app-list-tournamets',
@@ -16,7 +16,9 @@ export class ListTournametsComponent implements OnInit {
       private tournamentService: TournamentsService,
     ) { }
   
-    tournaments: Tournaments[] = [];
+    // tournaments: Tournaments[] = [];
+
+    tournaments: TournamentI[] = [];
   
     ngOnInit(): void {
       this.bringTournaments();
@@ -25,6 +27,7 @@ export class ListTournametsComponent implements OnInit {
     bringTournaments(): void {
       this.tournamentService.getTournaments().subscribe({
         next: (data) => {
+          console.log('torneos obtenidos', data)
           this.tournaments = data;
         },
         error: () => {

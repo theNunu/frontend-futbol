@@ -13,7 +13,7 @@ export class TournamentsService {
   constructor(private http: HttpClient) { }
 
   getTournaments(): Observable<Tournaments[]> {
-
+    // console.log('llamando torneos: ',response.data);
     // 1. Hacemos la petición esperando la forma de la ApiResponse
     return this.http.get<ApiResponse>(this.apiUrl).pipe(
       // 2. Aquí pelamos el objeto y retornamos solo la propiedad 'data'

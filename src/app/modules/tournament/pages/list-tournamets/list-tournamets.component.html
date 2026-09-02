@@ -1,2 +1,27 @@
 <p>list-tournamets works!</p>
 <h1>wazaaa</h1>
+<div class="container mt-5">
+    <p-table [value]="tournaments" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>torneo ID</th>
+                <th>nombre</th>
+                <th>nombre temporada</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-item>
+            <tr>
+                <td>{{ item.tournament_id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.season }}</td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="2" class="text-center p-4">No hay banners para mostrar.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

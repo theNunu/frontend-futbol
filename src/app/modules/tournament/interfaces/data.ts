@@ -10,6 +10,13 @@ export interface ApiResponse {
 export interface Tournaments {
     tournament_id: number;
     name: string;
-    seasson: string;
-    season_id: number;
+    season: string;
+    // season_id: number;
+}
+
+export interface TournamentI {
+    tournament_id: number;
+    name: string;
+    // season: string;
+    // season_id: number;
 }
