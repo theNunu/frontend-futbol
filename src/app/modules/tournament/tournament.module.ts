@@ -36,6 +36,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     DialogModule,
     ToastModule,
     ConfirmDialogModule,
+    ReactiveFormsModule, // PARA LOS FORMULARIOS
   ]
 })
 export class TournamentModule { }

@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TournamentsComponent } from './pages/tournaments/tournaments.component';
 import { HttpClientModule } from '@angular/common/http';
-import { TournamentsModule } from './modules/tournaments/tournaments.module';
+// import { TournamentsModule } from './modules/tournaments/tournaments.module';
 import { NewsModule } from './modules/news/news.module';
 import { SeasonsTournamentModule } from './modules/seasons-tournament/seasons-tournament.module';
 

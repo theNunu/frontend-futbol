@@ -20,3 +20,17 @@ export interface TournamentI {
     // season: string;
     // season_id: number;
 }
+
+export interface SeasonSelect {
+    season_id: number;
+    name: string;
+    // season: string;
+    // season_id: number;
+}
+
+export interface TournamentDto {
+    tournament_id: number;
+    name: string;
+    // season: string;
+    season_id: number;
+}

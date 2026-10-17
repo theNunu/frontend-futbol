@@ -13,7 +13,7 @@ export class BannersService {
   // URL base para acceder a la carpeta pública del storage de Laravel
   public storageUrl = 'http://127.0.0.1:8000/storage/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { } //. Módulo Dominio / Módulo Funcional
 
   getBanners(): Observable<Banners[]> {
     // 2. Si se pasan filtros, construimos los Query Params
