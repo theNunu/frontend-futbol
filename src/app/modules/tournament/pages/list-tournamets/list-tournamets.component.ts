@@ -36,8 +36,8 @@ export class ListTournametsComponent implements OnInit {
       });
     }
   
-    // openCreate(): void {
-    //   this.showCreateModal = true;
-    // }
+    openCreate(): void {
+      this.showCreateModal = true;
+    }
 
 }

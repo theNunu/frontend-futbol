@@ -1,1 +1,37 @@
 <p>form-tournaments works!</p>
+
+<form [formGroup]="tournamentForm" (ngSubmit)="submitForm()" class="p-fluid flex flex-col gap-4">
+
+    <div class="field"> <!-- campo dpo de titulo -->
+        <label for="name" class="font-bold block mb-1">Nombre</label>
+        <input id="name" type="text" pInputText formControlName="name"
+            placeholder="Ingrese el nombre de la temporada" />
+        <small *ngIf="tournamentForm.get('name')?.invalid && tournamentForm.get('name')?.touched"
+            class="p-error block mt-1">
+            El nombre del Torneo es requerido (mínimo 5 caracteres).
+        </small>
+    </div>
+
+    <div class="field"> <!-- campo de temporada -->
+        <label for="season" class="font-bold block mb-1">Temporada</label>
+        <input id="season" type="text" pInputText formControlName="seasons"
+            placeholder="Ingrese el nombre de la temporada" />
+        <small *ngIf="tournamentForm.get('season')?.invalid && tournamentForm.get('season')?.touched"
+            class="p-error block mt-1">
+            El nombre de la temporada es requerido (mínimo 5 caracteres).
+        </small>
+    </div>
+
+    <!-- Botones de Acción -->
+    <div class="flex justify-end gap-2 mt-4">
+        <p-button label="Cancelar" icon="pi pi-times" severity="secondary" [outlined]="true" (onClick)="cancel()"
+            type="button">
+        </p-button>
+
+        <!-- El botón se deshabilita si el formulario es inválido o se está enviando -->
+        <p-button [label]="dataTournament ? 'Actualizar' : 'Guardar'" icon="pi pi-check" [loading]="isSubmitting"
+            [disabled]="tournamentForm.invalid || isSubmitting" type="submit">
+        </p-button>
+    </div>
+
+</form>

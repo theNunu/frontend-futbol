@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TournamentService } from '../../services/tournament.service';
 
 @Component({
   selector: 'app-tournaments',
@@ -11,7 +10,7 @@ export class TournamentsComponent implements OnInit {
 
   tournaments: any[] = [];
 
-  constructor(private tournamentService: TournamentService) { }
+  constructor() { }
 
 
   ngOnInit() {

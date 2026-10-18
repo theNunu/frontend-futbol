@@ -3,6 +3,11 @@
     <div class="h1">Torneos</div>
 </div>
 
+<div class="flex justify-between align-items-center mb-4">
+    <h2>Gestión de torneos</h2>
+    <p-button label="Nuevo Torneo" icon="pi pi-plus" severity="success" (onClick)="openCreate()">
+    </p-button>
+</div>
 <div class="container mt-5">
     <p-table [value]="tournaments" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">

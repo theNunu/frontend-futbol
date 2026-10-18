@@ -13,9 +13,7 @@ export class ListBannersComponent implements OnInit {
   showCreateModal: boolean = false;
 
   constructor(
-    private bannersService: BannersService,
-    // private dialog: MatDialog,
-    // @Inject(MAT_DIALOG_DATA) public data: number
+    private bannersService: BannersService
 
   ) { }
 
@@ -27,13 +25,6 @@ export class ListBannersComponent implements OnInit {
     console.log('El componente ListNews se ha inicializado'); // Prueba 1
     this.cargarNoticias();
   }
-
-  // getBanners(): void {
-  //   this.bannersService.getBanners().subscribe(datos => {
-  //     this.data = datos;
-  //   });
-  // }
-
 
   cargarNoticias(): void {
     // this.seasonService.getSeasons().subscribe(datos => {

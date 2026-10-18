@@ -21,16 +21,16 @@ export interface TournamentI {
     // season_id: number;
 }
 
-export interface SeasonSelect {
-    season_id: number;
+export interface TournamentDto {
+    // tournament_id: number;
     name: string;
-    // season: string;
+    season: string;
     // season_id: number;
 }
 
-export interface TournamentDto {
+export interface TournamentDtoResponse {
     tournament_id: number;
     name: string;
-    // season: string;
-    season_id: number;
+    season: string;
+    // season_id: number;
 }

@@ -1,9 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SeasonSelect, TournamentDto } from '../../interfaces/data';
-import { TournamentService } from '../../../../services/tournament.service';
-// import { TournamentService } from '../../../tournaments/services/tournament.service';
-// import { TournamentService } from '../../../../services/tournament.service';
+import { TournamentDto, TournamentDtoResponse } from '../../interfaces/data';
 
 @Component({
   selector: 'app-form-tournaments',
@@ -12,61 +9,52 @@ import { TournamentService } from '../../../../services/tournament.service';
   styleUrl: './form-tournaments.component.css'
 })
 export class FormTournamentsComponent implements OnInit, OnChanges {
-  @Input() dataBanner: TournamentDto | null = null;
+  @Input() dataTournament: TournamentDto | null = null;
   @Input() isSubmitting: boolean = false;
 
   // Emite un objeto con los datos y el archivo seleccionado
-  @Output() onSave = new EventEmitter<{ data: TournamentDto, file: File | null }>();
+  @Output() onSave = new EventEmitter<{ data: TournamentDtoResponse }>();
   @Output() onCancel = new EventEmitter<void>();
 
-  selectedFile: File | null = null;
+  tournamentForm!: FormGroup; //llamarse en el renderizao (html)
+  // seasons: SeasonSelect[] = [];
 
-  bannerForm!: FormGroup; //llamarse en el renderizao (html)
-  seasons: SeasonSelect[] = [];
-
-  constructor(private fb: FormBuilder, private tournamentService: TournamentService) {
+  constructor(private fb: FormBuilder) {
 
   }
 
   ngOnInit(): void {
     this.initForm();
-    if (this.dataBanner) {
-      this.bannerForm.patchValue(this.dataBanner);
+    if (this.dataTournament) {
+      this.tournamentForm.patchValue(this.dataTournament);
     }
   }
 
-  // Escucha si el @Input() dataBanner cambia en tiempo de ejecución
+  // Escucha si el @Input() dataTournament cambia en tiempo de ejecución
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dataBanner'] && !changes['dataBanner'].isFirstChange()) {
-      if (this.dataBanner) {
-        this.bannerForm?.patchValue(this.dataBanner);
+    if (changes['dataTournament'] && !changes['dataTournament'].isFirstChange()) {
+      if (this.dataTournament) {
+        this.tournamentForm?.patchValue(this.dataTournament);
       } else {
-        this.bannerForm?.reset(); // Si se vuelve null, reseteamos a vacío (modo crear)
+        this.tournamentForm?.reset(); // Si se vuelve null, reseteamos a vacío (modo crear)
       }
     }
   }
 
 
   private initForm(): void {
-    this.bannerForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(5)]],
-      season_id: [null, [Validators.required]] // Guarda directamente el ID de la temporada
+    this.tournamentForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(10)]],
+      season: ['', [Validators.required, Validators.minLength(10)]] // Guarda directamente el ID de la temporada
     });
   }
 
-  // private loadSeasons(): void {
-  //   this.tournamentService.getSeasons().subscribe({
-  //     next: (data) => this.seasons = data,
-  //     error: (err) => console.error('Error al cargar temporadas', err)
-  //   });
-  // }
-
   submitForm(): void {
-    if (this.bannerForm.invalid) return;
+    if (this.tournamentForm.invalid) return;
     // Emitimos el objeto completo con la imagen adjunta
     this.onSave.emit({
-      data: this.bannerForm.value,
-      file: this.selectedFile
+      data: this.tournamentForm.value
+      // file: this.selectedFile
     });
   }
 
