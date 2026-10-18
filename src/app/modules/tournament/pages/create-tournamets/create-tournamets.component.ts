@@ -30,11 +30,11 @@ export class CreateTournametsComponent {
 
     const requestData: TournamentDto = event.data;
 
-    this.guardarBannerHttp(requestData);
+    this.guardarTournament(requestData);
 
   }
 
-  private guardarBannerHttp(request: TournamentDto): void {
+  private guardarTournament(request: TournamentDto): void {
     this.tournamentService.createTournament(request).subscribe({
       next: () => {
         this.isSaving = false;

@@ -4,7 +4,6 @@
 </div>
 
 <div class="flex justify-between align-items-center mb-4">
-    <h2>Gestión de torneos</h2>
     <p-button label="Nuevo Torneo" icon="pi pi-plus" severity="success" (onClick)="openCreate()">
     </p-button>
 </div>
@@ -33,3 +32,8 @@
         </ng-template>
     </p-table>
 </div>
+
+
+<!-- COMPONENTES DE PÁGINAS ACCIONABLES COMO MODALES -->
+<app-create-tournamets [(display)]="showCreateModal" (onCreated)="bringTournaments()">
+</app-create-tournamets>

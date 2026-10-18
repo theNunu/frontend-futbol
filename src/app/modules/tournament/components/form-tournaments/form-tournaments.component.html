@@ -8,17 +8,17 @@
             placeholder="Ingrese el nombre de la temporada" />
         <small *ngIf="tournamentForm.get('name')?.invalid && tournamentForm.get('name')?.touched"
             class="p-error block mt-1">
-            El nombre del Torneo es requerido (mínimo 5 caracteres).
+            El nombre del Torneo es requerido (mínimo 10 caracteres).
         </small>
     </div>
 
     <div class="field"> <!-- campo de temporada -->
         <label for="season" class="font-bold block mb-1">Temporada</label>
-        <input id="season" type="text" pInputText formControlName="seasons"
+        <input id="season" type="text" pInputText formControlName="season"
             placeholder="Ingrese el nombre de la temporada" />
         <small *ngIf="tournamentForm.get('season')?.invalid && tournamentForm.get('season')?.touched"
             class="p-error block mt-1">
-            El nombre de la temporada es requerido (mínimo 5 caracteres).
+            El nombre de la temporada es requerido (mínimo 10 caracteres).
         </small>
     </div>
 

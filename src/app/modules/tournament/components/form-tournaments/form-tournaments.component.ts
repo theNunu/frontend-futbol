@@ -9,6 +9,7 @@ import { TournamentDto, TournamentDtoResponse } from '../../interfaces/data';
   styleUrl: './form-tournaments.component.css'
 })
 export class FormTournamentsComponent implements OnInit, OnChanges {
+  
   @Input() dataTournament: TournamentDto | null = null;
   @Input() isSubmitting: boolean = false;
 
