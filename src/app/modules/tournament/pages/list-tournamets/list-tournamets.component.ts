@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TournamentsService } from '../../services/tournaments.service';
-import { TournamentI, Tournaments } from '../../interfaces/data';
+import { TournamentDtoUpdate, TournamentI, Tournaments } from '../../interfaces/data';
 
 @Component({
   selector: 'app-list-tournamets',
@@ -10,34 +10,45 @@ import { TournamentI, Tournaments } from '../../interfaces/data';
 })
 export class ListTournametsComponent implements OnInit {
 
-    showCreateModal: boolean = false;
-  
-    constructor(
-      private tournamentService: TournamentsService,
-    ) { }
-  
-    // tournaments: Tournaments[] = [];
+  showCreateModal: boolean = false;
 
-    tournaments: TournamentI[] = [];
-  
-    ngOnInit(): void {
-      this.bringTournaments();
-    }
-  
-    bringTournaments(): void {
-      this.tournamentService.getTournaments().subscribe({
-        next: (data) => {
-          console.log('torneos obtenidos', data)
-          this.tournaments = data;
-        },
-        error: () => {
+  // showCreateModal: boolean = false;
+  showUpdateModal: boolean = false;
 
-        }
-      });
-    }
-  
-    openCreate(): void {
-      this.showCreateModal = true;
-    }
+  selectedTournament: TournamentDtoUpdate | null = null;
+
+  constructor(
+    private tournamentService: TournamentsService,
+  ) { }
+
+  // tournaments: Tournaments[] = [];
+
+  tournaments: TournamentI[] = [];
+
+  ngOnInit(): void {
+    this.bringTournaments();
+  }
+
+  bringTournaments(): void {
+    this.tournamentService.getTournaments().subscribe({
+      next: (data) => {
+        console.log('torneos obtenidos', data)
+        this.tournaments = data;
+      },
+      error: () => {
+
+      }
+    });
+  }
+
+  openCreate(): void {
+    this.showCreateModal = true;
+  }
+
+  // Abre el modal de actualización pasando el objeto de la fila elegida
+  openUpdate(tournament: TournamentDtoUpdate): void {
+    this.selectedTournament = { ...tournament };
+    this.showUpdateModal = true;
+  }
 
 }

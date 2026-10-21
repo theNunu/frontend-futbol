@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ApiResponse, TournamentDto, TournamentDtoResponse, Tournaments } from '../interfaces/data';
+import { ApiResponse, Tournament, TournamentDto, TournamentDtoResponse, TournamentDtoUpdate, Tournaments } from '../interfaces/data';
 import { map } from 'rxjs/operators'; // <-- Importa el operador map
 @Injectable({
   providedIn: 'root'
@@ -26,8 +26,10 @@ export class TournamentsService {
     return this.http.post<TournamentDtoResponse>(`${this.apiUrl}`, request);
   }
 
-  // getSeasons(): Observable<SeasonSelect[]> {
-  //   return this.http.get<SeasonSelect[]>(`${this.apiUrl}/seasons`);
-  //   // return this.http.post<BannerDto>(`${this.apiUrl}`, request);
-  // }
+  // Actualizar torneo existente
+  updateTournament(id: number, tournament: TournamentDtoUpdate): Observable<Tournament> {
+    return this.http.put<ApiResponse<Tournament>>(`${this.apiUrl}/${id}`, tournament).pipe(
+      map(response => response.data) // Extrae el objeto torneo actualizado
+    );
+  }
 }
