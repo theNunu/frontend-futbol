@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TournamentsComponent } from './pages/tournaments/tournaments.component';
+// import { TournamentsComponent } from './pages/tournaments/tournaments.component';
 import { HttpClientModule } from '@angular/common/http';
 // import { TournamentsModule } from './modules/tournaments/tournaments.module';
 import { NewsModule } from './modules/news/news.module';
@@ -21,7 +21,7 @@ import { TournamentModule } from './modules/tournament/tournament.module';
 @NgModule({
   declarations: [
     AppComponent,
-    TournamentsComponent,
+    // TournamentsComponent,
   ],
   imports: [
     BrowserModule,
