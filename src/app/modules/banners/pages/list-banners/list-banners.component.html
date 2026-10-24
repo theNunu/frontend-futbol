@@ -1,11 +1,10 @@
-<!-- <p>list-banners works!</p>
-<h2>Mis Banners</h2> -->
-
-<div class="flex justify-between align-items-center mb-4">
+<div class="d-flex gap-4">
+    <i class="fa-solid fa-image fa-3x" style="color: rgb(73, 77, 254);"></i>
     <h2>Gestión de Banners</h2>
-    <p-button label="Nuevo Banner" icon="pi pi-plus" severity="success" (onClick)="openCreate()">
-    </p-button>
 </div>
+
+<p-button label="Nuevo Banner" icon="pi pi-plus" severity="success" (onClick)="openCreate()">
+</p-button>
 
 <div class="container mt-5">
     <p-table [value]="banner" [tableStyle]="{ 'min-width': '50rem' }">
