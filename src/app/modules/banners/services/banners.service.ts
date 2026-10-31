@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ApiResponse, BannerDto, Banners } from '../interfaces/data';
+import { ApiResponse, Banner, BannerDto, BannerDtoUpdate, Banners } from '../interfaces/data';
 import { map } from 'rxjs/operators'; // <-- Importa el operador map
 @Injectable({
   providedIn: 'root'
@@ -28,5 +28,12 @@ export class BannersService {
   createBanner(request: BannerDto) {
     console.log("request del servidor: ", request)
     return this.http.post<BannerDto>(`${this.apiUrl}`, request);
+  }
+
+  // Dentro de BannersService:
+  updateBanner(banner_id: number, request: BannerDtoUpdate): Observable<Banner> {
+    return this.http.put<ApiResponse<Banner>>(`${this.apiUrl}/${banner_id}`, request).pipe(
+      map(response => response.data)
+    );
   }
 }

@@ -27,6 +27,12 @@
                     <span class="text-xs text-gray-400 italic">Sin imagen</span>
                     }
                 </td>
+                <!-- En la columna de la tabla -->
+                <td class="text-center">
+                    <p-button icon="pi pi-pencil" severity="info" [outlined]="true" (onClick)="openEdit(item)"
+                        styleClass="p-button-sm">
+                    </p-button>
+                </td>
             </tr>
         </ng-template>
 
@@ -35,9 +41,17 @@
                 <td colspan="2" class="text-center p-4">No hay banners para mostrar.</td>
             </tr>
         </ng-template>
+
     </p-table>
 </div>
 
 <!-- COMPONENTES DE PÁGINAS ACCIONABLES COMO MODALES -->
 <app-create-banners [(display)]="showCreateModal" (onCreated)="cargarNoticias()">
 </app-create-banners>
+
+<!-- Al final del archivo HTML PARA ACTULIZAR  BANNER -->
+<app-update-banners 
+    [(display)]="showUpdateModal" 
+    [bannerData]="selectedBanner"
+    (onUpdated)="cargarNoticias()">
+</app-update-banners>

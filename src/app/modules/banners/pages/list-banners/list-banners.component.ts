@@ -12,6 +12,9 @@ export class ListBannersComponent implements OnInit {
 
   showCreateModal: boolean = false;
 
+  showUpdateModal: boolean = false; //hechos para el actualizar
+  selectedBanner: Banners | null = null; //hechos para el actualizar
+
   constructor(
     private bannersService: BannersService
 
@@ -67,6 +70,13 @@ export class ListBannersComponent implements OnInit {
 
   openCreate(): void {
     this.showCreateModal = true;
+  }
+
+
+
+  openEdit(banner: Banners): void {
+    this.selectedBanner = banner;
+    this.showUpdateModal = true;
   }
 
 }
