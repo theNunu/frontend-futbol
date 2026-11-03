@@ -17,6 +17,7 @@ import { ButtonModule } from 'primeng/button';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BannersModule } from './modules/banners/banners.module';
 import { TournamentModule } from './modules/tournament/tournament.module';
+import { PhasesModule } from './modules/phases/phases.module';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { TournamentModule } from './modules/tournament/tournament.module';
     NewsModule,
     SeasonsTournamentModule,
     BannersModule,
+    PhasesModule,
     // TournamentsModule,
     TournamentModule,
     ButtonModule // Cargas el módulo del componente aquí para que esté disponible

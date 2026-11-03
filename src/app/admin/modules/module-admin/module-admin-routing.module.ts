@@ -7,6 +7,7 @@ import { ListNewsComponent } from '../../../modules/news/pages/list-news/list-ne
 import { ListSeasonComponent } from '../../../modules/seasons-tournament/pages/list-season/list-season.component';
 import { ListBannersComponent } from '../../../modules/banners/pages/list-banners/list-banners.component';
 import { ListTournametsComponent } from '../../../modules/tournament/pages/list-tournamets/list-tournamets.component';
+import { ListPhasesComponent } from '../../../modules/phases/pages/list-phases/list-phases.component';
 
 const routes: Routes = [
 
@@ -19,6 +20,7 @@ const routes: Routes = [
       { path: 'seasons/list', component: ListSeasonComponent },
       { path: 'banners/list', component: ListBannersComponent },
       { path: 'tournaments/list', component: ListTournametsComponent },
+      { path: 'phases/list', component: ListPhasesComponent},
 
       // Ruta por defecto por si entran solo a /admin
       { path: '', redirectTo: 'news', pathMatch: 'full' }
