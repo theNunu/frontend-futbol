@@ -1,2 +1,57 @@
 <p>list-phases works!</p>
-shit  ll
+shit ll
+<div class="tournament-container">
+    <h2>Gestión de Torneos y Fases (1 a N)</h2>
+
+    <div class="content-grid">
+        <!-- SECCIÓN 1: Listado de Torneos con Botón de "Ojo" -->
+        <div class="list-section">
+            <h3>Listado de Torneos</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Torneo</th>
+                        <th>Temporada</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tournament of tournamentsList">
+                        <td>{{ tournament.tournament_id }}</td>
+                        <td>{{ tournament.name }}</td>
+                        <!-- <td>{{ tournament.season || 'N/A' }}</td> -->
+                        <td>
+                            <!-- Botón de Ojo para ver las fases hijas -->
+                            <button type="button" class="btn-icon" (click)="onViewPhases(tournament.tournament_id)"
+                                title="Ver fases del torneo">
+                                👁️ Ver Fases
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECCIÓN 2: Visualización de los Hijos (Fases) del Torneo Seleccionado -->
+        <div class="details-section" *ngIf="selectedTournament">
+            <h3>Fases del Torneo: {{ selectedTournament.name }}</h3>
+
+            <div *ngIf="selectedTournament.phases && selectedTournament.phases.length > 0; else noPhases">
+                <ul class="phases-list">
+                    <li *ngFor="let phase of selectedTournament.phases">
+                        <span class="badge">Orden: {{ phase.order }}</span>
+                        <strong>{{ phase.name }}</strong>
+                        <small>(ID Fase: {{ phase.phase_id }})</small>
+                    </li>
+                </ul>
+            </div>
+            <ng-template #noPhases>
+                <p class="text-muted">Este torneo aún no tiene fases registradas.</p>
+            </ng-template>
+        </div>
+    </div>
+
+    <hr />
+
+</div>
