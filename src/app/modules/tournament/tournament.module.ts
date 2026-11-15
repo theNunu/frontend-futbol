@@ -6,7 +6,7 @@ import { ListTournametsComponent } from './pages/list-tournamets/list-tournamets
 import { CreateTournametsComponent } from './pages/create-tournamets/create-tournamets.component';
 import { UpdateTournametsComponent } from './pages/update-tournamets/update-tournamets.component';
 import { FormTournamentsComponent } from './components/form-tournaments/form-tournaments.component';
-// PrimeNG Modules
+// PrimeNG Modules (COPIAR Y PEGAR)
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -29,6 +29,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     TournamentRoutingModule,
+    //IMPORTACIONES DE PRIMENG  (COPIAR Y PEGAR)
     TableModule,
     ButtonModule,// 2. Agrégalo aquí para que ListSeasonComponent pueda usarlo
     InputTextModule,

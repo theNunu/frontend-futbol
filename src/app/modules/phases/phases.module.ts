@@ -6,7 +6,17 @@ import { FormPhasesComponent } from './components/form-phases/form-phases.compon
 import { ListPhasesComponent } from './pages/list-phases/list-phases.component';
 import { CreatePhasesComponent } from './pages/create-phases/create-phases.component';
 import { UpdatePhasesComponent } from './pages/update-phases/update-phases.component';
-
+// PrimeNG Modules (COPIAR Y PEGAR)
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { TextareaModule } from 'primeng/textarea';
+import { DialogModule } from 'primeng/dialog';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { MessageService, ConfirmationService } from 'primeng/api'; // 1. Importar desde primeng/api
+import { InputSwitchModule } from 'primeng/inputswitch'; // Importar módulo
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +28,16 @@ import { UpdatePhasesComponent } from './pages/update-phases/update-phases.compo
   ],
   imports: [
     CommonModule,
-    PhasesRoutingModule
+    PhasesRoutingModule,
+    //IMPORTACIONES DE PRIMENG  (COPIAR Y PEGAR)
+    TableModule,
+    ButtonModule,// 2. Agrégalo aquí para que ListSeasonComponent pueda usarlo
+    InputTextModule,
+    TextareaModule,
+    DialogModule,
+    ToastModule,
+    ConfirmDialogModule,
+    ReactiveFormsModule, // PARA LOS FORMULARIOS
   ]
 })
 export class PhasesModule { }
