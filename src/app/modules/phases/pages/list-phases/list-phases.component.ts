@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Tournament } from '../../interfaces/data';
+import { Phase, Tournament } from '../../interfaces/data';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PhasesService } from '../../services/phases.service';
 
@@ -12,6 +12,7 @@ import { PhasesService } from '../../services/phases.service';
 export class ListPhasesComponent implements OnInit {
 
   showPhases: boolean = false;
+  
 
   // phaseForm!: FormGroup;
   // Listado tipado de torneos (Cero any)
@@ -19,6 +20,11 @@ export class ListPhasesComponent implements OnInit {
 
   // Torneo seleccionado al hacer clic en el botón de ojo
   selectedTournament: Tournament | null = null;
+
+  // activa fase
+  showPhasesModal: boolean = false;
+  showUpdateModal: boolean = false;
+  selectedPhaseToUpdate: Phase | null = null; // Fase elegida para editar
 
   constructor(
     // private fb: FormBuilder,
@@ -82,6 +88,22 @@ export class ListPhasesComponent implements OnInit {
         }
       });
     }
+  }
+
+  // Abre el modal secundario de actualización (Botón Lápiz)
+  openUpdatePhase(phase: Phase): void {
+    this.selectedPhaseToUpdate = { ...phase };
+    this.showUpdateModal = true;
+  }
+
+  // Se ejecuta cuando la fase se guarda exitosamente desde el componente update-phase
+  handlePhaseUpdated(): void {
+    this.showUpdateModal = false;
+    // Refrescamos los datos del torneo actual para ver los cambios reflejados
+    if (this.selectedTournament) {
+      this.seePhases(this.selectedTournament);
+    }
+    this.loadTournaments();
   }
 
 

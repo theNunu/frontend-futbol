@@ -53,3 +53,14 @@ export interface ApiResponse<T> {
 // export interface TournamentDetailResponse {
 //   tournament: Tournament;
 // }
+
+// Payload requerido por el backend para Crear o Actualizar una Fase (POST / PUT)
+export interface PhaseCreatePayload {
+  tournament_id: number;
+  name: string;
+  order: number;
+}
+// Estructura cuando el backend devuelve un solo torneo con sus relaciones (por ejemplo en el detail o update)
+export interface TournamentDetailResponse {
+  tournament: Tournament;
+}

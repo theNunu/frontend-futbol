@@ -65,6 +65,7 @@
                     <th>Nombre de la Fase</th>
                     <th>Extra Time</th>
                     <th>Penaltis</th>
+                    <th style="text-align: center;">Acciones</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-phase>
@@ -75,7 +76,20 @@
                     <td><strong>{{ phase.name }}</strong></td>
                     <td>{{ phase.has_extra_time ? 'Sí' : 'No' }}</td>
                     <td>{{ phase.has_penalties ? 'Sí' : 'No' }}</td>
+
+                    <td style="text-align: center;">
+                        <!-- Botón de Lápiz para Editar Fase -->
+                        <p-button 
+                            icon="fa-solid fa-pen-to-square"
+                            severity="info" 
+                            [rounded]="true" 
+                            [text]="true" 
+                            (onClick)="openUpdatePhase(phase)"
+                            title="Editar fase">
+                        </p-button>
+                    </td>
                 </tr>
+                
             </ng-template>
         </p-table>
     </div>
@@ -90,4 +104,21 @@
     <ng-template pTemplate="footer">
         <p-button label="Cerrar" icon="fa-solid fa-xmark" severity="secondary" (onClick)="showPhases = false"></p-button>
     </ng-template>
+</p-dialog>
+
+<!-- SEGUNDO MODAL (O SUB-MODAL) PARA ACTUALIZAR LA FASE -->
+<p-dialog 
+    [(visible)]="showUpdateModal" 
+    header="Editar Información de la Fase" 
+    [modal]="true" 
+    [style]="{ width: '40vw' }" 
+    [draggable]="false" 
+    [resizable]="false">
+    
+    <app-update-phases
+        *ngIf="selectedPhaseToUpdate" 
+        [phaseData]="selectedPhaseToUpdate"
+        (onSaved)="handlePhaseUpdated()"
+        (onClosed)="showUpdateModal = false">
+    </app-update-phases>
 </p-dialog>

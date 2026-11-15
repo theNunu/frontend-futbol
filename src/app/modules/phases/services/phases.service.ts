@@ -2,7 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiResponse, Tournament } from '../interfaces/data';
+import { ApiResponse, PhaseCreatePayload, Tournament, TournamentDetailResponse } from '../interfaces/data';
 @Injectable({
   providedIn: 'root'
 })
@@ -27,6 +27,11 @@ export class PhasesService {
   getPhasesByTournamentId(tournamentId: number): Observable<ApiResponse<Tournament>> {
     return this.http.get<ApiResponse<Tournament>>(`${this.apiUrl}/${tournamentId}`);
 
+  }
+
+  // Método para actualizar una fase existente (PUT)
+  updatePhase(phaseId: number, payload: PhaseCreatePayload): Observable<ApiResponse<TournamentDetailResponse>> {
+    return this.http.put<ApiResponse<TournamentDetailResponse>>(`${this.apiUrl}/${phaseId}`, payload);
   }
 
 }
