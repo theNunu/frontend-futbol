@@ -34,7 +34,7 @@ export class ListPhasesComponent implements OnInit {
     this.phasesService.getTournaments().subscribe({
       next: (response) => {
         if (response.success) {
-          this.tournamentsList = response.data.tournaments;
+          this.tournamentsList = response.data;
         }
       },
       error: (error) => {

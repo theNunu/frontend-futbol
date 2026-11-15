@@ -16,8 +16,8 @@ export class PhasesService {
   constructor(private http: HttpClient) { }
 
   // 1. Obtener el listado general de torneos
-  getTournaments(): Observable<ApiResponse<TournamentsListResponse>> {
-    return this.http.get<ApiResponse<TournamentsListResponse>>(`${this.apiUrl2}`);
+  getTournaments(): Observable<ApiResponse<Tournament[]>> {
+    return this.http.get<ApiResponse<Tournament[]>>(`${this.apiUrl2}`);
   }
   // getTournaments(): Observable<Tournament[]> {
   //   return this.http.get<Tournament[]>(`${this.apiUrl}/tournaments`);
