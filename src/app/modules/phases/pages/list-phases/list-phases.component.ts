@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TournamentsService } from '../../../tournament/services/tournaments.service';
 import { Tournament } from '../../interfaces/data';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PhasesService } from '../../services/phases.service';
@@ -11,6 +10,8 @@ import { PhasesService } from '../../services/phases.service';
   styleUrl: './list-phases.component.css'
 })
 export class ListPhasesComponent implements OnInit {
+
+  showPhases: boolean = false;
 
   // phaseForm!: FormGroup;
   // Listado tipado de torneos (Cero any)
@@ -56,5 +57,32 @@ export class ListPhasesComponent implements OnInit {
       }
     });
   }
+
+  // Abre el modal de actualización pasando el objeto de la fila elegida
+  // seePhases(tournament: Tournament): void {
+  //   this.selectedTournament = { ...tournament };
+  //   this.showPhases = true;
+  // }
+  // Abre el modal de PrimeNG pasando el objeto y opcionalmente consultando el detalle actualizado
+  seePhases(tournament: Tournament): void {
+    this.selectedTournament = { ...tournament };
+    this.showPhases = true;
+
+    // Opcional: Si el listado general no trae las fases completas y necesitas pedirlas por ID:
+    if (tournament.tournament_id) {
+      this.phasesService.getPhasesByTournamentId(tournament.tournament_id).subscribe({
+        next: (response) => {
+          if (response.success && response.data) {
+            // Asignamos el torneo detallado que incluye el array de fases (hijos)
+            this.selectedTournament = response.data;
+          }
+        },
+        error: (error: HttpErrorResponse) => {
+          console.error('Error al obtener el detalle de las fases:', error.message);
+        }
+      });
+    }
+  }
+
 
 }

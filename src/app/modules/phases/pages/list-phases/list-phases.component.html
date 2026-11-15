@@ -1,57 +1,93 @@
 <p>list-phases works!</p>
-shit ll
-<div class="tournament-container">
-    <h2>Gestión de Torneos y Fases (1 a N)</h2>
+<div class="d-flex gap-3">
+    <div> <i class="fa-solid fa-trophy fa-3x" style="color: rgb(73, 77, 254);"></i></div>
+    <div class="h1">Fases</div>
+</div>
 
-    <div class="content-grid">
-        <!-- SECCIÓN 1: Listado de Torneos con Botón de "Ojo" -->
-        <div class="list-section">
-            <h3>Listado de Torneos</h3>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Torneo</th>
-                        <th>Temporada</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let tournament of tournamentsList">
-                        <td>{{ tournament.tournament_id }}</td>
-                        <td>{{ tournament.name }}</td>
-                        <!-- <td>{{ tournament.season || 'N/A' }}</td> -->
-                        <td>
-                            <!-- Botón de Ojo para ver las fases hijas -->
-                            <button type="button" class="btn-icon" (click)="onViewPhases(tournament.tournament_id)"
-                                title="Ver fases del torneo">
-                                👁️ Ver Fases
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<div class="container mt-5">
+    <p-table [value]="tournamentsList" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>torneo ID</th>
+                <th>nombre</th>
+                <th>nombre temporada</th>
+            </tr>
+        </ng-template>
 
-        <!-- SECCIÓN 2: Visualización de los Hijos (Fases) del Torneo Seleccionado -->
-        <div class="details-section" *ngIf="selectedTournament">
-            <h3>Fases del Torneo: {{ selectedTournament.name }}</h3>
+        <ng-template pTemplate="body" let-item>
+            <tr>
+                <td>{{ item.tournament_id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.season }}</td>
+            </tr>
+        </ng-template>
 
-            <div *ngIf="selectedTournament.phases && selectedTournament.phases.length > 0; else noPhases">
-                <ul class="phases-list">
-                    <li *ngFor="let phase of selectedTournament.phases">
-                        <span class="badge">Orden: {{ phase.order }}</span>
-                        <strong>{{ phase.name }}</strong>
-                        <small>(ID Fase: {{ phase.phase_id }})</small>
-                    </li>
-                </ul>
-            </div>
-            <ng-template #noPhases>
-                <p class="text-muted">Este torneo aún no tiene fases registradas.</p>
+        <ng-template pTemplate="body" let-item>
+            <tr>
+                <td>{{ item.tournament_id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.season }}</td>
+                <td>
+                    <p-button 
+                      icon="fa-solid fa-eye"
+                      severity="warn" 
+                      [rounded]="true" 
+                      [text]="true" 
+                      (onClick)="seePhases(item)">
+                    </p-button>
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="2" class="text-center p-4">No hay torneos para mostrar.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+
+<!-- MODAL DE PRIMENG PARA VER LAS FASES (HIJOS) -->
+<p-dialog 
+    [(visible)]="showPhases" 
+    [header]="'Fases del Torneo: ' + (selectedTournament?.name || '')" 
+    [modal]="true" 
+    [style]="{ width: '50vw' }" 
+    [draggable]="false" 
+    [resizable]="false">
+
+    <div *ngIf="selectedTournament?.phases && selectedTournament!.phases!.length > 0; else noPhases">
+        <p-table [value]="selectedTournament!.phases!" [tableStyle]="{ 'min-width': '100%' }">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Orden</th>
+                    <th>Nombre de la Fase</th>
+                    <th>Extra Time</th>
+                    <th>Penaltis</th>
+                </tr>
             </ng-template>
-        </div>
+            <ng-template pTemplate="body" let-phase>
+                <tr>
+                    <td>
+                        <span class="badge bg-secondary">#{{ phase.order }}</span>
+                    </td>
+                    <td><strong>{{ phase.name }}</strong></td>
+                    <td>{{ phase.has_extra_time ? 'Sí' : 'No' }}</td>
+                    <td>{{ phase.has_penalties ? 'Sí' : 'No' }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
     </div>
 
-    <hr />
+    <ng-template #noPhases>
+        <div class="text-center p-4 text-muted">
+            <i class="fa-solid fa-triangle-exclamation fa-2x mb-2"></i>
+            <p>Este torneo aún no tiene fases registradas o el backend no las devolvió en el objeto.</p>
+        </div>
+    </ng-template>
 
-</div>
+    <ng-template pTemplate="footer">
+        <p-button label="Cerrar" icon="fa-solid fa-xmark" severity="secondary" (onClick)="showPhases = false"></p-button>
+    </ng-template>
+</p-dialog>
