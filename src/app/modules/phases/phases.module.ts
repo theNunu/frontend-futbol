@@ -17,7 +17,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MessageService, ConfirmationService } from 'primeng/api'; // 1. Importar desde primeng/api
 import { InputSwitchModule } from 'primeng/inputswitch'; // Importar módulo
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { DropdownModule } from 'primeng/dropdown';
 @NgModule({
   declarations: [
     // FormBannersComponent,
@@ -38,6 +38,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ToastModule,
     ConfirmDialogModule,
     ReactiveFormsModule, // PARA LOS FORMULARIOS
+    DropdownModule // <-- Asegúrate de incluirlo aquí SELECT DE PRIMENG
   ]
 })
 export class PhasesModule { }

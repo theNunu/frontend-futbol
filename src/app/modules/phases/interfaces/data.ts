@@ -18,6 +18,16 @@ export interface Tournament {
   phases?: Phase[]; // Relación de uno a muchos
 }
 
+export interface TournamentsList {
+  tournament_id: number;
+  name: string;
+  season: string;
+  // created_at?: string;
+  // updated_at?: string;
+//   season_id?: number;
+  // phases?: Phase[]; // Relación de uno a muchos
+}
+
 // Estructura para crear una fase (lo que envías por POST)
 export interface PhaseCreatePayload {
   tournament_id: number;

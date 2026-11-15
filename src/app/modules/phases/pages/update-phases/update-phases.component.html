@@ -5,10 +5,31 @@
 
     <form [formGroup]="phaseForm" (ngSubmit)="onSubmit()">
 
+        <!-- SELECT / DROPDOWN DE TORNEOS -->
+        <div class="mb-3">
+            <label class="form-label">Torneo al que pertenece:</label>
+            <br>
+            <!-- 
+        [options]="tournamentsList" (La materia prima):
+        optionLabel="name" (Lo que los ojos del usuario ven):
+        optionValue="tournament_id" (Lo que el código guarda por debajo):
+        formControlName="tournament_id" (El enlace con el Formulario Reactivo):
+        -->
+            <p-dropdown formControlName="tournament_id" [options]="tournamentsList" optionLabel="name"
+                optionValue="tournament_id" placeholder="Seleccione un torneo" [style]="{ width: '100%' }"
+                styleClass="w-full">
+            </p-dropdown>
+            <small class="text-danger"
+                *ngIf="phaseForm.get('tournament_id')?.invalid && phaseForm.get('tournament_id')?.touched">
+                Debe seleccionar un torneo válido.
+            </small>
+        </div>
+        <!-- 
         <div class="mb-3">
             <label class="form-label">Tournament ID (ID del Torneo Padre):</label>
             <input type="number" formControlName="tournament_id" class="form-control" />
-        </div>
+        </div> -->
+
 
         <div class="mb-3">
             <label class="form-label">Nombre de la Fase:</label>

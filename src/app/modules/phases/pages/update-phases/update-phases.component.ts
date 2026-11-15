@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Phase, PhaseCreatePayload } from '../../interfaces/data';
+import { Phase, PhaseCreatePayload, TournamentsList } from '../../interfaces/data';
 import { PhasesService } from '../../services/phases.service';
 @Component({
   selector: 'app-update-phases',
@@ -11,6 +11,9 @@ import { PhasesService } from '../../services/phases.service';
 export class UpdatePhasesComponent implements OnInit {
   // Recibimos la fase seleccionada desde el componente padre (el listado / modal principal)
   @Input() phaseData!: Phase;
+
+  // Recibimos la lista completa de torneos desde el componente padre
+  @Input() tournamentsList: TournamentsList[] = []; //para sekect de torneos 
   
   // Evento para notificar al componente padre que se actualizó con éxito o se canceló
   @Output() onSaved = new EventEmitter<void>();
@@ -29,7 +32,9 @@ export class UpdatePhasesComponent implements OnInit {
 
   private initForm(): void {
     this.phaseForm = this.fb.group({
+            // Almacenará el tournament_id internamente, pero mostrará el nombre gracias al dropdown
       tournament_id: [this.phaseData?.tournament_id || '', [Validators.required, Validators.min(1)]],
+
       name: [this.phaseData?.name || '', [Validators.required, Validators.minLength(3)]],
       order: [this.phaseData?.order || 1, [Validators.required, Validators.min(1)]]
     });
