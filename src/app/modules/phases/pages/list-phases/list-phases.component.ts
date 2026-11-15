@@ -44,10 +44,10 @@ export class ListPhasesComponent implements OnInit {
   }
   // Acción ejecutada al hacer clic en el botón de "ojo" 👁️
   onViewPhases(tournamentId: number): void {
-    this.phasesService.getTournamentById(tournamentId).subscribe({
+    this.phasesService.getPhasesByTournamentId(tournamentId).subscribe({
       next: (response) => {
         if (response.success) {
-          this.selectedTournament = response.data.tournament;
+          this.selectedTournament = response.data;
           // this.phaseForm.patchValue({ tournament_id: tournamentId });
         }
       },

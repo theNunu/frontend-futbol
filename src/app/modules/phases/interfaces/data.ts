@@ -46,10 +46,10 @@ export interface ApiResponse<T> {
 }
 
 // Estructuras específicas para los endpoints
-export interface TournamentsListResponse {
-  tournaments: Tournament[];
-}
+// export interface TournamentsListResponse {
+//   tournaments: Tournament[];
+// }
 
-export interface TournamentDetailResponse {
-  tournament: Tournament;
-}
+// export interface TournamentDetailResponse {
+//   tournament: Tournament;
+// }
