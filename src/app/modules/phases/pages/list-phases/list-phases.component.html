@@ -5,25 +5,31 @@
 </div>
 
 <div class="container mt-5">
-    <p-table [value]="tournamentsList" [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table [value]="phasesList" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
             <tr>
-                <th>torneo ID</th>
+                <th>Fase ID</th>
                 <th>nombre</th>
-                <th>nombre temporada</th>
+                <th>torneo id</th>
                 <th style="text-align: center;">Acciones</th>
             </tr>
         </ng-template>
 
         <ng-template pTemplate="body" let-item>
             <tr>
-                <td>{{ item.tournament_id }}</td>
+                <td>{{ item.phase_id }}</td>
                 <td>{{ item.name }}</td>
-                <td>{{ item.season }}</td>
+                <td>{{ item.tournament_id }}</td>
+                <td>
+                    <p-button icon="fa-solid fa-eye" severity="warn" [rounded]="true" [text]="true"
+                        (onClick)="seePhases(item)">
+                    </p-button>
+                </td>
+                <!-- <td>{{ item.season }}</td> -->
             </tr>
         </ng-template>
 
-        <ng-template pTemplate="body" let-item>
+        <!-- <ng-template pTemplate="body" let-item>
             <tr>
                 <td>{{ item.tournament_id }}</td>
                 <td>{{ item.name }}</td>
@@ -38,7 +44,7 @@
                     </p-button>
                 </td>
             </tr>
-        </ng-template>
+        </ng-template> -->
 
         <ng-template pTemplate="emptymessage">
             <tr>
@@ -50,13 +56,8 @@
 
 
 <!-- MODAL DE PRIMENG PARA VER LAS FASES (HIJOS) -->
-<p-dialog 
-    [(visible)]="showPhases" 
-    [header]="'Fases del Torneo: ' + (selectedTournament?.name || '')" 
-    [modal]="true" 
-    [style]="{ width: '50vw' }" 
-    [draggable]="false" 
-    [resizable]="false">
+<p-dialog [(visible)]="showPhases" [header]="'Fases del Torneo: ' + (selectedTournament?.name || '')" [modal]="true"
+    [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
 
     <div *ngIf="selectedTournament?.phases && selectedTournament!.phases!.length > 0; else noPhases">
         <p-table [value]="selectedTournament!.phases!" [tableStyle]="{ 'min-width': '100%' }">
@@ -80,17 +81,12 @@
 
                     <td style="text-align: center;">
                         <!-- Botón de Lápiz para Editar Fase -->
-                        <p-button 
-                            icon="fa-solid fa-pen-to-square"
-                            severity="info" 
-                            [rounded]="true" 
-                            [text]="true" 
-                            (onClick)="openUpdatePhase(phase)"
-                            title="Editar fase">
+                        <p-button icon="fa-solid fa-pen-to-square" severity="info" [rounded]="true" [text]="true"
+                            (onClick)="openUpdatePhase(phase)" title="Editar fase">
                         </p-button>
                     </td>
                 </tr>
-                
+
             </ng-template>
         </p-table>
     </div>
@@ -103,25 +99,21 @@
     </ng-template>
 
     <ng-template pTemplate="footer">
-        <p-button label="Cerrar" icon="fa-solid fa-xmark" severity="secondary" (onClick)="showPhases = false"></p-button>
+        <p-button label="Cerrar" icon="fa-solid fa-xmark" severity="secondary"
+            (onClick)="showPhases = false"></p-button>
     </ng-template>
 </p-dialog>
 
 <!-- SEGUNDO MODAL (O SUB-MODAL) PARA ACTUALIZAR LA FASE -->
-<p-dialog 
-    [(visible)]="showUpdateModal" 
-    header="Editar Información de la Fase" 
-    [modal]="true" 
-    [style]="{ width: '40vw' }" 
-    [draggable]="false" 
-    [resizable]="false">
-    
+<p-dialog [(visible)]="showUpdateModal" header="Editar Información de la Fase" [modal]="true"
+    [style]="{ width: '40vw' }" [draggable]="false" [resizable]="false">
+
     <!-- listado de torneos para el select  => [tournamentsList]="tournamentsList -->
-    <app-update-phases
+    <!-- <app-update-phases
         *ngIf="selectedPhaseToUpdate" 
-        [tournamentsList]="tournamentsList"   
+        [tournamentsList]="phasesList"   
         [phaseData]="selectedPhaseToUpdate"
         (onSaved)="handlePhaseUpdated()"
         (onClosed)="showUpdateModal = false">
-    </app-update-phases>
+    </app-update-phases> -->
 </p-dialog>

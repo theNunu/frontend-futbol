@@ -1,8 +1,8 @@
 // import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiResponse, PhaseCreatePayload, Tournament, TournamentDetailResponse } from '../interfaces/data';
+import { ApiResponse, Phase, PhaseCreatePayload, PhaseFilterParams, Tournament, TournamentDetailResponse } from '../interfaces/data';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,8 +16,14 @@ export class PhasesService {
   constructor(private http: HttpClient) { }
 
   // 1. Obtener el listado general de torneos
-  getTournaments(): Observable<ApiResponse<Tournament[]>> {
-    return this.http.get<ApiResponse<Tournament[]>>(`${this.apiUrl2}`);
+  getPhases(filters: PhaseFilterParams): Observable<ApiResponse<Phase[]>> {
+
+    let params = new HttpParams();
+
+    // OPCIÓN A: Si el backend requiere que los parámetros SE ENVÍEN SIEMPRE (aunque vayan vacíos)
+    params = params.set('tournamentId', filters.tournamentId !== null && filters.tournamentId !== undefined ? filters.tournamentId.toString() : '');
+    params = params.set('name', filters.name ?? '');
+    return this.http.get<ApiResponse<Phase[]>>(`${this.apiUrl}`, { params });
   }
   // getTournaments(): Observable<Tournament[]> {
   //   return this.http.get<Tournament[]>(`${this.apiUrl}/tournaments`);

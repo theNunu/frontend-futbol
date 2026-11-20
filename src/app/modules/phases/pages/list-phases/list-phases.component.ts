@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Phase, Tournament } from '../../interfaces/data';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PhasesService } from '../../services/phases.service';
-
+import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-list-phases',
   standalone: false,
@@ -11,12 +11,14 @@ import { PhasesService } from '../../services/phases.service';
 })
 export class ListPhasesComponent implements OnInit {
 
+  filterForm!: FormGroup;
+
   showPhases: boolean = false;
   
 
   // phaseForm!: FormGroup;
   // Listado tipado de torneos (Cero any)
-  tournamentsList: Tournament[] = [];
+  phasesList: Phase[] = [];
 
   // Torneo seleccionado al hacer clic en el botón de ojo
   selectedTournament: Tournament | null = null;
@@ -28,24 +30,35 @@ export class ListPhasesComponent implements OnInit {
 
   constructor(
     // private fb: FormBuilder,
-    private phasesService: PhasesService
+    private phasesService: PhasesService,
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit(): void {
     // this.initForm();
+    this.initFilterForm();
     this.loadTournaments();
+  }
+
+  private initFilterForm(): void {
+    this.filterForm = this.fb.group({
+      tournamentId: [null],
+      name: ['']
+    });
   }
 
   // Cargar el listado inicial de torneos al iniciar el componente
   loadTournaments(): void {
-    this.phasesService.getTournaments().subscribe({
+    const formValues = this.filterForm.value;
+    this.phasesService.getPhases(formValues).subscribe({
       next: (response) => {
+        console.log("listado fases",response);
         if (response.success) {
-          this.tournamentsList = response.data;
+          this.phasesList = response.data;
         }
       },
       error: (error) => {
-        console.error('Error al cargar torneos:', error);
+        console.error('Error al cargar fases:', error);
       }
     });
   }

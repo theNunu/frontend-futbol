@@ -74,3 +74,8 @@ export interface PhaseCreatePayload {
 export interface TournamentDetailResponse {
   tournament: Tournament;
 }
+
+export interface PhaseFilterParams {
+  tournamentId?: number | null;
+  name?: string | null;
+}
