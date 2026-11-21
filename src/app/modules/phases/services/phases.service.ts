@@ -2,7 +2,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiResponse, Phase, PhaseCreatePayload, PhaseFilterParams, Tournament, TournamentDetailResponse } from '../interfaces/data';
+import { ApiResponse, Phase, PhaseCreatePayload, PhaseFilterParams, Tournament, TournamentDetailResponse, TournamentsList } from '../interfaces/data';
 @Injectable({
   providedIn: 'root'
 })
@@ -25,9 +25,9 @@ export class PhasesService {
     params = params.set('name', filters.name ?? '');
     return this.http.get<ApiResponse<Phase[]>>(`${this.apiUrl}`, { params });
   }
-  // getTournaments(): Observable<Tournament[]> {
-  //   return this.http.get<Tournament[]>(`${this.apiUrl}/tournaments`);
-  // }
+  getTournaments(): Observable<ApiResponse<TournamentsList[]>> {
+    return this.http.get<ApiResponse<TournamentsList[]>>(`${this.apiUrl2}`);
+  }
 
   // 2. Obtener un torneo específico con sus fases (al hacer clic en el botón "Ver / Ojo")
   getPhasesByTournamentId(tournamentId: number): Observable<ApiResponse<Tournament>> {

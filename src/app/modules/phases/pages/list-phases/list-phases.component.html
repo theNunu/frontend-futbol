@@ -5,6 +5,36 @@
 </div>
 
 <div class="container mt-5">
+
+    <!-- FORMULARIO DE FILTROS (Sin botón de búsqueda) -->
+    <form [formGroup]="filterForm" class="row g-3 mb-4 p-3 border rounded bg-light">
+
+        <!-- Filtro por Torneo (Dropdown) -->
+        <div class="col-md-6">
+            <label class="form-label">Filtrar por Torneo:</label>
+            <br>
+            <!-- <p-dropdown formControlName="tournament_id" [options]="TournamentList" optionLabel="name"
+                optionValue="tournament_id" placeholder="Todos los torneos" [showClear]="true"
+                [style]="{ width: '100%' }">
+            </p-dropdown> -->
+            <p-dropdown 
+  formControlName="tournamentId" 
+  [options]="TournamentList" 
+  optionLabel="name" 
+  optionValue="tournament_id"
+  [showClear]="true"
+  [style]="{ width: '100%' }"
+  >
+</p-dropdown>
+        </div>
+
+        <!-- Filtro por Nombre de Fase (Input con búsqueda en tiempo real) -->
+        <div class="col-md-6">
+            <label class="form-label">Nombre de la Fase:</label>
+            <input type="text" formControlName="name" class="form-control" placeholder="Escribe para buscar..." />
+        </div>
+    </form>
+
     <p-table [value]="phasesList" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
             <tr>
