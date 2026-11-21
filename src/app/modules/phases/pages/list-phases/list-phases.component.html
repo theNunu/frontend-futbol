@@ -7,31 +7,45 @@
 <div class="container mt-5">
 
     <!-- FORMULARIO DE FILTROS (Sin botón de búsqueda) -->
-    <form [formGroup]="filterForm" class="row g-3 mb-4 p-3 border rounded bg-light">
+    <form [formGroup]="filterForm" class="row g-3 mb-4 p-3 ">
 
         <!-- Filtro por Torneo (Dropdown) -->
         <div class="col-md-6">
-            <label class="form-label">Filtrar por Torneo:</label>
-            <br>
-            <!-- <p-dropdown formControlName="tournament_id" [options]="TournamentList" optionLabel="name"
-                optionValue="tournament_id" placeholder="Todos los torneos" [showClear]="true"
-                [style]="{ width: '100%' }">
-            </p-dropdown> -->
+           
+            <!-- 
+            optionLabel="name" (Lo que los ojos del usuario ven):
+            optionValue="tournament_id" (Lo que el código guarda por debajo):
+            formControlName="tournament_id" (El enlace con el Formulario Reactivo):
+            -->
             <p-dropdown 
-  formControlName="tournamentId" 
-  [options]="TournamentList" 
-  optionLabel="name" 
-  optionValue="tournament_id"
-  [showClear]="true"
-  [style]="{ width: '100%' }"
-  >
-</p-dropdown>
+                placeholder="Torneo de la copa piston"
+                formControlName="tournamentId" 
+                [options]="TournamentList" 
+                optionLabel="name" 
+                optionValue="tournament_id"
+                [showClear]="true"
+                [style]="{ width: '100%' }">
+
+                <!-- 1. Lo que se ve DESPLEGADO en la lista (Nombre + ID) -->
+                <ng-template let-tournament pTemplate="item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>{{ tournament.name }}</span>
+                        <small class="text-muted">(id: {{ tournament.tournament_id }})</small>
+                    </div>
+                </ng-template>
+
+                <!-- 2. Lo que se ve en la CAJA PRINCIPAL una vez seleccionado -->
+                <ng-template let-tournament pTemplate="selectedItem">
+                    <div *ngIf="tournament">
+                        {{ tournament.name }} <span class="text-muted">(id: {{ tournament.tournament_id }})</span>
+                    </div>
+                </ng-template>
+            </p-dropdown>
         </div>
 
         <!-- Filtro por Nombre de Fase (Input con búsqueda en tiempo real) -->
         <div class="col-md-6">
-            <label class="form-label">Nombre de la Fase:</label>
-            <input type="text" formControlName="name" class="form-control" placeholder="Escribe para buscar..." />
+            <input type="text" formControlName="name" class="form-control" placeholder="Fase 3 supersayayin god" />
         </div>
     </form>
 
